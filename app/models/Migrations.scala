@@ -29,7 +29,6 @@ class CreateDefaultUsers extends Migration {
            User("tahna","tahna@gmail.com","piracyisgood", "(801) 123-4567", admin=true)
            User("alex","alex@gmail.com","piracyisgood", "(801) 123-4567", admin=true)
            User("maria","maria@gmail.com","piracyisgood", "(801) 123-4567",admin=true)
-
         }
     }
 }
