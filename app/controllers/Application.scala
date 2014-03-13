@@ -23,4 +23,12 @@ object Application extends Controller {
     }
   }
 
+  def login = Action
+  {
+    transactional
+    {
+      Ok( views.html.login() )
+    }
+  }
+
 }
