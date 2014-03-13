@@ -15,4 +15,12 @@ object Application extends Controller {
     }
   }
 
+  def landingPage = Action
+  {
+    transactional
+    {
+      Ok( views.html.landingpage() )
+    }
+  }
+
 }
