@@ -1,9 +1,9 @@
 package models
 import PostgresConnection._
+import java.util.Date
 
 
-
-class Request(var user_id:User, var ret_date:java.util.Date, var ret_location:String, var ret_time:java.util.Date, var comments:String) extends Entity
+class Request(var user_id:User, var ret_date:Date, var ret_location:String, var ret_time:Date, var comments:String) extends Entity
 
 object Request
 {

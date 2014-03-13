@@ -25,10 +25,11 @@ class CreateDefaultUsers extends Migration {
     def up = {
         customScript
         {
-           User("leandro","mirandaleandro@gmail.com","piracyisgood")
-           User("tahna","tahna@gmail.com","piracyisgood")
-           User("alex","alex@gmail.com","piracyisgood")
-           User("maria","maria@gmail.com","piracyisgood")
+           User("leandro","mirandaleandro@gmail.com","piracyisgood", "(801) 123-4567", true)
+           User("tahna","tahna@gmail.com","piracyisgood", "(801) 123-4567", true)
+           User("alex","alex@gmail.com","piracyisgood", "(801) 123-4567", true)
+           User("maria","maria@gmail.com","piracyisgood", "(801) 123-4567", true)
+
         }
     }
 }
