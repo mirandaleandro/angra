@@ -79,6 +79,11 @@ body {
   display: block;
   float: left;
 }
+
+.navbar-header img {
+    width: 70px;
+}
+
 .widewrapper {
   background-repeat: repeat-x;
   background-color: #ffffff;
@@ -406,6 +411,10 @@ footer .indent30 {
   }
   .grove-navbar .navbar-header {
     margin-bottom: 12px;
+  }
+
+  .navbar-header img {
+      width: 70px;
   }
   .grove-navbar .grove-nav .nav {
     float: none;
