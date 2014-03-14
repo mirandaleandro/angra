@@ -1,0 +1,39 @@
+@()
+@main(pageTitle = "Budget Order") {
+
+    <div class="widewrapper">
+	    <div class="container content">
+	        <div class="row">
+
+				<section id="contact-form" class="col-md-8">
+					<h2> Contact Us </h2>
+					<form action="#" method="get" accept-charset="utf-8" class="clearfix">
+						<div class="row">
+							<div class="col-sm-6 form-group">
+								<label for="name"> Name </label>
+								<input class="form-control input-lg" type="text" id="name" name="name" value="" placeholder="">
+							</div>
+
+							<div class="col-sm-6 form-group">
+								<label for="email"> Email Address </label>
+								<input class="form-control input-lg" type="email" id="email" name="email" value="" placeholder="">
+							</div>
+						</div>
+
+	                    <div class="row">
+							<div class="col-sm-12 form-group">
+								<label for="message"> Message </label>
+								<textarea class="form-control" id="message" name="message" rows="15"></textarea>
+							</div>
+						</div>
+
+						<button type="submit" class="btn btn-grove-one btn-xlg btn-bold"> Send Message </button>
+					</form>
+				</section>
+
+	          @views.html.RightSidebar.contactInfo()
+
+	        </div>
+	    </div>
+	</div>
+}

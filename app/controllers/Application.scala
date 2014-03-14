@@ -31,4 +31,14 @@ object Application extends Controller {
     }
   }
 
+  def budgetOrder = Action
+  {
+    transactional
+    {
+      Ok( views.html.TravelBudgetRequest.budgetOrder() )
+    }
+  }
+
+
+
 }
