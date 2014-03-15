@@ -1,0 +1,78 @@
+@()
+@main(pageTitle = "Travel Planner") {
+
+    <div class="widewrapper">
+	    <div class="container content">
+	        <div class="row">
+
+				<section id="contact-form" class="col-md-8 faq">
+					<h2> Plan your travel </h2>
+					<form action="#" method="get" accept-charset="utf-8" class="clearfix">
+
+
+                        <div class="trip">
+                            <a href="#trip1" class="accordion-toggle" data-toggle="collapse">Trip #<span class="trip-id">1</span></a>
+
+                            <div id="trip1" class="accordion-collapse collapse in">
+                                <div class="trip">
+
+                                    <div class="row">
+                                        <div class="col-sm-12 form-group">
+                                            <label for="name"> Departure Location </label>
+                                            <input class="form-control input-lg" type="text" id="name" name="name" value="" placeholder="">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6 form-group">
+                                            <label for="name"> Departure Date </label>
+                                            <input class="form-control input-lg" type="text" id="name" name="name" value="" placeholder="">
+                                        </div>
+
+                                        <div class="col-sm-6 form-group">
+                                            <label for="name"> Departure Time </label>
+                                            <input class="form-control input-lg" type="text" id="name" name="name" value="" placeholder="">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 form-group">
+                                            <label for="name"> Favorite Airline Company </label>
+                                            <select class="form-control input-lg airline-preferences" type="text" id="airlines" name="name" multiple data-role="tagsinput">
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 form-group">
+                                            <label for="name"> Arrival Location </label>
+                                            <input class="form-control input-lg" type="text" id="name" name="name" value="" placeholder="">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 form-group">
+                                <label for="message"> Comments </label>
+                                <textarea class="form-control" id="message" name="message" rows="5"></textarea>
+                            </div>
+                        </div>
+
+
+						<button type="submit" class="btn btn-grove-one btn-xlg btn-bold"> Send Message </button>
+
+                    </form>
+				</section>
+
+
+
+	          @views.html.RightSidebar.contactInfo()
+
+	        </div>
+	    </div>
+	</div>
+}

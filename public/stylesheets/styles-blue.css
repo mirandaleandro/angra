@@ -1636,17 +1636,17 @@ ul.paging li.active a {
   padding-bottom: 13px;
   border-top: 1px solid #e0e3e6;
 }
-.faq .question .faq-toggle {
+.accordion-toggle {
   font-size: 14px;
   font-weight: 600;
   color: #6f6f6f;
 }
-.faq .question .faq-toggle:focus,
-.faq .question .faq-toggle:hover {
+.accordion-toggle:focus,
+.accordion-toggle:hover {
   outline: none;
   text-decoration: none;
 }
-.faq .question .faq-toggle:before {
+.accordion-toggle:before {
   margin-right: 17px;
   font-size: 20px;
   font-weight: 700;
@@ -1654,7 +1654,7 @@ ul.paging li.active a {
   content: "+";
   bottom: -2px;
 }
-.faq .question .faq-toggle.open:before {
+.accordion-toggle.open:before {
   content: "−";
 }
 .faq .question .answer {
@@ -1815,5 +1815,39 @@ ul.paging li.active a {
 .product-comparison .disclaimer .text {
   margin-left: 50px;
 }
+.tt-hint
+{
+    color:#CCC;
+}
 
+.tt-dropdown-menu
+{
+    background-color: #1c242c;
+    background-color: rgba(28, 36, 44, 0.85);
+    border: none;
+    color: white;
+}
+
+.tt-suggestion.tt-is-under-cursor
+{
+    background-color: rgba(255,255,255,0.2);
+}
+
+.tt-suggestion
+{
+    line-height: 40px;
+    color: #ffffff;
+    min-width: 200px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+.tt-suggestion > p
+{
+    margin: 0 10px;
+}
+
+.label-info
+{
+    background-color: #587588;
+}
 

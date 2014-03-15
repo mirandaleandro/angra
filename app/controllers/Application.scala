@@ -31,11 +31,11 @@ object Application extends Controller {
     }
   }
 
-  def budgetOrder = Action
+  def travelPlanner = Action
   {
     transactional
     {
-      Ok( views.html.TravelBudgetRequest.budgetOrder() )
+      Ok( views.html.PlanTravel.travelPlanner() )
     }
   }
 

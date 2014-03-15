@@ -12,4 +12,4 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 GET     /login                      controllers.Application.login
 
 # Bugeget order forms
-GET     /budgetOrder                controllers.Application.budgetOrder
+GET     /travelplanner              controllers.Application.travelPlanner
