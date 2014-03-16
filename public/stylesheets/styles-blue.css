@@ -1851,3 +1851,7 @@ ul.paging li.active a {
     background-color: #587588;
 }
 
+.temp-hide
+{
+    display:none;
+}

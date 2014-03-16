@@ -37,8 +37,8 @@
 
                                     <div class="row">
                                         <div class="col-sm-12 form-group">
-                                            <label for="name"> Favorite Airline Company </label>
-                                            <select class="form-control input-lg airline-preferences" type="text" id="airlines" name="name" multiple data-role="tagsinput">
+                                            <label for="name"> Favorite Airline Companies </label>
+                                            <select class="form-control input-lg airline-preferences" type="text"  name="name" multiple data-content='@routes.Assets.at("json/companies.json")' data-role="tagsinput">
 
                                             </select>
                                         </div>
@@ -48,6 +48,40 @@
                                         <div class="col-sm-12 form-group">
                                             <label for="name"> Arrival Location </label>
                                             <input class="form-control input-lg" type="text" id="name" name="name" value="" placeholder="">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-sm-4 form-group">
+                                            <label for="name"> Additional Transportation </label>
+
+                                            <label class="radio">
+                                                <input class="additional-transportation rental" type="radio" value="rental" name="additional_transportation">
+                                                    Rental
+                                            </label>
+
+                                            <label class="radio">
+                                                <input class="additional-transportation taxi" type="radio" value="taxi" name="additional_transportation">
+                                                    Taxi
+                                            </label>
+
+                                            <label class="radio">
+                                                <input class="additional-transportation shuttle" type="radio" value="shuttle"  name="additional_transportation" >
+                                                    Shuttle
+                                            </label>
+
+                                            <label class="radio">
+                                                <input class="additional-transportation none" type="radio" value="none" name="additional_transportation" checked>
+                                                    No, thanks.
+                                            </label>
+
+                                        </div>
+
+                                        <div class="col-sm-8 form-group preferred-rental-company temp-hide">
+                                            <label for="name"> Preferred Rental Company</label>
+                                            <!-- TODO grab data from the database -->
+                                            <select class="form-control input-lg" type="text" name="name" data-content='@routes.Assets.at("json/companies.json")' multiple data-role="tagsinput"></select>
                                         </div>
                                     </div>
 
