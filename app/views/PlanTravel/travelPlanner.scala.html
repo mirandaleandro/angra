@@ -5,23 +5,34 @@
 	    <div class="container content">
 	        <div class="row">
 
-				<section id="contact-form" class="col-md-8 faq">
+				<section class="col-md-8 faq">
 					<h2> Plan your travel </h2>
 					<form action="#" method="get" accept-charset="utf-8" class="clearfix">
 
-                         @trip()
-                         @trip(2, false)
+                        @trip()
 
+                        @trip(2, false)
+
+
+                        <div class="row">
+                            <div class="col-sm-12 form-group centralize">
+                                <button class="btn btn-grove-one btn-lg"><i class="glyphicons plus"></i> Add another trip </button>
+                            </div>
+                        </div>
+
+                        <hr/>
+
+                        @tripReturn()
 
                         <div class="row">
                             <div class="col-sm-12 form-group">
                                 <label for="message"> Comments </label>
-                                <textarea class="form-control" id="message" name="message" rows="5"></textarea>
+                                <textarea class="form-control " id="message" name="message" rows="5"></textarea>
                             </div>
                         </div>
 
 
-						<button type="submit" class="btn btn-grove-one btn-xlg btn-bold"> Send Message </button>
+						<button type="submit" class="btn btn-grove-one btn-xlg btn-bold pull-right"> Send Message </button>
 
                     </form>
 				</section>

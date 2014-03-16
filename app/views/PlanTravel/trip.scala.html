@@ -1,7 +1,7 @@
 @(tripNumber:Int = 1, open:Boolean = true)
 
  <div class="trip" data-number="@tripNumber">
-    <a href="#trip@tripNumber" class="accordion-toggle collapsed" data-toggle="collapse">Trip #<span class="trip-number-id">@tripNumber</span></a>
+    <a href="#trip@tripNumber" class="accordion-toggle @if(open){ open }else{ collapsed }" data-toggle="collapse">Trip #<span class="trip-number-id">@tripNumber</span></a>
 
     <div id="trip@tripNumber" class="accordion-collapse collapse @if(open){ in }">
         <div class="trip">
@@ -78,7 +78,6 @@
             </div>
 
             <div class="row">
-                <label class="col-sm-12" for="name"> Hotel </label>
 
                 <div class="col-sm-4 form-group">
                     <label class=" checkbox">
@@ -99,8 +98,9 @@
 
             </div>
 
-            <hr/>
 
         </div>
     </div>
 </div>
+
+<hr/>
