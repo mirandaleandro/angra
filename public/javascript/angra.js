@@ -34,15 +34,17 @@ $(function(){
 
     });
 
-    $(document.body).on("change",".additional-transportation", function()
+    $(document.body).on("change",".display-trigger", function()
     {
-        var radio = $(this);
-        var rentalCompanyGroup = radio.closest('.trip').find('.form-group.preferred-rental-company');
+        var actionTrigger = $(this);
+        var subjectToDisplayChangeStateSelector = actionTrigger.data('display-trip-form');
+        var subjectToDisplayChangeState = actionTrigger.closest('.trip').find(subjectToDisplayChangeStateSelector);
 
-        if( radio.hasClass('rental') )
-            rentalCompanyGroup.show('slow');
+        if( actionTrigger.is(':checked') )
+            subjectToDisplayChangeState.show('slow');
         else
-            rentalCompanyGroup.hide('slow')
+            subjectToDisplayChangeState.hide('slow')
     });
+
 
 });

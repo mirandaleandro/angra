@@ -59,7 +59,7 @@
                                         <div class="col-sm-4 form-group">
 
                                             <label class="radio">
-                                                <input class="additional-transportation rental" type="radio" value="rental" name="additional_transportation">
+                                                <input class="additional-transportation rental display-trigger" type="radio" value="rental" name="additional_transportation" data-display-trip-form=".form-group.preferred-rental-company" >
                                                     Rental
                                             </label>
 
@@ -92,14 +92,12 @@
 
                                         <div class="col-sm-4 form-group">
                                             <label class=" checkbox">
-                                                <input class="book-hotel" type="checkbox" name="hotel" data-display-trip-form="" value="">
+                                                <input class="book-hotel display-trigger" type="checkbox" name="hotel" data-display-trip-form=".hotel-preferences" value="">
                                                    Book a hotel?
                                             </label>
                                         </div>
 
-                                        <div class="col-sm-8 form-group">
-                                            <label for="name"> Preferences </label>
-
+                                        <div class="col-sm-8 form-group hotel-preferences temp-hide">
                                             <label for="name"> Checkout Date </label>
                                             <input class="form-control input-lg" type="text" name="name" value="" placeholder="">
 
@@ -108,8 +106,6 @@
                                                     Must serve meal
                                             </label>
                                         </div>
-
-
 
                                     </div>
 
