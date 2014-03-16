@@ -7,16 +7,18 @@
 
 				<section class="col-md-8 faq">
 					<h2> Plan your travel </h2>
-					<form action="#" method="get" accept-charset="utf-8" class="clearfix">
+					<form action="#" method="get" accept-charset="utf-8" class="clearfix client-request-form">
 
-                        @trip()
+                        <div class="trips">
 
-                        @trip(2, false)
+                            @trip(hidden = false)
+
+                        </div>
 
 
                         <div class="row">
                             <div class="col-sm-12 form-group centralize">
-                                <button class="btn btn-grove-one btn-lg"><i class="glyphicons plus"></i> Add another trip </button>
+                                <div class="btn btn-grove-one btn-lg add-trip-action" data-url="@routes.TravelPlanner.tripView"><i class="glyphicons plus"></i> Add another trip </div>
                             </div>
                         </div>
 

@@ -1,19 +1,6 @@
-$(function(){
-
-    var accordion = $('.accordion-collapse');
-    var tagInputs =  $('input[data-role=tagsinput], select[multiple][data-role=tagsinput]');
-
-    accordion.on('show.bs.collapse', function (n) {
-        $(n.target).siblings('.accordion-toggle').toggleClass('open');
-    });
-
-    accordion.on('hide.bs.collapse', function (n) {
-        $(n.target).siblings('.accordion-toggle').toggleClass('open');
-    });
-
-    tagInputs.tagsinput();
-
-    tagInputs.each(function()
+$.fn.bindTypeAhead = function()
+{
+    this.each(function()
     {
         var tagInput = $(this);
 
@@ -34,11 +21,41 @@ $(function(){
 
     });
 
+    return this;
+};
+
+
+$(function()
+{
+    var accordion = $('.accordion-collapse');
+
+    function bindBindInputsAhead (parent)
+    {
+        var tagInputs =  parent.find('input[data-role=tagsinput], select[multiple][data-role=tagsinput]');
+        tagInputs.tagsinput();
+        tagInputs.bindTypeAhead();
+    }
+
+    function mostRecentTripNumber()
+    {
+        return $('.trip').last().data('number');
+    }
+
+    bindBindInputsAhead($(document.body));
+
+    accordion.on('show.bs.collapse', function (n) {
+        $(n.target).siblings('.accordion-toggle').toggleClass('open');
+    });
+
+    accordion.on('hide.bs.collapse', function (n) {
+        $(n.target).siblings('.accordion-toggle').toggleClass('open');
+    });
+
     $(document.body).on("change",".display-trigger", function()
     {
         var actionTrigger = $(this);
         var subjectToDisplayChangeStateSelector = actionTrigger.data('display-trip-form');
-        var subjectToDisplayChangeState = actionTrigger.closest('.trip').find(subjectToDisplayChangeStateSelector);
+        var subjectToDisplayChangeState = actionTrigger.closest('.trip-content').find(subjectToDisplayChangeStateSelector);
 
         if( actionTrigger.is(':checked') )
             subjectToDisplayChangeState.show('slow');
@@ -46,5 +63,29 @@ $(function(){
             subjectToDisplayChangeState.hide('slow')
     });
 
+    $(document.body).on("click",".add-trip-action", function(e)
+    {
+        e.stopImmediatePropagation();
+
+        var actionTrigger = $(this);
+        var url = actionTrigger.data('url');
+        var tripNumber =  mostRecentTripNumber() + 1;
+        var form = actionTrigger.closest('.client-request-form');
+        var trips = form.find('.trips');
+
+        $.post( url, {tripNumber: tripNumber},
+            function( data )
+        {
+            //$(data).hide().appendTo(trips).show('slow');
+            trips.append( data );
+
+            var aTrip =   trips.find(".trip[data-number="+tripNumber+"]");
+
+            aTrip.show('slow');
+
+            bindBindInputsAhead( aTrip );
+        });
+
+    });
 
 });

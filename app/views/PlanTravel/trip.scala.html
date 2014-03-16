@@ -1,10 +1,10 @@
-@(tripNumber:Int = 1, open:Boolean = true)
+@(tripNumber:Int = 1, open:Boolean = true, hidden:Boolean = true)
 
- <div class="trip" data-number="@tripNumber">
+ <div class="trip @if(hidden){ temp-hide }" data-number="@tripNumber">
     <a href="#trip@tripNumber" class="accordion-toggle @if(open){ open }else{ collapsed }" data-toggle="collapse">Trip #<span class="trip-number-id">@tripNumber</span></a>
 
     <div id="trip@tripNumber" class="accordion-collapse collapse @if(open){ in }">
-        <div class="trip">
+        <div class="trip-content">
 
             <div class="row">
                 <div class="col-sm-12 form-group">
