@@ -39,6 +39,14 @@ object Application extends Controller {
     }
   }
 
+  def dashboard = Action
+  {
+    transactional
+    {
+      Ok( views.html.Dashboard.dashboard() )
+    }
+  }
+
 
 
 }

@@ -1214,7 +1214,7 @@ div.our-clients .clients .client .img-responsive {
   float: right;
   margin: 10px 0 0 0;
 }
-#contact-details.with-margin {
+#contact-details.with-margin, .with-margin {
   margin-top: 56px;
 }
 #contact-details .detail-block {
@@ -1859,6 +1859,22 @@ ul.paging li.active a {
 .centralize
 {
     text-align: center;
+}
+
+.empty-dashboard .icon
+{
+    height: 120px;
+}
+
+.empty-dashboard h1
+{
+    color: #AAA;
+}
+
+.empty-dashboard .icon i::before
+{
+   font-size: 100px;
+   left: -50%;
 }
 
 
