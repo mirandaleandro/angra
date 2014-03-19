@@ -1,6 +1,38 @@
 @()
 
-@main("Welcome to Play", pageTitle = "Login/Sign Up") {
+@main(pageTitle = "Login/Sign Up") {
 
 Put your html here to reproduce template.
+
+<div class="widewrapper">
+    <div class="container login">
+        <h2>Create your Account</h2>
+        <p>
+            Please fill out the text fields below.
+        </p>
+
+
+        <form action="#"  method="get" >
+            <div class="row">
+                <section>
+                    <label for="email">Email Address</label>
+                    <input class="form-control input-lg" type="email" id="email" name="email" value="" placeholder="">
+                </section>
+                <section>
+                    <label for="password">Password</label>
+                    <input class="form-control input-lg" type="password" id="password"  name="password" value="" placeholder="">
+                </section>
+                <section>
+                    <label for="password-repeat">Confirm Password</label>
+                    <input class="form-control input-lg" type="password" id="password-repeat" name="password-repeat" value="" placeholder="">
+                </section>
+            </div>
+            <button class="btn btn-grove-one btn-lg btn-bold" type="submit">Sign up</button>
+            <div class="clearfix"></div>
+        </form>
+    </div>
+</div>
+
+
+
 }

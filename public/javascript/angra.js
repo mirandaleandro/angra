@@ -1,0 +1,91 @@
+$.fn.bindTypeAhead = function()
+{
+    this.each(function()
+    {
+        var tagInput = $(this);
+
+        var contentSource =  tagInput.data('content');
+
+        if(contentSource)
+        {
+            tagInput.tagsinput('input').typeahead(
+                {
+                    prefetch: contentSource
+                })
+                .bind('typeahead:selected', $.proxy(function (obj, datum)
+                {
+                    this.tagsinput('add', datum.value);
+                    this.tagsinput('input').typeahead('setQuery', '');
+                }, tagInput ) )
+        }
+
+    });
+
+    return this;
+};
+
+
+$(function()
+{
+    var accordion = $('.accordion-collapse');
+
+    function bindBindInputsAhead (parent)
+    {
+        var tagInputs =  parent.find('input[data-role=tagsinput], select[multiple][data-role=tagsinput]');
+        tagInputs.tagsinput();
+        tagInputs.bindTypeAhead();
+    }
+
+    function mostRecentTripNumber()
+    {
+        return $('.trip').last().data('number');
+    }
+
+    bindBindInputsAhead($(document.body));
+
+    accordion.on('show.bs.collapse', function (n) {
+        $(n.target).siblings('.accordion-toggle').toggleClass('open');
+    });
+
+    accordion.on('hide.bs.collapse', function (n) {
+        $(n.target).siblings('.accordion-toggle').toggleClass('open');
+    });
+
+    $(document.body).on("change",".display-trigger", function()
+    {
+        var actionTrigger = $(this);
+        var subjectToDisplayChangeStateSelector = actionTrigger.data('display-trip-form');
+        var subjectToDisplayChangeState = actionTrigger.closest('.trip-content').find(subjectToDisplayChangeStateSelector);
+
+        if( actionTrigger.is(':checked') )
+            subjectToDisplayChangeState.show('slow');
+        else
+            subjectToDisplayChangeState.hide('slow')
+    });
+
+    $(document.body).on("click",".add-trip-action", function(e)
+    {
+        e.stopImmediatePropagation();
+
+        var actionTrigger = $(this);
+        var url = actionTrigger.data('url');
+        var tripNumber =  mostRecentTripNumber() + 1;
+        var form = actionTrigger.closest('.client-request-form');
+        var trips = form.find('.trips');
+
+        $.post( url, {tripNumber: tripNumber},
+            function( data )
+        {
+            //$(data).hide().appendTo(trips).show('slow');
+            trips.append( data );
+
+            var aTrip =   trips.find(".trip[data-number="+tripNumber+"]");
+
+            aTrip.show('slow');
+
+            bindBindInputsAhead( aTrip );
+        });
+
+    });
+
+});

@@ -1,0 +1,49 @@
+@()
+@main(pageTitle = "Travel Planner") {
+
+    <div class="widewrapper">
+	    <div class="container content">
+	        <div class="row">
+
+				<section class="col-md-8 faq">
+					<h2> Plan your travel </h2>
+					<form action="#" method="get" accept-charset="utf-8" class="clearfix client-request-form">
+
+                        <div class="trips">
+
+                            @trip(hidden = false)
+
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-sm-12 form-group centralize">
+                                <div class="btn btn-grove-one btn-lg add-trip-action" data-url="@routes.TravelPlanner.tripView"><i class="glyphicons plus"></i> Add another trip </div>
+                            </div>
+                        </div>
+
+                        <hr/>
+
+                        @tripReturn()
+
+                        <div class="row">
+                            <div class="col-sm-12 form-group">
+                                <label for="message"> Comments </label>
+                                <textarea class="form-control " id="message" name="message" rows="5"></textarea>
+                            </div>
+                        </div>
+
+
+						<button type="submit" class="btn btn-grove-one btn-xlg btn-bold pull-right"> Send Message </button>
+
+                    </form>
+				</section>
+
+
+
+	          @views.html.RightSidebar.contactInfo()
+
+	        </div>
+	    </div>
+	</div>
+}

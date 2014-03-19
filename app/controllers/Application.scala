@@ -31,4 +31,14 @@ object Application extends Controller {
     }
   }
 
+  def travelPlanner = Action
+  {
+    transactional
+    {
+      Ok( views.html.PlanTravel.travelPlanner() )
+    }
+  }
+
+
+
 }
