@@ -5,31 +5,93 @@
         <div class="container content">
             <div class="row">
 
-                <section class="col-md-6 col-md-offset-1 with-margin empty-dashboard">
+                @if(false){
+                    <section class="col-md-6 col-md-offset-1 with-margin empty-dashboard">
 
-                    <div class="row ">
-                        <div class="col-md-10 centralize">
+                        <div class="row ">
+                            <div class="col-md-10 centralize">
 
 
-                        <div class="row icon">
-                            <i class="glyphicons warning_sign "></i>
+                                <div class="row icon">
+                                    <i class="glyphicons warning_sign "></i>
+                                </div>
+
+                                <div class="row">
+                                    <h1> It seems that currently you don't have any travel plans. </h1>
+                                </div>
+
+                                <hr/>
+
+                                <div class="row">
+                                    <div class="btn btn-grove-one btn-lg"><i class="glyphicons plus"></i> Add travel request </div>
+                                </div>
+
+                            </div>
+
                         </div>
 
-                        <div class="row">
-                            <h1> It seems that currently you don't have any travel plans. </h1>
+                    </section>
+                }else{
+
+                    <section class="col-md-8 with-margin">
+
+                        <div class="row ">
+                            <div class="col-md-8 col-md-offset-2">
+                                <input type="search" class="form-control input-lg" placeholder="Search travel requests">
+                            </div>
                         </div>
 
-                        <hr/>
+                        <div class="row with-margin">
+                           <table class="table">
+                               <caption></caption>
+                               <thead>
+                                   <tr>
+                                       <td>Trip</td>
+                                       <td>Departure Date</td>
+                                       <td>Status</td>
+                                       <td>Action</td>
+                                   </tr>
 
-                        <div class="row">
-                            <div class="btn btn-grove-one btn-lg"><i class="glyphicons plus"></i> Add travel request </div>
+                               </thead>
+                               <tbody>
+                                   <tr class="">
+                                       <td><span class="city-name">Orlando-FL</span> to <span class="city-name">Salt Lake City-UT</span> (2 stops)</td>
+                                       <td>03/10/2014</td>
+                                       <td>Pending</td>
+                                       <td><button class="btn btn-grove-one">Edit</button></td>
+                                   </tr>
+                                   <tr class="">
+                                       <td><span class="city-name">Orlando-FL</span> to <span class="city-name">Salt Lake City-UT</span> (2 stops)</td>
+                                       <td>03/10/2014</td>
+                                       <td>Pending</td>
+                                       <td><button class="btn btn-grove-one">Edit</button></td>
+                                   </tr>
+                                   <tr class="">
+                                       <td><span class="city-name">Orlando-FL</span> to <span class="city-name">Salt Lake City-UT</span> (2 stops)</td>
+                                       <td>03/10/2014</td>
+                                       <td>Pending</td>
+                                       <td><button class="btn btn-grove-one">Edit</button></td>
+                                   </tr>
+                                   <tr class="">
+                                       <td><span class="city-name">Orlando-FL</span> to <span class="city-name">Salt Lake City-UT</span> (2 stops)</td>
+                                       <td>03/10/2014</td>
+                                       <td>Pending</td>
+                                       <td><button class="btn btn-grove-one">Edit</button></td>
+                                   </tr>
+                                   <tr class="">
+                                       <td><span class="city-name">Orlando-FL</span> to <span class="city-name">Salt Lake City-UT</span> (2 stops)</td>
+                                       <td>03/10/2014</td>
+                                       <td>Pending</td>
+                                       <td><button class="btn btn-grove-one">Edit</button></td>
+                                   </tr>
+                               </tbody>
+                           </table>
+
                         </div>
 
-                        </div>
+                    </section>
 
-                    </div>
-
-                </section>
+                }
 
                 @views.html.RightSidebar.contactInfo()
 

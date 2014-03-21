@@ -1877,4 +1877,12 @@ ul.paging li.active a {
    left: -50%;
 }
 
+.city-name
+{
+    font-weight: bold;
+}
 
+input[type=search]
+{
+    border-radius:50px;
+}
