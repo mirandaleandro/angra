@@ -1,38 +1,89 @@
 @()
 
-@main(pageTitle = "Login/Sign Up") {
+@main(pageTitle = "Login / Sign Up") {
 
-Put your html here to reproduce template.
 
 <div class="widewrapper">
     <div class="container login">
+
+
+
+    <div class="col-md-6">
+        <h2>Login to your Account</h2>
+        <p>
+            Please fill out the text fields below.
+        </p>
+
+        <form action="#"  method="get" >
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+
+                    <div>
+                        <label for="email">Email Address</label>
+                        <input class="form-control input-lg" type="email" id="emailLogin" name="email" value="" placeholder="">
+                    </div>
+                    <div>
+                        <label for="password">Password</label>
+                        <input class="form-control input-lg" type="password" id="passwordLogin"  name="password" value="" placeholder="">
+                    </div>
+                </div>
+             </div>
+
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <button class="btn btn-grove-one btn-lg btn-bold" type="submit">Log In</button>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </form>
+        </div>
+
+
+
+
+    <div class="col-md-6 bordered-left">
         <h2>Create your Account</h2>
         <p>
             Please fill out the text fields below.
         </p>
 
-
         <form action="#"  method="get" >
             <div class="row">
-                <section>
-                    <label for="email">Email Address</label>
-                    <input class="form-control input-lg" type="email" id="email" name="email" value="" placeholder="">
-                </section>
-                <section>
-                    <label for="password">Password</label>
-                    <input class="form-control input-lg" type="password" id="password"  name="password" value="" placeholder="">
-                </section>
-                <section>
-                    <label for="password-repeat">Confirm Password</label>
-                    <input class="form-control input-lg" type="password" id="password-repeat" name="password-repeat" value="" placeholder="">
-                </section>
+                <div class="col-md-10 col-md-offset-1">
+                    <div>
+                        <label for="name">Name</label>
+                        <input class="form-control input-lg" type="name" id="name" name="name" value="" placeholder="">
+                    </div>
+                    <div>
+                        <label for="phone">Phone</label>
+                        <input class="form-control input-lg" type="phone" id="phone" name="phone" value="" placeholder="">
+                    </div>
+                    <div>
+                        <label for="email">Email Address</label>
+                        <input class="form-control input-lg" type="email" id="email" name="email" value="" placeholder="">
+                    </div>
+                    <div>
+                        <label for="password">Password</label>
+                        <input class="form-control input-lg" type="password" id="password"  name="password" value="" placeholder="">
+                    </div>
+                    <div>
+                        <label for="password-repeat">Confirm Password</label>
+                        <input class="form-control input-lg" type="password" id="password-repeat" name="password-repeat" value="" placeholder="">
+                    </div>
+                </div>
             </div>
-            <button class="btn btn-grove-one btn-lg btn-bold" type="submit">Sign up</button>
-            <div class="clearfix"></div>
+
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <button class="btn btn-grove-one btn-lg btn-bold" type="submit">Sign up</button>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
         </form>
     </div>
+    </div>
 </div>
-
 
 
 }

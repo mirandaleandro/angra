@@ -14,6 +14,12 @@ GET     /login                      controllers.Application.login
 # Budget order forms
 GET     /travelplanner              controllers.Application.travelPlanner
 
+# Budget order forms
+GET     /dashboard                  controllers.Application.dashboard
+
+# Admin Response Form to a client request
+GET     /travelplanresponse         controllers.Application.travelResponse
+
 
 #Request Trip view (Slice)
-POST     /tripView                 controllers.TravelPlanner.tripView
+POST     /tripView                  controllers.TravelPlanner.tripView

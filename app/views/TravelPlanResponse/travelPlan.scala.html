@@ -1,0 +1,114 @@
+<div class="plans">
+    <div class="plan">
+        <a href="#plan" class="accordion-toggle open " data-toggle="collapse">Plan #<span class="plan-number-id"></span></a>
+
+        <div class="col-md-offset-1 col-md-10 flights">
+            <div class="flight " data-number="">
+                <a href="#fligh" class="accordion-toggle open " data-toggle="collapse">Flight #<span class="flight-number-id"></span></a>
+
+                <div id="flight1" class="accordion-collapse collapse in">
+                    <div class="trip-content">
+
+                        <div class="row">
+                            <div class="col-sm-12 form-group">
+                                <label for="name"> Departure Location </label>
+                                <input class="form-control input-lg" type="text" id="name" name="name" value="" placeholder="">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 form-group">
+                                <label for="name"> Departure Date </label>
+                                <input class="form-control input-lg" type="text" id="name" name="name" value="" placeholder="">
+                            </div>
+
+                            <div class="col-sm-6 form-group">
+                                <label for="name"> Departure Time </label>
+                                <input class="form-control input-lg" type="text" id="name" name="name" value="" placeholder="">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 form-group">
+                                <label for="name"> Favorite Airline Companies </label>
+                                <select class="form-control input-lg airline-preferences" type="text"  name="name" multiple data-content='@routes.Assets.at("json/companies.json")' data-role="tagsinput">
+
+                                                        </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 form-group">
+                                <label for="name"> Arrival Location </label>
+                                <input class="form-control input-lg" type="text" id="name" name="name" value="" placeholder="">
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+
+                            <label class="col-sm-12" for="name"> Additional Transportation </label>
+
+                            <div class="col-sm-4 form-group">
+
+                                <label class="radio">
+                                    <input class="additional-transportation rental display-trigger" type="radio" value="rental" name="additional_transportation" data-display-trip-form=".form-group.preferred-rental-company" >
+                                    Rental
+                                </label>
+
+                                <label class="radio">
+                                    <input class="additional-transportation taxi" type="radio" value="taxi" name="additional_transportation">
+                                    Taxi
+                                </label>
+
+                                <label class="radio">
+                                    <input class="additional-transportation shuttle" type="radio" value="shuttle"  name="additional_transportation" >
+                                    Shuttle
+                                </label>
+
+                                <label class="radio">
+                                    <input class="additional-transportation none" type="radio" value="none" name="additional_transportation" checked>
+                                    No, thanks.
+                                </label>
+
+                            </div>
+
+                            <div class="col-sm-8 form-group preferred-rental-company temp-hide">
+                                <label for="name"> Preferred Rental Companies</label>
+                                    <!-- TODO grab data from the database -->
+                                <select class="form-control input-lg" type="text" name="name" data-content='@routes.Assets.at("json/companies.json")' multiple data-role="tagsinput"></select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-sm-4 form-group">
+                                <label class=" checkbox">
+                                    <input class="book-hotel display-trigger" type="checkbox" name="hotel" data-display-trip-form=".hotel-preferences" value="">
+                                    Book a hotel?
+                                </label>
+                            </div>
+
+                            <div class="col-sm-8 form-group hotel-preferences temp-hide">
+                                <label for="name"> Checkout Date </label>
+                                <input class="form-control input-lg" type="text" name="name" value="" placeholder="">
+
+                                <label class="checkbox">
+                                    <input class="" type="checkbox" name="hotel-meal" value="">
+                                    Must serve meal
+                                </label>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <hr/>
+
+        </div>
+    </div>
+</div>
+
