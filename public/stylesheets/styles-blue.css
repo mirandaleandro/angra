@@ -1886,3 +1886,17 @@ input[type=search]
 {
     border-radius:50px;
 }
+
+.bordered-left {
+    border-left: 1px solid #ccc;
+    margin-bottom: 50px;
+}
+
+@media (max-width: 767px) {
+    .bordered-left {
+        border-left: 1px solid transparent;
+        margin-bottom: 0px;
+        border-top: 1px solid #ccc;
+        padding-top: 20px;
+    }
+}
