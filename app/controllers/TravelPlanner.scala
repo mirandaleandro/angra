@@ -9,8 +9,16 @@ import scala.Some
 
 object TravelPlanner extends Controller
 {
-    val tripViewForm = Form[Int](
-      mapping("tripNumber" -> number)
+  val tripViewForm = Form[Int](
+    mapping("tripNumber" -> number)
+      // binding
+      (number => number)
+      // unbinding
+      (info => Some(info))
+  )
+
+  val numberedViewForm = Form[Int](
+      mapping("number" -> number)
         // binding
         (number => number)
         // unbinding
@@ -32,4 +40,24 @@ object TravelPlanner extends Controller
             }
           })
     }
+
+    def flightView = Action
+    {
+      implicit request =>
+        numberedViewForm.bindFromRequest.fold(
+
+          formWithErrors =>
+            InternalServerError,
+
+          flighNumber =>
+          {
+            transactional{
+              Ok( views.html.TravelPlanResponse.flight (flighNumber, open = true))
+            }
+          })
+    }
+
+
+
+
 }

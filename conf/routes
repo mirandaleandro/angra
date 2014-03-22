@@ -23,3 +23,6 @@ GET     /travelplanresponse         controllers.Application.travelResponse
 
 #Request Trip view (Slice)
 POST     /tripView                  controllers.TravelPlanner.tripView
+
+#Request Flight view (Slice)
+POST     /flightView                controllers.TravelPlanner.flightView

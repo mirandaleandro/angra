@@ -88,4 +88,29 @@ $(function()
 
     });
 
+
+    $(document.body).on("click",".add-flight-action", function(e)
+    {
+        e.stopImmediatePropagation();
+
+        var actionTrigger = $(this);
+        var url = actionTrigger.data('url');
+        var parentSelector = actionTrigger.data('parent');
+        var parent = actionTrigger.closest(parentSelector)
+        var number =  3;
+        var form = actionTrigger.closest('.client-request-form');
+
+        $.post( url, {number: number},
+            function( data )
+        {
+            debugger;
+            parent.append( data );
+
+            var newElement =   parent.find(".flight[data-number="+number+"]");
+
+            newElement.show('slow');
+        });
+
+    });
+
 });
