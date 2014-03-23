@@ -4,27 +4,54 @@ import play.api._
 import play.api.mvc._
 import models.User
 import models.PostgresConnection._
+import play.api.data._
+import play.api.data.Forms._
 import controllers.Authentication.Secured
 
 object Application extends Controller with Secured {
 
-  def index = withAuth { username => implicit request =>
-    Ok(views.html.index("Your new application is ready.",User.getAll))
+  // -- Authentication
+
+  val loginForm = Form(
+    tuple(
+      "email" -> text,
+      "password" -> text
+    ) verifying ("Invalid email or password", result => result match {
+      case (email, password) => check(email, password)
+    })
+  )
+
+  def check(username: String, password: String) = {
+    (username == "admin" && password == "1234")
   }
 
-//  def user() = withUser { user => implicit request =>
-//    val username = user.username
-//    Ok(html.user(user))
-//  }
+  /**
+   * Login page.
+   */
+  def login = Action { implicit request =>
+    Ok(views.html.login(loginForm))
+  }
+
+  /**
+   * Handle login form submission.
+   */
+  def authenticate = Action { implicit request =>
+    loginForm.bindFromRequest.fold(
+      formWithErrors => BadRequest(views.html.login(formWithErrors)),
+      user => Redirect(routes.Application.login).withSession("email" -> user._1)
+    )
+  }
+
+  /**
+   * Logout and clean the session.
+   */
+  def logout = Action {
+    Redirect(routes.Application.login).withNewSession.flashing(
+      "success" -> "You've been logged out"
+    )
+  }
 
 
-//  def index = Action
-//  {
-//    transactional
-//    {
-//      Ok(views.html.index("Your new application is ready.",User.getAll))
-//    }
-//  }
 
   def landingPage = withAuth {username => implicit request =>
 
@@ -65,7 +92,5 @@ object Application extends Controller with Secured {
       Ok( views.html.Dashboard.dashboard() )
     }
   }
-
-
-
 }
+
