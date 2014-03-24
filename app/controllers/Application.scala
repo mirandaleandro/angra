@@ -36,7 +36,7 @@ object Application extends Controller with Secured {
   def authenticate = Action { implicit request =>
     loginForm.bindFromRequest.fold(
       formWithErrors => BadRequest(views.html.login(formWithErrors)),
-      user => Redirect(routes.Application.login).withSession("email" -> user._2)
+      user => Redirect(routes.Application.dashboard).withSession("email" -> user._2)
     )
   }
 

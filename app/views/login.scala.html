@@ -11,18 +11,23 @@
             Please fill out the text fields below.
         </p>
 
-
         @helper.form(routes.Application.authenticate) {
-
-        @flash.get("success").map { message =>
-        <p class="success">
-            @message
-        </p>
-        }
 
         <form action="#"  method="get" >
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
+
+                    @form.globalError.map { error =>
+                    <p class="error">
+                        @error.message
+                    </p>
+                    }
+
+                    @flash.get("success").map { message =>
+                    <p class="success">
+                        @message
+                    </p>
+                    }
 
                     <div>
                         <label for="email">Email Address</label>
@@ -34,6 +39,7 @@
                     </div>
                 </div>
              </div>
+        }
 
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
@@ -53,9 +59,24 @@
             Please fill out the text fields below.
         </p>
 
+        @helper.form(routes.Application.authenticate) {
+
         <form action="#"  method="get" >
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
+
+                    @form.globalError.map { error =>
+                    <p class="error">
+                        @error.message
+                    </p>
+                    }
+
+                    @flash.get("success").map { message =>
+                    <p class="success">
+                        @message
+                    </p>
+                    }
+
                     <div>
                         <label for="name">Name</label>
                         <input class="form-control input-lg" type="name" id="name" name="name" value="" placeholder="">

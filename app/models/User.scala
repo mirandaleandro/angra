@@ -34,7 +34,7 @@ object User
     (select[User] where(_.email :== email)).headOption
   }
 
-  def Authenticate(email:String,password:String): Option[User] = transactional
+  def authenticate(email:String,password:String): Option[User] = transactional
   {
     (select[User] where(_.email :== email,_.password :== password)).headOption
   }
@@ -42,41 +42,6 @@ object User
 
   def getAll:List[User] = all[User]
 
-
-
-
-  /**
-   * Parse a User from a ResultSet
-   */
-  val simple = {
-    get[String]("user.email") ~
-      get[String]("user.name") ~
-      get[String]("user.password") ~
-      get[String]("user.phone") ~
-      get[Boolean]("user.admin") map {
-      case email~name~password~phone~admin => User(email, name, password, phone, admin)
-    }
-  }
-
-
-
-
-  /**
-   * Authenticate a User.
-   */
-  def authenticate(email: String, password: String): Option[User] = {
-    DB.withConnection { implicit connection =>
-      SQL(
-        """
-         select * from user where
-         email = {email} and password = {password}
-        """
-      ).on(
-          "email" -> email,
-          "password" -> password
-        ).as(User.simple.singleOpt)
-    }
-  }
 
 
 
