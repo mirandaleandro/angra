@@ -1887,6 +1887,11 @@ input[type=search]
     border-radius:50px;
 }
 
+.accordion-toggle
+{
+    cursor:pointer;
+}
+
 .bordered-left {
     border-left: 1px solid #ccc;
     margin-bottom: 50px;
