@@ -24,6 +24,11 @@ object User
     (select[User] where(_.email :== email)).headOption
   }
 
+  def Authenticate(email:String,password:String): Option[User] = transactional
+  {
+    (select[User] where(_.email :== email,_.password :== password)).headOption
+  }
+
 
   def getAll:List[User] = all[User]
 

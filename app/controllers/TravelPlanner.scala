@@ -1,11 +1,13 @@
 package controllers
 
-import play.api.mvc.{Action, Controller}
+import
+play.api.mvc.{Action, Controller}
 import models.PostgresConnection._
-import models.User
+import models.{Trip_Request, User}
 import play.api.data.Form
 import play.api.data.Forms._
 import scala.Some
+import java.util.Date
 
 object TravelPlanner extends Controller
 {
@@ -15,6 +17,9 @@ object TravelPlanner extends Controller
       (number => number)
       // unbinding
       (info => Some(info))
+
+
+
   )
 
   val numberedViewForm = Form[Int](
@@ -56,8 +61,6 @@ object TravelPlanner extends Controller
             }
           })
     }
-
-
 
 
 }
