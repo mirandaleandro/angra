@@ -7,6 +7,8 @@ import models.PostgresConnection._
 import play.api.data._
 import play.api.data.Forms._
 import controllers.Authentication.Secured
+import models._
+import views._
 
 object Application extends Controller with Secured {
 
@@ -17,13 +19,9 @@ object Application extends Controller with Secured {
       "email" -> text,
       "password" -> text
     ) verifying ("Invalid email or password", result => result match {
-      case (email, password) => check(email, password)
+      case (email, password) => User.authenticate(email, password).isDefined
     })
   )
-
-  def check(username: String, password: String) = {
-    (username == "admin" && password == "1234")
-  }
 
   /**
    * Login page.
@@ -38,7 +36,7 @@ object Application extends Controller with Secured {
   def authenticate = Action { implicit request =>
     loginForm.bindFromRequest.fold(
       formWithErrors => BadRequest(views.html.login(formWithErrors)),
-      user => Redirect(routes.Application.login).withSession("email" -> user._1)
+      user => Redirect(routes.Application.login).withSession("email" -> user._2)
     )
   }
 

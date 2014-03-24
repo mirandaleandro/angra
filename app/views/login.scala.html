@@ -5,13 +5,20 @@
 <div class="widewrapper">
     <div class="container login">
 
-
-
     <div class="col-md-6">
         <h2>Login to your Account</h2>
         <p>
             Please fill out the text fields below.
         </p>
+
+
+        @helper.form(routes.Application.authenticate) {
+
+        @flash.get("success").map { message =>
+        <p class="success">
+            @message
+        </p>
+        }
 
         <form action="#"  method="get" >
             <div class="row">
@@ -71,6 +78,7 @@
                     </div>
                 </div>
             </div>
+        }
 
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">

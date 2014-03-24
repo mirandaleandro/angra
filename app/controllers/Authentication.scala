@@ -16,6 +16,21 @@ import scala.concurrent.Future
  */
 object Authentication extends Controller {
 
+
+  // -- Authentication
+
+  val loginForm = Form(
+    tuple(
+      "email" -> text,
+      "password" -> text
+    ) verifying ("Invalid email or password", result => result match {
+      case (email, password) => User.authenticate(email, password).isDefined
+    })
+  )
+
+
+
+
   /**
    * Provide security features
    */
@@ -29,7 +44,7 @@ object Authentication extends Controller {
     /**
      * Redirect to login if the user in not authorized.
      */
-    private def onUnauthorized(request: RequestHeader) = Results.Redirect(routes.Application.login)
+    private def onUnauthorized(request: RequestHeader) = Results.Redirect(routes.Application.authenticate())
 
     // --
 
