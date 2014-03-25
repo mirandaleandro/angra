@@ -1,6 +1,6 @@
 @(form: Form[(String,String)])(implicit flash: Flash)
 
-@main(pageTitle = "Login / Sign Up") {
+@main(pageTitle = "Login / Sign Up")(logout = "") {
 
 <div class="widewrapper">
     <div class="container login">
@@ -49,7 +49,7 @@
             </div>
         </form>
     </div>
-
+    }
 
 
 
@@ -59,21 +59,11 @@
             Please fill out the text fields below.
         </p>
 
+
+
         <form action="#"  method="get" >
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
-
-                    @form.globalError.map { error =>
-                    <p class="error">
-                        @error.message
-                    </p>
-                    }
-
-                    @flash.get("success").map { message =>
-                    <p class="success">
-                        @message
-                    </p>
-                    }
 
                     <div>
                         <label for="name">Name</label>
@@ -107,7 +97,9 @@
             </div>
         </form>
     </div>
-    }
+
+
+
 
     </div>
 </div>

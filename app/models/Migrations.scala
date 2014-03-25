@@ -25,10 +25,10 @@ class CreateDefaultUsers extends Migration {
     def up = {
         customScript
         {
-           val user1 = User("leandro","mirandaleandro@gmail.com","piracyisgood", "(801) 123-4567", admin=true)
-          val user2 =User("tahna","tahna@gmail.com","piracyisgood", "(801) 123-4567", admin=true)
-          val user3 = User("alex","alex@gmail.com","piracyisgood", "(801) 123-4567", admin=true)
-          val user4 = User("maria","maria@gmail.com","piracyisgood", "(801) 123-4567",admin=true)
+           val user1 = User("leandro","mirandaleandro@gmail.com","piracyisgood", "(801) 123-4567", Option(true))
+          val user2 =User("tahna","tahna@gmail.com","piracyisgood", "(801) 123-4567", Option(true))
+          val user3 = User("alex","alex@gmail.com","piracyisgood", "(801) 123-4567", Option(true))
+          val user4 = User("maria","maria@gmail.com","piracyisgood", "(801) 123-4567", Option(true))
 
           val date1 = new Date(20140318)
           val time1 = new Date(100000)

@@ -1,6 +1,6 @@
 @(message: String, users:List[User])
 
-@main("Welcome to Play") {
+@main("Welcome to Play")(logout = "Logout") {
 
     @message
     @users.map{ user =>

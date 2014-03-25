@@ -1,4 +1,4 @@
-@(pageTitle: String = "Page Title")(content: Html)
+@(pageTitle: String = "Page Title")(logout: String = "Logout")(content: Html)
 
 <!DOCTYPE html>
 
@@ -43,7 +43,7 @@
 
     </head>
     <body>
-        @header(pageTitle)
+        @header(pageTitle, logout)
 
         @content
 
