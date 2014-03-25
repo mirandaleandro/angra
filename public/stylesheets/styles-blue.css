@@ -1214,7 +1214,7 @@ div.our-clients .clients .client .img-responsive {
   float: right;
   margin: 10px 0 0 0;
 }
-#contact-details.with-margin {
+#contact-details.with-margin, .with-margin {
   margin-top: 56px;
 }
 #contact-details .detail-block {
@@ -1861,4 +1861,42 @@ ul.paging li.active a {
     text-align: center;
 }
 
+.empty-dashboard .icon
+{
+    height: 120px;
+}
 
+.empty-dashboard h1
+{
+    color: #AAA;
+}
+
+.empty-dashboard .icon i::before
+{
+   font-size: 100px;
+   left: -50%;
+}
+
+.city-name
+{
+    font-weight: bold;
+}
+
+input[type=search]
+{
+    border-radius:50px;
+}
+
+.bordered-left {
+    border-left: 1px solid #ccc;
+    margin-bottom: 50px;
+}
+
+@media (max-width: 767px) {
+    .bordered-left {
+        border-left: 1px solid transparent;
+        margin-bottom: 0px;
+        border-top: 1px solid #ccc;
+        padding-top: 20px;
+    }
+}

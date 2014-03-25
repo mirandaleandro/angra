@@ -9,26 +9,26 @@
             <div class="row">
                 <div class="col-sm-12 form-group">
                     <label for="name"> Departure Location </label>
-                    <input class="form-control input-lg departure-location" type="text" id="name" name="name" value="" placeholder="">
+                    <input class="form-control input-lg" type="text" id="name" name="depart_location" value="" placeholder="">
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-6 form-group">
                     <label for="name"> Departure Date </label>
-                    <input class="form-control input-lg" type="text" id="name" name="name" value="" placeholder="">
+                    <input class="form-control input-lg" type="text" id="name" name="depart_date" value="" placeholder="">
                 </div>
 
                 <div class="col-sm-6 form-group">
                     <label for="name"> Departure Time </label>
-                    <input class="form-control input-lg" type="text" id="name" name="name" value="" placeholder="">
+                    <input class="form-control input-lg" type="text" id="name" name="depart_time" value="" placeholder="">
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-12 form-group">
                     <label for="name"> Favorite Airline Companies </label>
-                    <select class="form-control input-lg airline-preferences" type="text"  name="name" multiple data-content='@routes.Assets.at("json/companies.json")' data-role="tagsinput">
+                    <select class="form-control input-lg airline-preferences" type="text"  name="airline" multiple data-content='@routes.Assets.at("json/companies.json")' data-role="tagsinput">
 
                     </select>
                 </div>
@@ -37,7 +37,7 @@
             <div class="row">
                 <div class="col-sm-12 form-group">
                     <label for="name"> Arrival Location </label>
-                    <input class="form-control input-lg" type="text" id="name" name="name" value="" placeholder="">
+                    <input class="form-control input-lg" type="text" id="name" name="arrival_location" value="" placeholder="">
                 </div>
             </div>
 
@@ -73,7 +73,7 @@
                 <div class="col-sm-8 form-group preferred-rental-company temp-hide">
                     <label for="name"> Preferred Rental Companies</label>
                     <!-- TODO grab data from the database -->
-                    <select class="form-control input-lg" type="text" name="name" data-content='@routes.Assets.at("json/companies.json")' multiple data-role="tagsinput"></select>
+                    <select class="form-control input-lg" type="text" name="pref_rental" data-content='@routes.Assets.at("json/companies.json")' multiple data-role="tagsinput"></select>
                 </div>
             </div>
 
@@ -88,7 +88,7 @@
 
                 <div class="col-sm-8 form-group hotel-preferences temp-hide">
                     <label for="name"> Checkout Date </label>
-                    <input class="form-control input-lg" type="text" name="name" value="" placeholder="">
+                    <input class="form-control input-lg" type="text" name="checkout_date" value="" placeholder="">
 
                     <label class="checkbox">
                         <input class="" type="checkbox" name="hotel-meal" value="">
