@@ -55,10 +55,10 @@ object Application extends Controller with Secured {
 
       val userForm = Form(
         mapping(
-          "name" -> text,
+          "name" -> nonEmptyText,
           "email" -> nonEmptyText(8),
           "password" -> nonEmptyText(5),
-          "phone" -> text,
+          "phone" -> nonEmptyText(10),
           "admin" -> optional(boolean)
           )(User.apply)(User.unapply))
 
