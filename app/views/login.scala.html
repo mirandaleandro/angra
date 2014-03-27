@@ -1,4 +1,6 @@
-@(form: Form[(String,String)])(implicit flash: Flash)
+@(loginForm: Option[Form[(String,String)]] = None)(userForm: Option[Form[models.User]] = None)(implicit flash: Flash)
+
+@import views.html.helper._
 
 @main(pageTitle = "Login / Sign Up")(logout = "") {
 
@@ -11,19 +13,19 @@
             Please fill out the text fields below.
         </p>
 
-        @helper.form(routes.Application.authenticate) {
+        @form(routes.Application.authenticate) {
 
         <form action="#"  method="get" >
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
 
-                    @form.globalError.map { error =>
+                    @loginForm.globalError.map { error =>
                     <p class="error">
                         @error.message
                     </p>
                     }
 
-                    @flash.get("success").map { message =>
+                    @@flash.get("success").map { message =>
                     <p class="success">
                         @message
                     </p>
@@ -59,14 +61,23 @@
             Please fill out the text fields below.
         </p>
 
-        @helper.form(routes.Application.register) {
+        @form(routes.Application.register) {
 
         <form action="#"  method="get" >
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
 
+                    @userForm.globalError.map { error =>
+                    <p class="error">
+                        @error.message
+                    </p>
+                    }
 
-
+                    @flash.get("success").map { message =>
+                    <p class="success">
+                        @message
+                    </p>
+                    }
 
 
                     <div>
@@ -103,7 +114,6 @@
     </div>
 
 }
-
 
     </div>
 </div>

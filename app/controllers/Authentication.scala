@@ -29,8 +29,6 @@ object Authentication extends Controller {
   )
 
 
-
-
   /**
    * Provide security features
    */
