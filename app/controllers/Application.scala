@@ -27,7 +27,7 @@ object Application extends Controller with Secured {
    * Login page.
    */
   def login = Action { implicit request =>
-    Ok(views.html.login(loginForm))
+    Ok(views.html.login()()())
   }
 
   /**
@@ -35,7 +35,7 @@ object Application extends Controller with Secured {
    */
   def authenticate = Action { implicit request =>
     loginForm.bindFromRequest.fold(
-      formWithErrors => BadRequest(views.html.login(formWithErrors)),
+      formWithErrors => BadRequest(views.html.login(Some(formWithErrors))()()),
       user => Redirect(routes.Application.dashboard).withSession("email" -> user._2)
     )
   }
@@ -49,25 +49,30 @@ object Application extends Controller with Secured {
     )
   }
 
+  val userForm = Form(
+    mapping(
+      "name" -> nonEmptyText,
+      "email" -> nonEmptyText(8),
+      "password" -> nonEmptyText(5),
+      "phone" -> nonEmptyText(10),
+      "admin" -> optional(boolean)
+    )(User.apply)(User.unapply))
+
+  def index = Action { implicit request =>
+    Ok( views.html.login()( Some(userForm) )( ) )
+  }
 
   def register = Action {
     implicit request =>
-
-      val userForm = Form(
-        mapping(
-          "name" -> nonEmptyText,
-          "email" -> nonEmptyText(8),
-          "password" -> nonEmptyText(5),
-          "phone" -> nonEmptyText(10),
-          "admin" -> optional(boolean)
-          )(User.apply)(User.unapply))
-
-      val processedForm = userForm.bindFromRequest
-      processedForm.fold(hasErrors => BadRequest("Invalid submission"), success => {
-        Ok("Account registered.")
-      })
+      userForm.bindFromRequest.fold(
+        formWithErrors => BadRequest(views.html.login()( Some(formWithErrors) )()),
+        registration => {
+          Redirect(routes.Application.dashboard).flashing(
+            "message" -> "User Registered!"
+          )
+        }
+      )
   }
-
 
 
   def landingPage = withAuth {username => implicit request =>
