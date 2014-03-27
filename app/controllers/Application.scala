@@ -36,7 +36,7 @@ object Application extends Controller with Secured {
   def authenticate = Action { implicit request =>
     loginForm.bindFromRequest.fold(
       formWithErrors => BadRequest(views.html.login(formWithErrors)),
-      user => Redirect(routes.Application.login).withSession("email" -> user._2)
+      user => Redirect(routes.Application.dashboard).withSession("email" -> user._2)
     )
   }
 
@@ -47,6 +47,25 @@ object Application extends Controller with Secured {
     Redirect(routes.Application.login).withNewSession.flashing(
       "success" -> "You've been logged out"
     )
+  }
+
+
+  def register = Action {
+    implicit request =>
+
+      val userForm = Form(
+        mapping(
+          "name" -> nonEmptyText,
+          "email" -> nonEmptyText(8),
+          "password" -> nonEmptyText(5),
+          "phone" -> nonEmptyText(10),
+          "admin" -> optional(boolean)
+          )(User.apply)(User.unapply))
+
+      val processedForm = userForm.bindFromRequest
+      processedForm.fold(hasErrors => BadRequest("Invalid submission"), success => {
+        Ok("Account registered.")
+      })
   }
 
 

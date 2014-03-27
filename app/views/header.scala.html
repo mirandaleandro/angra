@@ -1,4 +1,4 @@
-@(pageTitle: String)
+@(pageTitle: String, logout: String)
 <header>
     <nav class='navbar navbar-default grove-navbar' role='navigation'>
          <div class='container'>
@@ -21,7 +21,7 @@
                      <li><a href='contact.html'>Contact</a></li>
                  </ul>
                  <li class='inactive'>
-                 <a href="@routes.Application.logout()">Logout</a>
+                 <a href="@routes.Application.logout()">@logout</a>
                  </li>
              </li>
              </ul>
