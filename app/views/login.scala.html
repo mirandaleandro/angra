@@ -1,8 +1,6 @@
-
 @(loginForm: Option[Form[(String,String)]] = None)(userForm: Option[Form[models.User]] = None)(implicit flash: Flash = Flash() )
 
 @import views.html.helper._
-@import helper._
 
 @main(pageTitle = "Login / Sign Up")(logout = "") {
 
