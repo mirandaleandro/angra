@@ -21,7 +21,7 @@ class User(var name: String, var email:String, var password:String, var phone:St
 
 object User
 {
-  def apply(name:String,  email:String,  password:String, phone:String, admin:Option[Boolean]) =
+  def apply(name:String,  email:String,  password:String, phone:String, admin:Option[Boolean] = None) =
   transactional
   {
     new User(name,email,password,phone,admin)

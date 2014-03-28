@@ -53,7 +53,7 @@ object Application extends Controller with Secured {
     mapping(
       "name" -> nonEmptyText,
       "email" -> nonEmptyText(8),
-      "password" -> nonEmptyText(5),
+      "password" -> nonEmptyText(8),
       "phone" -> nonEmptyText(10),
       "admin" -> optional(boolean)
     )(User.apply)(User.unapply))

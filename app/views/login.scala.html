@@ -1,6 +1,8 @@
+
 @(loginForm: Option[Form[(String,String)]] = None)(userForm: Option[Form[models.User]] = None)(implicit flash: Flash = Flash() )
 
 @import views.html.helper._
+@import helper._
 
 @main(pageTitle = "Login / Sign Up")(logout = "") {
 
@@ -21,16 +23,18 @@
 
                     @loginForm.map{ loginF =>
                         @loginF.globalError.map { error =>
-                            <p class="error">
-                                @error.message
-                            </p>
+		                    <div class="alert bg-danger">
+		                        <a class="close" data-dismiss="alert">x</a>
+		                        @error.message
+		                    </div>
                         }
                     }
 
                     @flash.get("success").map { message =>
-                    <p class="success">
-                        message
-                    </p>
+                        <div class="alert bg-info">
+                            <a class="close" data-dismiss="alert">x</a>
+                            @message
+                        </div>
                     }
 
                     <div>
@@ -69,21 +73,24 @@
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
 
-                    @userForm.map{ registerF =>
-                        @registerF.globalError.map { error =>
-                            <p class="error">
-                                kashbkajsdbhjashb
-                                _.message
-                            </p>
-                        }
+                    @userForm.map{ form =>
+                        <div class="alert bg-danger">
+                            <a class="close" data-dismiss="alert">x</a>
+                            @form.error("email").map{ error => <p>email is required</p> }
+                            @form.error("password").map{ error => <p>password but contain at least 8 characters</p>  }
+                            @form.error("phone").map{ error => <p>phone must contain 10 digits</p>  }
+                            @form.error("email").map{ error => <p>email is required</p>  }
+                         </div>
+
+                        @form.globalError.map { error => _.message }
                     }
 
                     @flash.get("success").map { message =>
-                    <p class="success">
-                        message
-                    </p>
+                        <div class="alert bg-info">
+                            <a class="close" data-dismiss="alert">x</a>
+	                        @message
+	                    </div>
                     }
-
 
                     <div>
                         <label for="name">Name</label>
