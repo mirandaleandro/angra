@@ -62,5 +62,30 @@ object TravelPlanner extends Controller
           })
     }
 
+  //Not sure how to test this???
+  case class TripRequest(depart_location:String,depart_date:String,  depart_time:String, airline:String, arrival_location:String,  arrival_time:String,  additional_transportation:String,  hotel_name:String,  hotel_membership:String,  checkout_date:String)
+  case class ClientRequest(ret_location:String,ret_date:String, ret_time:String, notes:String, trips:List[TripRequest])
+
+  val tripRequestForm = Form(
+    mapping(
+      "ret_location" -> text,
+      "ret_date" -> text,
+      "ret_time" -> text,
+      "notes" -> text,
+      "trips" -> list(mapping(
+        "depart_location" -> text,
+        "depart_date" -> text,
+        "depart_time" -> text,
+        "airline" -> text,
+        "arrival_location" -> text,
+        "additional transportation" -> text,
+        "hotel_name" -> text,
+        "hotel_membership" -> text,
+        "depart_time" -> text,
+        "checkout_date" -> text
+      )(TripRequest.apply)(TripRequest.unapply))
+    )(ClientRequest.apply)(ClientRequest.unapply)
+  )
+
 
 }
