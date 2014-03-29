@@ -1,11 +1,11 @@
-@(form: Form[(String,String)])(implicit flash: Flash)
+@(loginForm: Option[Form[(String,String)]] = None)(userForm: Option[Form[models.User]] = None)(implicit flash: Flash = Flash() )
 
-@main(pageTitle = "Login / Sign Up") {
+@import views.html.helper._
+
+@main(pageTitle = "Login / Sign Up"){
 
 <div class="widewrapper">
     <div class="container login">
-
-
 
     <div class="col-md-6">
         <h2>Login to your Account</h2>
@@ -13,9 +13,27 @@
             Please fill out the text fields below.
         </p>
 
+        @form(routes.Authentication.authenticate) {
+
         <form action="#"  method="get" >
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
+
+                    @loginForm.map{ loginF =>
+                        @loginF.globalError.map { error =>
+		                    <div class="alert bg-danger">
+		                        <a class="close" data-dismiss="alert">x</a>
+		                        @error.message
+		                    </div>
+                        }
+                    }
+
+                    @flash.get("success").map { message =>
+                        <div class="alert bg-info">
+                            <a class="close" data-dismiss="alert">x</a>
+                            @message
+                        </div>
+                    }
 
                     <div>
                         <label for="email">Email Address</label>
@@ -28,6 +46,7 @@
                 </div>
              </div>
 
+
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
                     <button class="btn btn-grove-one btn-lg btn-bold" type="submit">Log In</button>
@@ -35,8 +54,8 @@
                 <div class="clearfix"></div>
             </div>
         </form>
-        </div>
-
+    </div>
+    }
 
 
 
@@ -46,9 +65,31 @@
             Please fill out the text fields below.
         </p>
 
+        @form(routes.Authentication.register) {
+
         <form action="#"  method="get" >
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
+
+                    @userForm.map{ form =>
+                        <div class="alert bg-danger">
+                            <a class="close" data-dismiss="alert">x</a>
+                            @form.error("email").map{ error => <p>email is required</p> }
+                            @form.error("password").map{ error => <p>password but contain at least 8 characters</p>  }
+                            @form.error("phone").map{ error => <p>phone must contain 10 digits</p>  }
+                            @form.error("email").map{ error => <p>email is required</p>  }
+                         </div>
+
+                        @form.globalError.map { error => _.message }
+                    }
+
+                    @flash.get("success").map { message =>
+                        <div class="alert bg-info">
+                            <a class="close" data-dismiss="alert">x</a>
+	                        @message
+	                    </div>
+                    }
+
                     <div>
                         <label for="name">Name</label>
                         <input class="form-control input-lg" type="name" id="name" name="name" value="" placeholder="">
@@ -72,15 +113,18 @@
                 </div>
             </div>
 
+
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
                     <button class="btn btn-grove-one btn-lg btn-bold" type="submit">Sign up</button>
                 </div>
                 <div class="clearfix"></div>
             </div>
-
         </form>
     </div>
+
+}
+
     </div>
 </div>
 

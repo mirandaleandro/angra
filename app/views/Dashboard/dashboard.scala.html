@@ -1,4 +1,4 @@
-@()
+@()(implicit user:Option[User])
 @main(pageTitle = "Dashboard") {
 
     <div class="widewrapper dashboard">
@@ -23,7 +23,7 @@
                                 <hr/>
 
                                 <div class="row">
-                                    <div class="btn btn-grove-one btn-lg"><i class="glyphicons plus"></i> Add travel request </div>
+                                    <a href="@routes.Application.travelPlanner"><div class="btn btn-grove-one btn-lg"><i class="glyphicons plus"></i> Add travel request </div></a>
                                 </div>
 
                             </div>

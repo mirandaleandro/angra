@@ -25,7 +25,13 @@ POST     /tripView                  controllers.TravelPlanner.tripView
 #Request Flight view (Slice)
 POST     /flightView                controllers.TravelPlanner.flightView
 
-# Login Page
-GET     /login                     controllers.Application.login()
-POST    /login                     controllers.Application.authenticate()
-GET     /logout                    controllers.Application.logout()
+# Login and Register Page
+GET     /login                     controllers.Authentication.login()
+POST    /login                     controllers.Authentication.authenticate()
+POST    /register                  controllers.Authentication.register()
+
+# Logout Page
+GET     /logout                    controllers.Authentication.logout()
+
+
+
