@@ -6,9 +6,10 @@ import play.api.mvc._
 import models.User
 import models.PostgresConnection._
 import play.api.data._
-import play.api.data.Forms._
+import data.Forms._
 import play.api.libs.iteratee._
 import scala.concurrent.Future
+import scala.Some
 
 
 /**
@@ -48,7 +49,7 @@ object Authentication extends Controller
   def authenticate = Action { implicit request =>
     loginForm.bindFromRequest.fold(
       formWithErrors => BadRequest(views.html.login(Some(formWithErrors))()()),
-      user => Redirect(routes.Application.dashboard).withSession("email" -> user._2)
+      user => Redirect(routes.Application.dashboard).withSession("email" -> user._1)
     )
   }
 
@@ -95,13 +96,16 @@ object Authentication extends Controller
     /**
      * Action for authenticated users.
      */
-    def IsAuthenticated(f: => String => Request[AnyContent] => Result) = Security.Authenticated(username, onUnauthorized) { user =>
-      Action(request => f(user)(request))
+    def IsAuthenticated(f: => Option[User] => Request[AnyContent] => Result) =
+
+      Security.Authenticated(username, onUnauthorized) {
+        email =>
+           Action(request => f(User.findByEmail(email))(request))
     }
 
-    def withAuth(f: => String => Request[AnyContent] => Result) = {
-      Security.Authenticated(username, onUnauthorized) { user =>
-        Action(request => f(user)(request))
+    def withAuth(f: => Option[User] => Request[AnyContent] => Result) = {
+      Security.Authenticated(username, onUnauthorized) { email =>
+        Action(request => f( User.findByEmail(email) )(request) )
       }
     }
   }

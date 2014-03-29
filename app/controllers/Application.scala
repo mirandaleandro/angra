@@ -12,16 +12,14 @@ import views._
 
 object Application extends Controller with Secured {
 
-  def landingPage = withAuth {username => implicit request =>
-
+  def landingPage = Action {implicit request =>
     transactional
     {
       Ok( views.html.landingpage() )
     }
   }
 
-  def travelPlanner = Action
-  {
+  def travelPlanner = withAuth{ user => implicit request =>
     transactional
     {
       Ok( views.html.PlanTravel.travelPlanner() )
