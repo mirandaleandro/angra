@@ -92,19 +92,21 @@ $(function()
     $(document.body).on("click",".add-flight-action", function(e)
     {
         e.stopImmediatePropagation();
-
+                        debugger;
         var actionTrigger = $(this);
         var url = actionTrigger.data('url');
         var parentSelector = actionTrigger.data('parent');
-        var parent = actionTrigger.closest(parentSelector)
-        var number =  3;
+        var containerSelector = actionTrigger.data('target');
+        var parent = actionTrigger.closest(parentSelector);
+        var targetContainer = parent.find(containerSelector);
+        var number = targetContainer.find('.flight').last().data('number') + 1;
         var form = actionTrigger.closest('.client-request-form');
 
         $.post( url, {number: number},
             function( data )
         {
             debugger;
-            parent.append( data );
+            targetContainer.append( data );
 
             var newElement =   parent.find(".flight[data-number="+number+"]");
 

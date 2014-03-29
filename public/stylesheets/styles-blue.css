@@ -1905,3 +1905,21 @@ input[type=search]
 {
     display: inline-block;
 }
+
+.flights .flight:last-child
+{
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.flights .flight:first-child
+{
+    padding-top: 0;
+}
+
+.flight
+{
+    padding-bottom: 20px;
+    border-bottom: 1px solid #CCC;
+    padding-top: 20px;
+}
