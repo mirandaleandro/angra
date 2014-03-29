@@ -27,7 +27,7 @@ $.fn.bindTypeAhead = function()
 
 $(function()
 {
-    var accordion = $('.accordion-collapse');
+   // var accordion = $('.accordion-collapse');
 
     function bindBindInputsAhead (parent)
     {
@@ -43,13 +43,10 @@ $(function()
 
     bindBindInputsAhead($(document.body));
 
-    accordion.on('show.bs.collapse', function (n) {
-        $(n.target).siblings('.accordion-toggle').toggleClass('open');
+    $(document.body).on("click",".accordion-toggle", function(){
+        $(this).siblings(".accordion-collapse").toggle("toggle");
     });
 
-    accordion.on('hide.bs.collapse', function (n) {
-        $(n.target).siblings('.accordion-toggle').toggleClass('open');
-    });
 
     $(document.body).on("change",".display-trigger", function()
     {
