@@ -27,16 +27,15 @@ object Application extends Controller with Secured {
     }
   }
 
-  def travelResponse = Action
-  {
+  def travelResponse = withAuth{ implicit user => implicit request =>
+
     transactional
     {
       Ok( views.html.TravelPlanResponse.travelResponse() )
     }
   }
 
-  def dashboard = Action
-  {
+  def dashboard = withAuth{ implicit user => implicit request =>
     transactional
     {
       Ok( views.html.Dashboard.dashboard() )
