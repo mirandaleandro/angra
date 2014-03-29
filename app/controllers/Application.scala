@@ -19,7 +19,8 @@ object Application extends Controller with Secured {
     }
   }
 
-  def travelPlanner = withAuth{ user => implicit request =>
+  def travelPlanner = withAuth{ implicit user => implicit request =>
+
     transactional
     {
       Ok( views.html.PlanTravel.travelPlanner() )
