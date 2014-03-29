@@ -92,7 +92,7 @@ $(function()
     $(document.body).on("click",".add-flight-action", function(e)
     {
         e.stopImmediatePropagation();
-                        debugger;
+
         var actionTrigger = $(this);
         var url = actionTrigger.data('url');
         var parentSelector = actionTrigger.data('parent');
@@ -105,7 +105,6 @@ $(function()
         $.post( url, {number: number},
             function( data )
         {
-            debugger;
             targetContainer.append( data );
 
             var newElement =   parent.find(".flight[data-number="+number+"]");

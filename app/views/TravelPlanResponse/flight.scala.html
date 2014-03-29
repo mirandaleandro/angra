@@ -1,9 +1,9 @@
 @(flightNumber:Int = 1, open:Boolean = true, hidden:Boolean = true)
 
 <div class="flight @if(hidden){ temp-hide }" data-number="@flightNumber">
-    <a href="#fligh@flightNumber" class="accordion-toggle open " data-toggle="collapse">Flight #<span class="flight-number-id">@flightNumber</span></a>
+    <a href="#fligh@flightNumber" class="accordion-toggle @if(open){ open }else{ collapsed } " data-toggle="collapse">Flight #<span class="flight-number-id">@flightNumber</span></a>
 
-	<div id="flight@flightNumber" class="accordion-collapse collapse in">
+	<div id="flight@flightNumber" class="accordion-collapse collapse  @if(open){ in }">
             <div class="trip-content">
 
                 <div class="row">
