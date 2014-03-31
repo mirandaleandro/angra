@@ -21,7 +21,7 @@
 							<li><a href='contact.html'>Contact</a></li>
 						</ul>
                         @if(user.isDefined){
-							<li class='active'>Logged as @user.get.name (<a class="logout-link" href="@routes.Authentication.logout()">logout</a>)</li>
+							<li class='active'>Logged as @user.get.name (<a class="logout-link" href="@routes.Authentication.logout()"> Logout </a>)</li>
                         }else{
 		                     <li class='inactive'>
 		                         <a href="@routes.Authentication.login()">Login</a>
