@@ -74,10 +74,10 @@
                     @userForm.map{ form =>
                         <div class="alert bg-danger">
                             <a class="close" data-dismiss="alert">x</a>
-                            @form.error("email").map{ error => <p>Email is required</p> }
+                            @form.error("name").map{ error => <p>Please enter your name</p> }
                             @form.error("password").map{ error => <p>Password must contain at least 8 characters</p>  }
                             @form.error("phone").map{ error => <p>Phone must contain 10 digits</p>  }
-                            @form.error("email").map{ error => <p>Email is required</p>  }
+                            @form.error("email").map{ error => <p>Please enter your email</p>  }
                          </div>
 
                         @form.globalError.map { error => _.message }
