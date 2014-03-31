@@ -1,23 +1,16 @@
 <div class="plans">
-    <div class="accordion-toggle open " data-toggle="collapse">Plan #<span class="plan-number-id"></span></div>
 
-    <div class="col-md-offset-1 col-md-10 accordion-collapse collapse in plan">
-
-        <div class="trips">
-
-           @trip(hidden = false)
-
-        </div>
-
-    </div>
-
-    <hr/>
-
-    <div class="row">
-        <div class="col-sm-12 form-group centralize">
-            <div class="btn btn-grove-one btn-lg add-response-trip-action" data-parent=".plan" data-target=".trips" data-url="@routes.TravelPlanner.responseTrip"><i class="glyphicons plus"></i> Add another trip </div>
-        </div>
-    </div>
+    @plan(hidden = false)
 
 </div>
+
+<hr/>
+
+<div class="row">
+    <div class="col-sm-12 form-group centralize">
+        <div class="btn btn-grove-one btn-lg add-response-plan-action" data-parent="body" data-target=".plans" data-url="@routes.TravelPlanner.responsePlanView">
+            <i class="glyphicons plus"></i> Add another plan </div>
+    </div>
+</div>
+
 

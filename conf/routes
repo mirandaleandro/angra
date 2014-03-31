@@ -28,6 +28,9 @@ POST        /flightView                controllers.TravelPlanner.flightView
 #Request Response trip view (Slice)
 POST        /responseTripView          controllers.TravelPlanner.responseTrip
 
+#Request Response plan view (Slice)
+POST        /responsePlanView          controllers.TravelPlanner.responsePlanView
+
 # Login and Register Page
 GET         /login                     controllers.Authentication.login()
 POST        /login                     controllers.Authentication.authenticate()
