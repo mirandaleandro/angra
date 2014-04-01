@@ -3,35 +3,41 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.landingPage()
+GET         /                          controllers.Application.landingPage()
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET         /assets/*file              controllers.Assets.at(path="/public", file)
 
 
 # Budget order forms
-GET     /travelplanner              controllers.Application.travelPlanner
+GET         /travelplanner             controllers.Application.travelPlanner
 
 # Budget order forms
-GET     /dashboard                  controllers.Application.dashboard
+GET         /dashboard                 controllers.Application.dashboard
 
 # Admin Response Form to a client request
-GET     /travelplanresponse         controllers.Application.travelResponse
+GET         /travelplanresponse        controllers.Application.travelResponse
 
 
 #Request Trip view (Slice)
-POST     /tripView                  controllers.TravelPlanner.tripView
+POST        /tripView                  controllers.TravelPlanner.tripView
 
 #Request Flight view (Slice)
-POST     /flightView                controllers.TravelPlanner.flightView
+POST        /flightView                controllers.TravelPlanner.flightView
+
+#Request Response trip view (Slice)
+POST        /responseTripView          controllers.TravelPlanner.responseTrip
+
+#Request Response plan view (Slice)
+POST        /responsePlanView          controllers.TravelPlanner.responsePlanView
 
 # Login and Register Page
-GET     /login                     controllers.Authentication.login()
-POST    /login                     controllers.Authentication.authenticate()
-POST    /register                  controllers.Authentication.register()
+GET         /login                     controllers.Authentication.login()
+POST        /login                     controllers.Authentication.authenticate()
+POST        /register                  controllers.Authentication.register()
 
 # Logout Page
-GET     /logout                    controllers.Authentication.logout()
+GET         /logout                    controllers.Authentication.logout()
 
 
 

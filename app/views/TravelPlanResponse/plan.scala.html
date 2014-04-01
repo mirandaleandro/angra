@@ -1,0 +1,25 @@
+@(planNumber:Int = 1, open:Boolean = true, hidden:Boolean = true)
+
+<div class="plan @if(hidden){ temp-hide }" data-number="@planNumber">
+
+    <div class="accordion-toggle @if(open){ open }else{ collapsed }  " data-toggle="collapse">Plan #<span class="plan-number-id">@planNumber</span></div>
+
+    <div class="accordion-collapse collapse @if(open){ in } ">
+
+        <div class="trips ">
+
+           @trip(hidden = false)
+
+        </div>
+
+    </div>
+
+    <hr/>
+
+    <div class="row">
+        <div class="col-sm-12 form-group centralize">
+            <div class="btn btn-grove-one btn-lg add-response-trip-action" data-parent=".plan" data-target=".trips" data-url="@routes.TravelPlanner.responseTrip"><i class="glyphicons plus"></i> Add another trip </div>
+        </div>
+    </div>
+
+ </div>

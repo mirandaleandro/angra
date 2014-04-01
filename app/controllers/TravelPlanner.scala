@@ -62,6 +62,40 @@ object TravelPlanner extends Controller
           })
     }
 
+    def responseTrip = Action
+    {
+      implicit request =>
+        numberedViewForm.bindFromRequest.fold(
+
+          formWithErrors =>
+            InternalServerError,
+
+          number =>
+          {
+            transactional{
+              Ok( views.html.TravelPlanResponse.trip (number, open = true))
+            }
+          })
+    }
+
+
+    def responsePlanView = Action
+    {
+      implicit request =>
+        numberedViewForm.bindFromRequest.fold(
+
+          formWithErrors =>
+            InternalServerError,
+
+          number =>
+          {
+            transactional{
+              Ok( views.html.TravelPlanResponse.plan (number, open = true))
+            }
+          })
+    }
+
+
   //Not sure how to test this???
   case class TripRequest(depart_location:String,depart_date:String,  depart_time:String, airline:String, arrival_location:String,  arrival_time:String,  additional_transportation:String,  hotel_name:String,  hotel_membership:String,  checkout_date:String)
   case class ClientRequest(ret_location:String,ret_date:String, ret_time:String, notes:String, trips:List[TripRequest])

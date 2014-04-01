@@ -1640,11 +1640,13 @@ ul.paging li.active a {
   font-size: 14px;
   font-weight: 600;
   color: #6f6f6f;
+  padding: 12px 0;
 }
 .accordion-toggle:focus,
 .accordion-toggle:hover {
   outline: none;
   text-decoration: none;
+  background-color: rgba(0,0,0,0.1);
 }
 .accordion-toggle:before {
   margin-right: 17px;
@@ -1911,20 +1913,40 @@ input[type=search]
     display: inline-block;
 }
 
-.flights .flight:last-child
+.plans
 {
-    padding-bottom: 0;
-    border-bottom: none;
+    background-color: yellow
 }
 
-.flights .flight:first-child
+.trips
 {
-    padding-top: 0;
+    background-color: palevioletred;
 }
 
-.flight
+.flights
 {
-    padding-bottom: 20px;
-    border-bottom: 1px solid #CCC;
-    padding-top: 20px;
+   background-color: greenyellow;
+}
+
+
+.plans
+{
+    background-color: #e5e3e3;
+    color: #6f6f6f;
+}
+
+.trips
+{
+    background-color: #f3f2f2;
+}
+
+.flights
+{
+   background-color: #FFF;
+   border: 1px solid #f3f2f2;
+}
+
+.col-md-offset-0
+{
+  margin-right: 0;
 }

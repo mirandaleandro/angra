@@ -1,79 +1,14 @@
 <div class="plans">
-    <div class="accordion-toggle open " data-toggle="collapse">Plan #<span class="plan-number-id"></span></div>
 
-    <div class="col-md-offset-1 col-md-10 accordion-collapse collapse in plan">
-        <div class="flights">
-
-            @flight(hidden = false)
-
-        </div>
-
-        <div class="row">
-	        <div class="col-sm-12 form-group centralize">
-	            <div class="btn btn-grove-one btn-lg add-flight-action" data-parent=".plan" data-target=".flights" data-url="@routes.TravelPlanner.flightView"><i class="glyphicons plus"></i> Add another flight </div>
-	        </div>
-	    </div>
-
-        <hr/>
-
-        <div class="row">
-
-            <label class="col-sm-12" for="name"> Additional Transportation </label>
-
-            <div class="col-sm-4 form-group">
-
-                <label class="radio">
-                    <input class="additional-transportation rental display-trigger" type="radio" value="rental" name="additional_transportation" data-display-trip-form=".form-group.preferred-rental-company" >
-                    Rental
-                </label>
-
-                <label class="radio">
-                    <input class="additional-transportation taxi" type="radio" value="taxi" name="additional_transportation">
-                    Taxi
-                </label>
-
-                <label class="radio">
-                    <input class="additional-transportation shuttle" type="radio" value="shuttle"  name="additional_transportation" >
-                    Shuttle
-                </label>
-
-                <label class="radio">
-                    <input class="additional-transportation none" type="radio" value="none" name="additional_transportation" checked>
-                    No, thanks.
-                </label>
-
-            </div>
-
-            <div class="col-sm-8 form-group preferred-rental-company temp-hide">
-                <label for="name"> Preferred Rental Companies</label>
-                    <!-- TODO grab data from the database -->
-                <select class="form-control input-lg" type="text" name="name" data-content='@routes.Assets.at("json/companies.json")' multiple data-role="tagsinput"></select>
-            </div>
-        </div>
-
-        <div class="row">
-
-            <div class="col-sm-4 form-group">
-                <label class=" checkbox">
-                    <input class="book-hotel display-trigger" type="checkbox" name="hotel" data-display-trip-form=".hotel-preferences" value="">
-                    Book a hotel?
-                </label>
-            </div>
-
-            <div class="col-sm-8 form-group hotel-preferences temp-hide">
-                <label for="name"> Checkout Date </label>
-                <input class="form-control input-lg" type="text" name="name" value="" placeholder="">
-
-                <label class="checkbox">
-                    <input class="" type="checkbox" name="hotel-meal" value="">
-                    Must serve meal
-                </label>
-            </div>
-
-        </div>
-
-        <hr/>
-    </div>
+    @plan(hidden = false)
 
 </div>
+
+<div class="row">
+    <div class="col-sm-12 form-group centralize">
+        <div class="btn btn-grove-one btn-lg add-response-plan-action" data-parent="body" data-target=".plans" data-url="@routes.TravelPlanner.responsePlanView">
+            <i class="glyphicons plus"></i> Add another plan </div>
+    </div>
+</div>
+
 

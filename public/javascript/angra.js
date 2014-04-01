@@ -111,4 +111,52 @@ $(function()
 
     });
 
+    $(document.body).on("click",".add-response-trip-action", function(e)
+    {
+        e.stopImmediatePropagation();
+
+        var actionTrigger = $(this);
+        var url = actionTrigger.data('url');
+        var parentSelector = actionTrigger.data('parent');
+        var containerSelector = actionTrigger.data('target');
+        var parent = actionTrigger.closest(parentSelector);
+        var targetContainer = parent.find(containerSelector);
+        var number = targetContainer.find('.trip').last().data('number') + 1;
+
+        $.post( url, {number: number},
+            function( data )
+        {
+            targetContainer.append( data );
+
+            var newElement =   parent.find(".trip[data-number="+number+"]");
+
+            newElement.show('slow');
+        });
+
+    });
+
+    $(document.body).on("click",".add-response-plan-action", function(e)
+    {
+        e.stopImmediatePropagation();
+          debugger;
+        var actionTrigger = $(this);
+        var url = actionTrigger.data('url');
+        var parentSelector = actionTrigger.data('parent');
+        var containerSelector = actionTrigger.data('target');
+        var parent = actionTrigger.closest(parentSelector);
+        var targetContainer = parent.find(containerSelector);
+        var number = targetContainer.find('.plan').last().data('number') + 1;
+
+        $.post( url, {number: number},
+            function( data )
+        {
+            targetContainer.append( data );
+
+            var newElement =   parent.find(".plan[data-number="+number+"]");
+
+            newElement.show('slow');
+        });
+
+    });
+
 });
