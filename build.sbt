@@ -15,10 +15,13 @@ libraryDependencies ++= Seq(
     jdbc,
     anorm,
     cache,
-    "postgresql" % "postgresql" % "9.1-901.jdbc4",
+    "postgresql" % "postgresql" % "9.1-901-1.jdbc4",
     "net.fwbrasil" %% "activate-play" % activateVersion,
     "net.fwbrasil" %% "activate-jdbc" % activateVersion,
     "net.fwbrasil" %% "activate-core" % activateVersion
-)     
+)
+
+
+
 
 play.Project.playScalaSettings
