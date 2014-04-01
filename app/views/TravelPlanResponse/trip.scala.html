@@ -4,27 +4,27 @@
 
     <div class="accordion-toggle @if(open){ open }else{ collapsed }" data-toggle="collapse">Trip #<span class="trip-number-id">@tripNumber</span></div>
 
-    <div class="col-md-offset-1 col-md-10 accordion-collapse collapse @if(open){ in }">
+    <div class="accordion-collapse collapse @if(open){ in }">
 
-        <div class="flights">
+        <div class="col-md-offset-1 col-md-11 flights">
 
            @flight(1, hidden = false)
 
         </div>
 
         <div class="row">
-            <div class="col-sm-12 form-group centralize">
+            <div class="col-md-12 form-group centralize">
                 <div class="btn btn-grove-one btn-lg add-flight-action" data-parent=".trip" data-target=".flights" data-url="@routes.TravelPlanner.flightView"><i class="glyphicons plus"></i> Add another flight </div>
             </div>
         </div>
 
         <hr/>
 
-        <div class="row">
+        <div class="col-md-offset-0 row">
 
-            <label class="col-sm-12" for="name"> Additional Transportation </label>
+            <label class="col-md-12" for="name"> Additional Transportation </label>
 
-            <div class="col-sm-4 form-group">
+            <div class="col-md-4 form-group">
 
                 <label class="radio">
                     <input class="additional-transportation rental display-trigger" type="radio" value="rental" name="additional_transportation" data-display-trip-form=".form-group.preferred-rental-company" >
@@ -48,36 +48,30 @@
 
             </div>
 
-            <div class="col-sm-8 form-group preferred-rental-company temp-hide">
+            <div class="col-md-8 form-group preferred-rental-company temp-hide">
                 <label for="name"> Preferred Rental Companies</label>
                     <!-- TODO grab data from the database -->
                 <select class="form-control input-lg" type="text" name="name" data-content='@routes.Assets.at("json/companies.json")' multiple data-role="tagsinput"></select>
             </div>
         </div>
 
-        <div class="row">
+        <div class="row col-md-offset-0 ">
 
-            <label class="col-sm-12" for="name"> Hotel </label>
+            <label class="col-md-12" for="name"> Hotel </label>
 
-            <div class="row">
-                <div class="col-sm-12 form-group">
-                    <label for="name"> Confirmation Number </label>
-                    <input class="form-control input-lg" type="text" id="name" name="name" value="" placeholder="">
-                </div>
+            <div class="col-md-12 form-group">
+                <label for="name"> Confirmation Number </label>
+                <input class="form-control input-lg" type="text" id="name" name="name" value="" placeholder="">
             </div>
 
-            <div class="row">
-                <div class="col-sm-12 form-group">
-                    <label for="name"> Address </label>
-                    <input class="form-control input-lg" type="text" id="name" name="name" value="" placeholder="">
-                </div>
+            <div class="col-md-12 form-group">
+                <label for="name"> Address </label>
+                <input class="form-control input-lg" type="text" id="name" name="name" value="" placeholder="">
             </div>
 
-            <div class="row">
-                <div class="col-sm-12 form-group">
-                    <label for="name"> Phone Number </label>
-                    <input class="form-control input-lg" type="text" id="name" name="name" value="" placeholder="">
-                </div>
+            <div class="col-md-12 form-group">
+                <label for="name"> Phone Number </label>
+                <input class="form-control input-lg" type="text" id="name" name="name" value="" placeholder="">
             </div>
 
         </div>

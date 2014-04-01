@@ -1,57 +1,61 @@
 @(flightNumber:Int = 1, open:Boolean = true, hidden:Boolean = true)
 
 <div class="flight @if(hidden){ temp-hide }" data-number="@flightNumber">
-    <a href="#fligh@flightNumber" class="accordion-toggle @if(open){ open }else{ collapsed } " data-toggle="collapse">Flight #<span class="flight-number-id">@flightNumber</span></a>
 
-	<div id="flight@flightNumber" class="accordion-collapse collapse  @if(open){ in }">
-            <div class="trip-content">
+    <div class="accordion-toggle @if(open){ open }else{ collapsed }" data-toggle="collapse">Flight #<span class="flight-number-id">@flightNumber</span></div>
 
-                <div class="row">
-                    <div class="col-sm-6 form-group">
-                        <label for="name"> Departure Location </label>
-                        <input class="form-control input-lg" type="text" id="name" name="name" value="" placeholder="">
-                    </div>
+    <div class=" accordion-collapse collapse @if(open){ in }">
 
-                    <div class="col-sm-6 form-group">
-                        <label for="name"> Arrival Location </label>
-                        <input class="form-control input-lg" type="text" id="name" name="name" value="" placeholder="">
-                    </div>
+        <div class="trip-content">
+
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="name"> Departure Location </label>
+                    <input class="form-control input-lg" type="text" id="name" name="name" value="" placeholder="">
                 </div>
 
-                <div class="row">
-                    <div class="col-sm-6 form-group">
-                        <label for="name"> Departure Date </label>
-                        <input class="form-control input-lg" type="text" id="name" name="name" value="" placeholder="">
-                    </div>
-
-                    <div class="col-sm-6 form-group">
-                        <label for="name"> Departure Time </label>
-                        <input class="form-control input-lg" type="text" id="name" name="name" value="" placeholder="">
-                    </div>
+                <div class="col-md-6 form-group">
+                    <label for="name"> Arrival Location </label>
+                    <input class="form-control input-lg" type="text" id="name" name="name" value="" placeholder="">
                 </div>
-
-                <div class="row">
-                    <div class="col-sm-4 form-group">
-                        <label for="name"> Airline </label>
-                        <input type="text" class="form-control input-lg" type="text"  name="name">
-                    </div>
-                    <div class="col-sm-4 form-group">
-                        <label for="name"> Flight Number </label>
-                        <input type="text" class="form-control input-lg" type="text"  name="name">
-                    </div>
-                    <div class="col-sm-4 form-group">
-                        <label for="name"> Seat </label>
-                        <input type="text" class="form-control input-lg" type="text"  name="name">
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-12 form-group">
-                        <label for="name"> Confirmation Number </label>
-                        <input class="form-control input-lg" type="text" id="name" name="name" value="" placeholder="">
-                    </div>
-                </div>
-
             </div>
+
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="name"> Departure Date </label>
+                    <input class="form-control input-lg" type="text" id="name" name="name" value="" placeholder="">
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <label for="name"> Departure Time </label>
+                    <input class="form-control input-lg" type="text" id="name" name="name" value="" placeholder="">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4 form-group">
+                    <label for="name"> Airline </label>
+                    <input type="text" class="form-control input-lg" type="text"  name="name">
+                </div>
+                <div class="col-sm-4 form-group">
+                    <label for="name"> Flight Number </label>
+                    <input type="text" class="form-control input-lg" type="text"  name="name">
+                </div>
+                <div class="col-sm-4 form-group">
+                    <label for="name"> Seat </label>
+                    <input type="text" class="form-control input-lg" type="text"  name="name">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12 form-group">
+                    <label for="name"> Confirmation Number </label>
+                    <input class="form-control input-lg" type="text" id="name" name="name" value="" placeholder="">
+                </div>
+            </div>
+
         </div>
+
+    </div>
+
 </div>
