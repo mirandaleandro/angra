@@ -95,8 +95,6 @@ object TravelPlanner extends Controller
           })
     }
 
-
-  //Not sure how to test this???
   case class TripRequest(depart_location:String,depart_date:String,  depart_time:String, airline:String, arrival_location:String,  arrival_time:String,  additional_transportation:String,  hotel_name:String,  hotel_membership:String,  checkout_date:String)
   case class ClientRequest(ret_location:String,ret_date:String, ret_time:String, notes:String, trips:List[TripRequest])
 
@@ -121,5 +119,16 @@ object TravelPlanner extends Controller
     )(ClientRequest.apply)(ClientRequest.unapply)
   )
 
-
+  def sendRequest = Action {
+    implicit request =>
+      tripRequestForm.bindFromRequest.fold(
+        formWithErrors => BadRequest(views.html.landingpage()),
+        requested => {
+          Redirect(routes.Application.travelPlanner).flashing(
+            "message" -> "Your trip has been submitted!"
+          )
+        }
+      )
+  }
 }
+
