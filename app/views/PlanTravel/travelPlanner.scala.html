@@ -1,4 +1,6 @@
 @()(implicit user:Option[User])
+@import views.html.helper._
+
 @main(pageTitle = "Travel Planner") {
     <div class="widewrapper">
 	    <div class="container content">
@@ -6,6 +8,8 @@
 
 				<section class="col-md-8 faq">
 					<h2> Plan your travel </h2>
+
+                   @form(routes.TravelPlanner.sendRequest) {
 					<form action="#" method="get" accept-charset="utf-8" class="clearfix client-request-form">
 
                         <div class="trips">
@@ -38,8 +42,7 @@
                     </form>
 				</section>
 
-
-
+              }
 	          @views.html.RightSidebar.contactInfo()
 
 	        </div>

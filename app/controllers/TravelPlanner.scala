@@ -121,5 +121,16 @@ object TravelPlanner extends Controller
     )(ClientRequest.apply)(ClientRequest.unapply)
   )
 
-
+  def sendRequest = Action {
+    implicit request =>
+      tripRequestForm.bindFromRequest.fold(
+        formWithErrors => BadRequest(views.html.landingpage()),
+        requested => {
+          Redirect(routes.Application.travelPlanner).flashing(
+            "message" -> "Your trip has been submitted!"
+          )
+        }
+      )
+  }
 }
+
