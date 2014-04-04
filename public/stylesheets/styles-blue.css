@@ -146,6 +146,13 @@ div.pagetitle h1 span.category {
     padding-top: 50px;
   }
 }
+.calltolink {
+  padding-top: 30px;
+  padding-bottom: 60px;
+  font-size: 18px;
+  text-align: center;
+  line-height: 60px;
+}
 .calltoaction {
   padding-top: 60px;
   padding-bottom: 60px;

@@ -19,6 +19,20 @@ object Application extends Controller with Secured {
     }
   }
 
+  def aboutus = Action {implicit request =>
+    transactional
+    {
+      Ok( views.html.aboutus() )
+    }
+  }
+
+  def faq = Action {implicit request =>
+    transactional
+    {
+      Ok( views.html.faq() )
+    }
+  }
+
   def travelPlanner = withAuth{ implicit user => implicit request =>
 
     transactional
@@ -41,5 +55,6 @@ object Application extends Controller with Secured {
       Ok( views.html.Dashboard.dashboard() )
     }
   }
+
 }
 

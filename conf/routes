@@ -5,6 +5,12 @@
 # Home page
 GET         /                          controllers.Application.landingPage()
 
+# About Us Page
+GET         /aboutus                   controllers.Application.aboutus()
+
+# FAQ Page
+GET         /faq                        controllers.Application.faq()
+
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file              controllers.Assets.at(path="/public", file)
 

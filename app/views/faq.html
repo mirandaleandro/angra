@@ -1,0 +1,93 @@
+@()
+
+@main(pageTitle = "FAQ") {
+
+<body>
+<header>
+    <script type="text/javascript" src="js/header.js"></script>
+
+    <div class="widewrapper pagetitle">
+        <div class="container">
+            <h1>Frequently Asked Questions</h1>
+        </div>
+    </div>
+</header>
+
+<div class="widewrapper">
+    <div class="container">
+        <div class="row content">
+            <!-- Important note: FAQ needs js/faq.js to work properly -->
+            <section id="faq" class="col-sm-8 faq">
+                <div class="question">
+                    <a href="#answer1" class="faq-toggle" data-toggle="collapse">How do you achieve status with the airlines?</a>
+
+                    <div id="answer1" class="collapse">
+                        <div class="answer">
+                            You can achieve status by choosing one airline, signing up for their miles program, and then sticking with it. The more you fly, the higher your status and the more rewards and benefits you will receive.</div>
+                    </div>
+                </div>
+                <div class="question">
+                    <a href="#answer2" class="faq-toggle" data-toggle="collapse">How can I get help if my plane cancels?</a>
+
+                    <div id="answer2" class="collapse">
+                        <div class="answer">
+                            Call us. Your personal Cet Services agent will work with you immediately to help you find another flight.</div>
+                    </div>
+                </div>
+                <div class="question">
+                    <a href="#answer3" class="faq-toggle" data-toggle="collapse">How can I get rewards with the hotels I stay in?</a>
+
+                    <div id="answer3" class="collapse">
+                        <div class="answer">
+                            Cet Services does not keep or discount your points. Instead, we can help you set up a rewards program with the hotel chain of your choice, giving you the most amount of points and rewards for each stay. We can help you compare and choose the program that is best for you.</div>
+                    </div>
+                </div>
+                <!--div class="question">
+                    <a href="#answer4" class="faq-toggle blue" data-toggle="collapse">Magni labore tempora fugit rerum eaque iste?</a>
+
+                    <div id="answer4" class="collapse">
+                        <div class="answer">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, nobis, dignissimos, voluptatibus veritatis aliquid magni labore tempora fugit rerum eaque deserunt odio voluptatum recusandae assumenda beatae veniam maxime eveniet iste! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit repellendus velit rem libero dicta sint rerum id quasi! Fugit, dolorum eligendi alias veniam praesentium at rerum aut sapiente in cumque.</div>
+                    </div>
+                </div>
+                <div class="question">
+                    <a href="#answer5" class="faq-toggle" data-toggle="collapse">Suscipit repellendus velit rem libero dicta sint rerum id quasi?</a>
+
+                    <div id="answer5" class="collapse">
+                        <div class="answer">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, nobis, dignissimos, voluptatibus veritatis aliquid magni labore tempora fugit rerum eaque deserunt odio voluptatum recusandae assumenda beatae veniam maxime eveniet iste!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit repellendus velit rem libero dicta sint rerum id quasi! Fugit, dolorum eligendi alias veniam praesentium at rerum aut sapiente in cumque.</div>
+                    </div>
+                </div>
+                <div class="question">
+                    <a href="#answer6" class="faq-toggle" data-toggle="collapse">Suscipit repellendus velit rem libero dicta sint rerum id quasi?</a>
+
+                    <div id="answer6" class="collapse">
+                        <div class="answer">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, nobis, dignissimos, voluptatibus veritatis aliquid magni labore tempora fugit rerum eaque deserunt odio voluptatum recusandae assumenda beatae veniam maxime eveniet iste!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit repellendus velit rem libero dicta sint rerum id quasi! Fugit, dolorum eligendi alias veniam praesentium at rerum aut sapiente in cumque.</div>
+                    </div>
+                </div>
+                <div class="question">
+                    <a href="#answer7" class="faq-toggle" data-toggle="collapse">Fugit, dolorum eligendi alias veniam praesentium at rerum aut sapiente in cumque?</a>
+
+                    <div id="answer7" class="collapse">
+                        <div class="answer">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, nobis, dignissimos, voluptatibus veritatis aliquid magni labore tempora fugit rerum eaque deserunt odio voluptatum recusandae assumenda beatae veniam maxime eveniet iste!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit repellendus velit rem libero dicta sint rerum id quasi! Fugit, dolorum eligendi alias veniam praesentium at rerum aut sapiente in cumque.</div>
+                    </div>
+                </div!-->
+            </section>
+
+            @views.html.RightSidebar.contactInfo()
+
+            </section>
+        </div>
+    </div>
+</div>
+
+<div class="widewrapper strong-highlight">
+    <div class="container calltoaction">
+        <span>Ready for your own concierge executive travel experience?</span>
+        <a href="login.html" class="btn btn-grove-one btn-xlg btn-bold">Create an Account Now</a>
+    </div>
+</div>
+
+}

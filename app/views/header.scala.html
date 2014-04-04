@@ -4,21 +4,21 @@
          <div class='container'>
              <div class='navbar-header'>
                  <a href='#' class='grove-toggle' data-toggle='collapse' data-target='.grove-nav'>   <i class='glyphicons show_lines'></i>  </a>
-                 <a href='index.html' class='navbar-brand'><img src='@routes.Assets.at("images/cetLogo.png")' alt='CET'></a>
+                 <a href="@routes.Application.landingPage()" class='navbar-brand'><img src='@routes.Assets.at("images/cetLogo.png")' alt='CET'></a>
              </div>
              <div class='collapse navbar-collapse grove-nav'>
                  <ul class='nav navbar-nav'>
 
-                    <li class='inactive'> <a href='index.html'>Home</a> </li>
+                    <li class='inactive'> <a href="@routes.Application.landingPage()">Home</a> </li>
 
                     <li class='dropdown'>
                         <a href='#' data-toggle='dropdown'>Pages <b class='caret'></b></a>
 						<ul class='dropdown-menu'>
-							<li><a href='about-us.html'>About Us</a></li>
-							<li><a href='features.html'>Features Page</a></li>
-							<li><a href='faq.html'>FAQ</a></li>
-							<li><a href='login.html'>Login/Signup</a></li>
-							<li><a href='contact.html'>Contact</a></li>
+							<li><a href="@routes.Application.aboutus()">About Us</a></li>
+							<!--li><a href='features.html'>Features Page</a></li!-->
+							<!--li><a href='faq.html'>FAQ</a></li!-->
+							<li><a href="@routes.Authentication.login()">Login/Signup</a></li>
+							<!--li><a href='contact.html'>Contact</a></li!-->
 						</ul>
                         @if(user.isDefined){
 							<li class='active'>Logged as @user.get.name (<a class="logout-link" href="@routes.Authentication.logout()"> Logout </a>)</li>
