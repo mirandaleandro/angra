@@ -159,4 +159,34 @@ $(function()
 
     });
 
+
+    $(document.body).on("keyup",".search-input", function(){
+        var input = $(this);
+
+        var query = $.trim(input.val());
+
+        var itemsToBeSearched = input.closest(".trips-section").find(".trips-table tbody tr");
+
+       if(query.length < 1)
+       {
+          itemsToBeSearched.show();
+       }
+        else
+       {
+           itemsToBeSearched.filter( function(){
+
+               if( $(this).text().lastIndexOf(query) == -1 )
+               {
+                   $(this).hide();
+               }
+               else
+               {
+                   $(this).show()
+               }
+           } )
+
+       }
+
+    });
+
 });
