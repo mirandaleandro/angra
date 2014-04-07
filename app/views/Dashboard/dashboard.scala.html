@@ -1,11 +1,12 @@
 @()(implicit user:Option[User])
 @main(pageTitle = "Dashboard") {
 
-    <div class="widewrapper dashboard">
+    @user.map{ currentUser =>
+      <div class="widewrapper dashboard">
         <div class="container content">
             <div class="row">
 
-                @if(true){
+                @if(currentUser.travelPlans.isEmpty){
                     <section class="col-md-6 col-md-offset-1 with-margin empty-dashboard">
 
                         <div class="row ">
@@ -46,7 +47,7 @@
                                <caption></caption>
                                <thead>
                                    <tr>
-                                       <td>Trip</td>
+                                       <td>Trips</td>
                                        <td>Departure Date</td>
                                        <td>Status</td>
                                        <td>Action</td>
@@ -54,36 +55,15 @@
 
                                </thead>
                                <tbody>
+                               @for( trip <- currentUser.tripRequests) {
                                    <tr class="">
-                                       <td><span class="city-name">Orlando-FL</span> to <span class="city-name">Salt Lake City-UT</span> (2 stops)</td>
-                                       <td>03/10/2014</td>
+                                       <td><span class="city-name">@trip.depart_location</span> to <span class="city-name">@trip.arrival_location</span></td>
+                                       <td>@trip.depart_date.format("MM/dd/yyyy")</td>
                                        <td>Pending</td>
-                                       <td><button class="btn btn-grove-one">Edit</button></td>
+                                       <td><a href="@routes.Application.travelPlanner" class="btn btn-grove-one">Edit</a></td>
                                    </tr>
-                                   <tr class="">
-                                       <td><span class="city-name">Orlando-FL</span> to <span class="city-name">Salt Lake City-UT</span> (2 stops)</td>
-                                       <td>03/10/2014</td>
-                                       <td>Pending</td>
-                                       <td><button class="btn btn-grove-one">Edit</button></td>
-                                   </tr>
-                                   <tr class="">
-                                       <td><span class="city-name">Orlando-FL</span> to <span class="city-name">Salt Lake City-UT</span> (2 stops)</td>
-                                       <td>03/10/2014</td>
-                                       <td>Pending</td>
-                                       <td><button class="btn btn-grove-one">Edit</button></td>
-                                   </tr>
-                                   <tr class="">
-                                       <td><span class="city-name">Orlando-FL</span> to <span class="city-name">Salt Lake City-UT</span> (2 stops)</td>
-                                       <td>03/10/2014</td>
-                                       <td>Pending</td>
-                                       <td><button class="btn btn-grove-one">Edit</button></td>
-                                   </tr>
-                                   <tr class="">
-                                       <td><span class="city-name">Orlando-FL</span> to <span class="city-name">Salt Lake City-UT</span> (2 stops)</td>
-                                       <td>03/10/2014</td>
-                                       <td>Pending</td>
-                                       <td><button class="btn btn-grove-one">Edit</button></td>
-                                   </tr>
+                               }
+
                                </tbody>
                            </table>
 
@@ -98,4 +78,5 @@
             </div>
         </div>
     </div>
+    }
 }

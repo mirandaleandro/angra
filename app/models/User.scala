@@ -18,7 +18,31 @@ import scala.language.postfixOps
  */
 
 class User(var name: String, var email:String, var password:String, var phone:String, var admin:Option[Boolean]) extends Entity
+{
 
+  def travelPlans: List[Client_Request] =  {
+
+    if(this.isAdmin)
+    {
+       Client_Request.getAll.sortBy( cr => cr.creationDate )
+    }else{
+      Client_Request.findByUser(this).toList
+    }
+  }
+
+  def tripRequests: List[Trip_Request] =  {
+
+    if(this.isAdmin)
+    {
+       Trip_Request.getAll.sortBy( cr => cr.creationDate )
+    }else{
+      Trip_Request.findByUser(this).toList
+    }
+  }
+
+  def isAdmin:Boolean = this.admin.isDefined && this.admin.get
+
+}
 object User
 {
   def apply(name:String,  email:String,  password:String, phone:String, admin:Option[Boolean] = None) =
@@ -44,8 +68,5 @@ object User
 
 
   def getAll:List[User] = all[User]
-
-
-
 
 }

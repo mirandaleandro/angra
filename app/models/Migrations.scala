@@ -47,9 +47,9 @@ class CreateDefaultUsers extends Migration {
           val req2 = Client_Request(user2,date5,"Las Vegas",time5,"Better to return before 11:00 than after")
           val req3 = Client_Request(user3,date6,"Salt Lake City",time6,"Better to return before 12:00 than after")
 
-          Trip_Request(req1, date1, "San Diego",  time1,  "Denver",  time2, "United", rental=true,  taxi=false,  shuttle=false,  "The Hilton",  "123ABC",  date3)
-          Trip_Request(req2, date2, "Las Vegas",  time2,  "Fresno",  time2, "United", rental=true,  taxi=false,  shuttle=false,  "The Hilton",  "123ABC",  date3)
-          Trip_Request(req3, date3, "Salt Lake",  time3,  "Orlando",  time2, "United", rental=true,  taxi=false,  shuttle=false,  "The Hilton",  "123ABC",  date3)
+          Trip_Request(user1,req1, date1, "San Diego",  time1,  "Denver",  time2, "United", rental=true,  taxi=false,  shuttle=false,  "The Hilton",  "123ABC",  date3)
+          Trip_Request(user2,req2, date2, "Las Vegas",  time2,  "Fresno",  time2, "United", rental=true,  taxi=false,  shuttle=false,  "The Hilton",  "123ABC",  date3)
+          Trip_Request(user3,req3, date3, "Salt Lake",  time3,  "Orlando",  time2, "United", rental=true,  taxi=false,  shuttle=false,  "The Hilton",  "123ABC",  date3)
 
          val it1 =  Itinerary(req1, date1, "San Diego", time1, "370", "35B", "United", "10:00AM on the dot!", "www.google.com")
          val it2 =  Itinerary(req2, date2, "Las Vegas", time2, "371", "36B", "American", "11:00AM on the dot!", "www.google.com")
