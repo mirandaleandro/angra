@@ -35,6 +35,7 @@ POST        /responseTripView          controllers.TravelPlanner.responseTrip
 
 #Request Response plan view (Slice)
 POST        /responsePlanView          controllers.TravelPlanner.responsePlanView
+POST        /submitItinerary           controllers.TravelPlanner.submitItinerary
 
 #Request trip
 POST        /sendRequest               controllers.TravelPlanner.sendRequest
