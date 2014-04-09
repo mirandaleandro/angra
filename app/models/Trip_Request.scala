@@ -15,9 +15,9 @@ object Trip_Request
 
   def findById(id: String) = byId[Trip_Request](id)
 
-  def findByRequest(request_id:Client_Request): Option[Trip_Request] = transactional
+  def findByRequest(request_id:Client_Request): List[Trip_Request] = transactional
   {
-    (select[Trip_Request] where(_.request_id :== request_id)).headOption
+    select[Trip_Request] where(_.request_id :== request_id)
   }
 
   def findByUser(user:User): Option[Trip_Request] = transactional

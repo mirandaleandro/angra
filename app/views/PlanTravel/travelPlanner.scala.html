@@ -1,4 +1,4 @@
-@()(implicit user:Option[User])
+@(clientRequest:Option[Client_Request] = None)(implicit user:Option[User])
 @import views.html.helper._
 
 @main(pageTitle = "Travel Planner") {
@@ -12,10 +12,16 @@
                    @form(routes.TravelPlanner.sendRequest) {
 					<form action="#" method="get" accept-charset="utf-8" class="clearfix client-request-form">
 
+                        <input type="hidden" name="trip_id" value="@clientRequest.map(_.id)"/>
+
                         <div class="trips">
-
-                            @trip(hidden = false)
-
+                            @if( clientRequest.exists(_.trips.isEmpty) ){
+                                @trip(hidden = false)
+                            }else{
+                               @for((tripInstance,index) <- clientRequest.get.trips.zipWithIndex){
+                                   @trip(tripRequest=Some(tripInstance), tripNumber = index, hidden = false)
+                               }
+                            }
                         </div>
 
 

@@ -41,7 +41,7 @@ object TravelPlanner extends Controller
           tripNumber =>
           {
             transactional{
-              Ok( views.html.PlanTravel.trip (tripNumber, open = true))
+              Ok( views.html.PlanTravel.trip (tripNumber =  tripNumber, open = true))
             }
           })
     }
@@ -73,7 +73,7 @@ object TravelPlanner extends Controller
           number =>
           {
             transactional{
-              Ok( views.html.TravelPlanResponse.trip (number, open = true))
+              Ok( views.html.TravelPlanResponse.trip (tripNumber = number, open = true))
             }
           })
     }

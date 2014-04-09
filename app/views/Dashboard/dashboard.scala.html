@@ -24,7 +24,7 @@
                                 <hr/>
 
                                 <div class="row">
-                                    <a href="@routes.Application.travelPlanner"><div class="btn btn-grove-one btn-lg"><i class="glyphicons plus"></i> Add travel request </div></a>
+                                    <a href="@routes.Application.travelPlanner()"><div class="btn btn-grove-one btn-lg"><i class="glyphicons plus"></i> Add travel request </div></a>
                                 </div>
 
                             </div>
@@ -62,7 +62,7 @@
                                        <td>@trip.depart_date.format("MM/dd/yyyy")</td>
                                        <td>Pending</td>
                                        <td>
-                                           <a href="@routes.Application.travelPlanner" class="btn btn-grove-one">Edit</a>
+                                           <a href="@routes.Application.travelPlanner(Some(trip.request_id.id))" class="btn btn-grove-one">Edit</a>
                                            @if(user.map(_.isAdmin).getOrElse(false)){
                                                <a href="@routes.Application.travelResponse" class="btn btn-grove-one">Respond</a>
                                            }

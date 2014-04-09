@@ -33,11 +33,13 @@ object Application extends Controller with Secured {
     }
   }
 
-  def travelPlanner = withAuth{ implicit user => implicit request =>
+  def travelPlanner(id:Option[String]) = withAuth{ implicit user => implicit request =>
 
     transactional
     {
-      Ok( views.html.PlanTravel.travelPlanner() )
+
+      val clientRequest: Option[Client_Request] = id.flatMap(  Client_Request.findById(_) )
+      Ok( views.html.PlanTravel.travelPlanner(clientRequest) )
     }
   }
 

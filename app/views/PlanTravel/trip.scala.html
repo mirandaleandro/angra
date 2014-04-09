@@ -1,4 +1,4 @@
-@(tripNumber:Int = 1, open:Boolean = true, hidden:Boolean = true)
+@(tripRequest:Option[Trip_Request] = None, tripNumber:Int = 1, open:Boolean = true, hidden:Boolean = true)
 
  <div class="trip @if(hidden){ temp-hide }" data-number="@tripNumber">
     <a href="#trip@tripNumber" class="accordion-toggle @if(open){ open }else{ collapsed }" data-toggle="collapse">Trip #<span class="trip-number-id">@tripNumber</span></a>
