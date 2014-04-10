@@ -17,7 +17,7 @@ object Client_Request
     new Client_Request(user_id,ret_date,ret_location,ret_time,comments)
   }
 
-  def findById(id: String) = byId[Client_Request](id)
+  def findById(id: String) = transactional{ byId[Client_Request](id) }
 
   def findByUser(user_id:User): Option[Client_Request] = transactional
   {

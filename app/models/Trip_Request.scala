@@ -4,7 +4,9 @@ import java.util.Date
 
 
 class Trip_Request(var creator:User, var request_id:Client_Request, var depart_date:Date, var depart_location:String, var depart_time:Date, var arrival_location:String, var arrival_time:Date,var airline:String,var rental:Boolean, var taxi:Boolean, var shuttle:Boolean, var hotel_name:String, var hotel_membership:String, var checkout_date:Date) extends Entity
-
+{
+  def isThereAdditionalTransportation: Boolean = this.rental || this.taxi || this.shuttle
+}
 object Trip_Request
 {
   def apply(creator:User, request_id:Client_Request,depart_date:Date, depart_location:String,  depart_time:Date,  arrival_location:String,  arrival_time:Date, airline:String, rental:Boolean,  taxi:Boolean,  shuttle:Boolean,  hotel_name:String,  hotel_membership:String,  checkout_date:Date) =

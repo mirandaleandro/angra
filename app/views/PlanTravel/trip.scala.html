@@ -9,19 +9,19 @@
             <div class="row">
                 <div class="col-sm-12 form-group">
                     <label for="name"> Departure Location </label>
-                    <input class="form-control input-lg" type="text" id="name" name="depart_location" value="" placeholder="">
+                    <input class="form-control input-lg" type="text" id="name" name="depart_location" value="@tripRequest.map(_.depart_location)" placeholder="e.g San Diego">
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-6 form-group">
                     <label for="name"> Departure Date </label>
-                    <input class="form-control input-lg" type="text" id="name" name="depart_date" value="" placeholder="">
+                    <input class="form-control input-lg" type="text" id="name" name="depart_date" value="@tripRequest.map(_.depart_date)" placeholder="e.g 03/21/2015">
                 </div>
 
                 <div class="col-sm-6 form-group">
                     <label for="name"> Departure Time </label>
-                    <input class="form-control input-lg" type="text" id="name" name="depart_time" value="" placeholder="">
+                    <input class="form-control input-lg" type="text" id="name" name="depart_time" value="@tripRequest.map(_.depart_time)" placeholder="e.g 03:40pm">
                 </div>
             </div>
 
@@ -29,7 +29,7 @@
                 <div class="col-sm-12 form-group">
                     <label for="name"> Favorite Airline Companies </label>
                     <select class="form-control input-lg airline-preferences" type="text"  name="airline" multiple data-content='@routes.Assets.at("json/companies.json")' data-role="tagsinput">
-
+                        <!-- TODO -->
                     </select>
                 </div>
             </div>
@@ -37,7 +37,7 @@
             <div class="row">
                 <div class="col-sm-12 form-group">
                     <label for="name"> Arrival Location </label>
-                    <input class="form-control input-lg" type="text" id="name" name="arrival_location" value="" placeholder="">
+                    <input class="form-control input-lg" type="text" id="name" name="arrival_location" value="@tripRequest.map(_.arrival_location)" placeholder="e.g New York">
                 </div>
             </div>
 
@@ -49,22 +49,22 @@
                 <div class="col-sm-4 form-group">
 
                     <label class="radio">
-                        <input class="additional-transportation rental display-trigger" type="radio" value="rental" name="additional_transportation" data-display-trip-form=".form-group.preferred-rental-company" >
+                        <input @if(tripRequest.map(_.rental)){checked} class="additional-transportation rental display-trigger" type="radio" value="rental" name="additional_transportation" data-display-trip-form=".form-group.preferred-rental-company" >
                             Rental
                     </label>
 
                     <label class="radio">
-                        <input class="additional-transportation taxi" type="radio" value="taxi" name="additional_transportation">
+                        <input @if(tripRequest.map(_.taxi)){checked} class="additional-transportation taxi" type="radio" value="taxi" name="additional_transportation">
                             Taxi
                     </label>
 
                     <label class="radio">
-                        <input class="additional-transportation shuttle" type="radio" value="shuttle"  name="additional_transportation" >
+                        <input @if(tripRequest.map(_.shuttle)){checked} class="additional-transportation shuttle" type="radio" value="shuttle"  name="additional_transportation" >
                             Shuttle
                     </label>
 
                     <label class="radio">
-                        <input class="additional-transportation none" type="radio" value="none" name="additional_transportation" checked>
+                        <input @if(!tripRequest.exists{_.isThereAdditionalTransportation}){checked} class="additional-transportation none" type="radio" value="none" name="additional_transportation" >
                             No, thanks.
                     </label>
 

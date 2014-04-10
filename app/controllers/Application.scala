@@ -38,7 +38,11 @@ object Application extends Controller with Secured {
     transactional
     {
 
-      val clientRequest: Option[Client_Request] = id.flatMap(  Client_Request.findById(_) )
+      val clientRequest: Option[Client_Request] = id.flatMap{   cId =>
+        val c = Client_Request.findById( cId )
+        c
+      }
+
       Ok( views.html.PlanTravel.travelPlanner(clientRequest) )
     }
   }

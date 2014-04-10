@@ -15,7 +15,7 @@
                         <input type="hidden" name="trip_id" value="@clientRequest.map(_.id)"/>
 
                         <div class="trips">
-                            @if( clientRequest.exists(_.trips.isEmpty) ){
+                            @if( !clientRequest.isDefined || clientRequest.get.trips.isEmpty ){
                                 @trip(hidden = false)
                             }else{
                                @for((tripInstance,index) <- clientRequest.get.trips.zipWithIndex){

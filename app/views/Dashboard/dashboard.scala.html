@@ -56,13 +56,13 @@
                                </thead>
                                <tbody>
 
-                               @for( trip <- currentUser.tripRequests) {
+                               @for( plan <- currentUser.travelPlans) {
                                    <tr class="">
-                                       <td><span class="city-name">@trip.depart_location</span> to <span class="city-name">@trip.arrival_location</span></td>
-                                       <td>@trip.depart_date.format("MM/dd/yyyy")</td>
+                                       <td><span class="city-name">@plan.trips.headOption.map(_.depart_location)</span> to <span class="city-name">@plan.ret_location</span></td>
+                                       <td>@plan.trips.headOption.map(_.depart_date.format("MM/dd/yyyy"))</td>
                                        <td>Pending</td>
                                        <td>
-                                           <a href="@routes.Application.travelPlanner(Some(trip.request_id.id))" class="btn btn-grove-one">Edit</a>
+                                           <a href="@routes.Application.travelPlanner(Some(plan.id))" class="btn btn-grove-one">Edit</a>
                                            @if(user.map(_.isAdmin).getOrElse(false)){
                                                <a href="@routes.Application.travelResponse" class="btn btn-grove-one">Respond</a>
                                            }
