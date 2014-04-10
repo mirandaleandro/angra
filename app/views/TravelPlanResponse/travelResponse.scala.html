@@ -1,4 +1,5 @@
 @()(implicit user:Option[User])
+@import views.html.helper._
 @main(pageTitle = "Travel Planner") {
 
     <div class="widewrapper">
@@ -7,6 +8,7 @@
 
                 <section class="col-md-8 faq">
                     <h2> Travel plan for Miranda Software on 16/03/2014</h2>
+                    @form(routes.TravelPlanner.submitItinerary) {
                     <form action="#" method="get" accept-charset="utf-8" class="clearfix client-response-form">
 
                         @travelPlan()
@@ -14,7 +16,7 @@
                         <div class="row">
                             <div class="col-sm-12 form-group">
                                 <label for="message"> Comments </label>
-                                <textarea class="form-control " id="message" name="message" rows="5"></textarea>
+                                <textarea class="form-control " id="message" name="comments" rows="5"></textarea>
                             </div>
                         </div>
 
@@ -22,7 +24,7 @@
 
                     </form>
                 </section>
-
+                }
                 @views.html.RightSidebar.contactInfo()
 
             </div>

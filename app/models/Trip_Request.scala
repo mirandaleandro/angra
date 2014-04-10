@@ -3,16 +3,17 @@ import PostgresConnection._
 import java.util.Date
 
 
-class Trip_Request(var creator:User, var request_id:Client_Request, var depart_date:Date, var depart_location:String, var depart_time:Date, var arrival_location:String, var arrival_time:Date,var airline:String,var rental:Boolean, var taxi:Boolean, var shuttle:Boolean, var hotel_name:String, var hotel_membership:String, var checkout_date:Date) extends Entity
+class Trip_Request(var request_id:Client_Request, var depart_date:String, var depart_location:String, var depart_time:String, var arrival_location:String, var arrival_time:String,var airline:String,var additional_transportation:String, var hotel_name:String, var hotel_membership:String, var checkout_date:String) extends Entity
 {
   def isThereAdditionalTransportation: Boolean = this.rental || this.taxi || this.shuttle
 }
+
 object Trip_Request
 {
-  def apply(creator:User, request_id:Client_Request,depart_date:Date, depart_location:String,  depart_time:Date,  arrival_location:String,  arrival_time:Date, airline:String, rental:Boolean,  taxi:Boolean,  shuttle:Boolean,  hotel_name:String,  hotel_membership:String,  checkout_date:Date) =
+  def apply(request_id:Client_Request,depart_date:String, depart_location:String,  depart_time:String,  arrival_location:String,  arrival_time:String, airline:String, additional_transportation:String,  hotel_name:String,  hotel_membership:String,  checkout_date:String) =
     transactional
     {
-      new Trip_Request(creator, request_id,depart_date, depart_location,  depart_time,  arrival_location,  arrival_time, airline, rental,  taxi,  shuttle,  hotel_name,  hotel_membership,  checkout_date)
+      new Trip_Request(request_id,depart_date, depart_location,  depart_time,  arrival_location,  arrival_time, airline, additional_transportation,  hotel_name,  hotel_membership,  checkout_date)
     }
 
   def findById(id: String) = byId[Trip_Request](id)
