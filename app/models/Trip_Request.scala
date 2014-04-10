@@ -5,6 +5,10 @@ import java.util.Date
 
 class Trip_Request(var request_id:Client_Request, var depart_date:String, var depart_location:String, var depart_time:String, var arrival_location:String, var arrival_time:String,var airline:String,var additional_transportation:String, var hotel_name:String, var hotel_membership:String, var checkout_date:String) extends Entity
 {
+  def taxi = false
+  def rental = false
+  def shuttle = false
+
   def isThereAdditionalTransportation: Boolean = this.rental || this.taxi || this.shuttle
 }
 
@@ -25,7 +29,7 @@ object Trip_Request
 
   def findByUser(user:User): Option[Trip_Request] = transactional
   {
-    (select[Trip_Request] where(_.creator :== user)).headOption
+    (select[Trip_Request] where(_.request_id.user_id :== user)).headOption
   }
 
   def getAll:List[Trip_Request] = all[Trip_Request]

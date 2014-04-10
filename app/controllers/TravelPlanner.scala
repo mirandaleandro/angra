@@ -135,9 +135,7 @@ object TravelPlanner extends Controller with Secured
               models.Trip_Request(request_id = cr, depart_date = trip.depart_date, depart_location = trip.depart_location, depart_time = trip.depart_time, airline = trip.airline, arrival_location = trip.arrival_location, arrival_time = trip.arrival_time, additional_transportation = trip.additional_transportation, hotel_name = trip.hotel_name, hotel_membership = trip.hotel_membership, checkout_date = trip.checkout_date)
             }
           }
-          Redirect(routes.Application.travelPlanner).flashing(
-            "message" -> "Your trip has been submitted!"
-          )
+          Redirect(routes.Application.dashboard)
         }
       )
   }
@@ -198,7 +196,7 @@ object TravelPlanner extends Controller with Secured
 //            }
 //          }
 
-          Redirect(routes.Application.travelPlanner).flashing(
+          Redirect(routes.Application.dashboard).flashing(
             "message" -> "Your itinerary has been submitted!"
           )
         }
