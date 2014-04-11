@@ -67,8 +67,8 @@ $(function()
         var actionTrigger = $(this);
         var url = actionTrigger.data('url');
         var tripNumber =  mostRecentTripNumber() + 1;
-        var form = actionTrigger.closest('.client-request-form');
-        var trips = form.find('.trips');
+        var parent = actionTrigger.closest('.trips-section');
+        var trips = parent.find('.trips');
 
         $.post( url, {tripNumber: tripNumber},
             function( data )

@@ -6,7 +6,7 @@
 	    <div class="container content">
 	        <div class="row">
 
-				<section class="col-md-8 faq">
+				<section class="trips-section col-md-8 faq">
 					<h2> Plan your travel </h2>
 
                    @form(routes.TravelPlanner.sendRequest) {
@@ -19,7 +19,7 @@
                                 @trip(hidden = false)
                             }else{
                                @for((tripInstance,index) <- clientRequest.get.trips.zipWithIndex){
-                                   @trip(tripRequest=Some(tripInstance), tripNumber = index, hidden = false)
+                                   @trip(tripRequest=Some(tripInstance), tripNumber = index+1, hidden = false)
                                }
                             }
                         </div>
