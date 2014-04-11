@@ -98,7 +98,7 @@ object TravelPlanner extends Controller with Secured
           })
     }
 
-  case class TripRequestForm(depart_location:String,depart_date:String,  depart_time:String, airline:String, arrival_location:String,  arrival_time:String,  additional_transportation:String,  hotel_name:String,  hotel_membership:String,  checkout_date:String)
+  case class TripRequestForm(depart_location:String,depart_date:String,  depart_time:String, airline:List[String], arrival_location:String, additional_transportation:String,  hotel:Boolean, hotel_meal:Boolean, checkout_date:String)
   case class ClientRequestForm(ret_location:String,ret_date:String, ret_time:String, notes:String, trips:List[TripRequestForm])
 
   val tripRequestForm = Form(
@@ -111,12 +111,11 @@ object TravelPlanner extends Controller with Secured
         "depart_location" -> text,
         "depart_date" -> text,
         "depart_time" -> text,
-        "airline" -> text,
+        "airline" -> list(text),
         "arrival_location" -> text,
-        "arrival_time" -> text,
         "additional_transportation" -> text,
-        "hotel_name" -> text,
-        "hotel_membership" -> text,
+        "hotel" -> boolean,
+        "hotel_meal" -> boolean,
         "checkout_date" -> text
       )(TripRequestForm.apply)(TripRequestForm.unapply))
     )(ClientRequestForm.apply)(ClientRequestForm.unapply)
@@ -126,13 +125,23 @@ object TravelPlanner extends Controller with Secured
 
     implicit request =>
       tripRequestForm.bindFromRequest.fold(
-        formWithErrors => BadRequest(views.html.landingpage()),
+        formWithErrors => BadRequest,
         requested => {
           user.map{ myUser =>
             val cr = models.Client_Request(user_id = myUser,ret_date = requested.ret_date, ret_location = requested.ret_location, ret_time = requested.ret_time, comments = requested.notes)
 
             requested.trips.foreach{trip =>
-              models.Trip_Request(request_id = cr, depart_date = trip.depart_date, depart_location = trip.depart_location, depart_time = trip.depart_time, airline = trip.airline, arrival_location = trip.arrival_location, arrival_time = trip.arrival_time, additional_transportation = trip.additional_transportation, hotel_name = trip.hotel_name, hotel_membership = trip.hotel_membership, checkout_date = trip.checkout_date)
+              models.Trip_Request(request_id = cr,
+                depart_date = trip.depart_date,
+                depart_location = trip.depart_location,
+                depart_time = trip.depart_time,
+                airline = trip.airline.head,
+                arrival_location = trip.arrival_location,
+                arrival_time = "",
+                additional_transportation = trip.additional_transportation,
+                hotel_name = "",
+                hotel_membership = "",
+                checkout_date = trip.checkout_date)
             }
           }
           Redirect(routes.Application.dashboard)

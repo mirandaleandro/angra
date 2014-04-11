@@ -10,7 +10,6 @@
 					<h2> Plan your travel </h2>
 
                    @form(routes.TravelPlanner.sendRequest) {
-					<form action="#" method="get" accept-charset="utf-8" class="clearfix client-request-form">
 
                         <input type="hidden" name="trip_id" value="@clientRequest.map(_.id)"/>
 
@@ -44,11 +43,10 @@
 
 
 						<button type="submit" class="btn btn-grove-one btn-xlg btn-bold pull-right"> Send Application </button>
+                   }
 
-                    </form>
-				</section>
+                </section>
 
-              }
 	          @views.html.RightSidebar.contactInfo()
 
 	        </div>

@@ -16,7 +16,7 @@ class Trip_Request(var request_id:Client_Request, var depart_date:String, var de
 
 object Trip_Request
 {
-  def apply(request_id:Client_Request,depart_date:String, depart_location:String,  depart_time:String,  arrival_location:String,  arrival_time:String, airline:String, additional_transportation:String,  hotel_name:String,  hotel_membership:String,  checkout_date:String) =
+  def apply(request_id:Client_Request, depart_date:String, depart_location:String,  depart_time:String,  arrival_location:String,  arrival_time:String, airline:String, additional_transportation:String,  hotel_name:String,  hotel_membership:String,  checkout_date:String) =
     transactional
     {
       new Trip_Request(request_id,depart_date, depart_location,  depart_time,  arrival_location,  arrival_time, airline, additional_transportation,  hotel_name,  hotel_membership,  checkout_date)
