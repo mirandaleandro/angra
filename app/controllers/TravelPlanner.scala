@@ -136,7 +136,7 @@ object TravelPlanner extends Controller with Secured
                 depart_date = trip.depart_date,
                 depart_location = trip.depart_location,
                 depart_time = trip.depart_time,
-                airline = trip.airline.head,
+                airlines = trip.airline,
                 arrival_location = trip.arrival_location,
                 arrival_time = trip.arrival_time,
                 additional_transportation = trip.additional_transportation,
