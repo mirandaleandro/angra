@@ -140,7 +140,7 @@ object TravelPlanner extends Controller with Secured
                 arrival_location = trip.arrival_location,
                 arrival_time = trip.arrival_time,
                 additional_transportation = trip.additional_transportation,
-               hotel = trip.hotel.exists(_=="true"),
+                hotel = trip.hotel.exists(_=="true"),
                 hotel_meal = trip.hotel_meal.exists(_=="true"),
                 checkout_date = trip.checkout_date)
             }

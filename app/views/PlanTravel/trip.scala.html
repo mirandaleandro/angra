@@ -16,19 +16,19 @@
 
             <div class="col-md-offset-0 row">
                 <div class="col-sm-6 form-group">
-                    <label for="name"> Departure Date </label>
+                    <label > Departure Date </label>
                     <input class="form-control input-lg" type="text" id="depart_date" name="trips[@{tripNumber - 1}].depart_date" value="@tripRequest.map(_.depart_date)" placeholder="e.g 03/21/2015">
                 </div>
 
                 <div class="col-sm-6 form-group">
-                    <label for="name"> Departure Time </label>
+                    <label > Departure Time </label>
                     <input class="form-control input-lg" type="text" id="depart_time" name="trips[@{tripNumber - 1}].depart_time" value="@tripRequest.map(_.depart_time)" placeholder="e.g 03:40pm">
                 </div>
             </div>
 
             <div class="col-md-offset-0 row">
                 <div class="col-sm-12 form-group">
-                    <label for="name"> Favorite Airline Companies </label>
+                    <label > Favorite Airline Companies </label>
                     <select class="form-control input-lg airline-preferences" type="text"  name="trips[@{tripNumber - 1}].airline" multiple data-content='@routes.Assets.at("json/companies.json")' data-role="tagsinput">
                         <!-- TODO -->
                     </select>
@@ -36,16 +36,21 @@
             </div>
 
             <div class="col-md-offset-0 row">
-                <div class="col-sm-12 form-group">
-                    <label for="name"> Arrival Location </label>
-                    <input class="form-control input-lg" type="text" id="name" name="trips[@{tripNumber - 1}].arrival_location" value="@tripRequest.map(_.arrival_location)" placeholder="e.g New York - NY">
+                <div class="col-sm-6 form-group">
+                    <label for="arrival_location"> Arrival Location </label>
+                    <input class="form-control input-lg" type="text" id="arrival_location" name="trips[@{tripNumber - 1}].arrival_location" value="@tripRequest.map(_.arrival_location)" placeholder="e.g New York - NY">
+                </div>
+
+                <div class="col-sm-6 form-group">
+                    <label for="arrival_time"> Arrival Time </label>
+                    <input class="form-control input-lg" type="text" id="arrival_time" name="trips[@{tripNumber - 1}].arrival_time" value="@tripRequest.map(_.arrival_time)" placeholder="e.g 09:45pm">
                 </div>
             </div>
 
 
             <div class="col-md-offset-0 row">
 
-                <label class="col-sm-12" for="name"> Additional Transportation </label>
+                <label class="col-sm-12" > Additional Transportation </label>
 
                 <div class="col-sm-4 form-group">
 
@@ -72,7 +77,7 @@
                 </div>
 
                 <div class="col-sm-8 form-group preferred-rental-company temp-hide">
-                    <label for="name"> Preferred Rental Companies</label>
+                    <label > Preferred Rental Companies</label>
                     <select class="form-control input-lg" type="text" name="trips[@{tripNumber - 1}].pref_rental" data-content='@routes.Assets.at("json/companies.json")' multiple data-role="tagsinput"></select>
                 </div>
             </div>
@@ -87,7 +92,7 @@
                 </div>
 
                 <div class="col-sm-8 form-group hotel-preferences @if(!tripRequest.exists(_.hotel)){temp-hide}">
-                    <label for="name"> Checkout Date </label>
+                    <label > Checkout Date </label>
                     <input class="form-control input-lg" type="text" name="trips[@{tripNumber - 1}].checkout_date" value="" placeholder="e.g 03/24/2015">
 
                     <label class="checkbox">
