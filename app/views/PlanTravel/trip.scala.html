@@ -1,7 +1,7 @@
 @(tripRequest:Option[Trip_Request] = None, tripNumber:Int = 1, open:Boolean = true, hidden:Boolean = true)
 
  <div class="trip @if(hidden){ temp-hide }" data-number="@tripNumber">
-    <a href="#trip@tripNumber" class="accordion-toggle @if(open){ open }else{ collapsed }" data-toggle="collapse">Trip #<span class="trip-number-id">@tripNumber</span></a>
+    <div href="#trip@tripNumber" class="accordion-toggle @if(open){ open }else{ collapsed }" data-toggle="collapse">Trip #<span class="trip-number-id">@tripNumber</span></div>
  	<input type="hidden" name="trip_id" value="@tripRequest.map(_.id)">
 
     <div id="trip@tripNumber" class="accordion-collapse collapse @if(open){ in }">
@@ -10,7 +10,7 @@
             <div class="col-md-offset-0 row">
                 <div class="col-sm-12 form-group">
                     <label for="name"> Departure Location </label>
-                    <input class="form-control input-lg" type="text" id="name" name="depart_location" value="@tripRequest.map(_.depart_location)" placeholder="e.g San Diego">
+                    <input class="form-control input-lg" type="text" id="name" name="depart_location" value="@tripRequest.map(_.depart_location)" placeholder="e.g San Diego - CA">
                 </div>
             </div>
 
@@ -38,7 +38,7 @@
             <div class="col-md-offset-0 row">
                 <div class="col-sm-12 form-group">
                     <label for="name"> Arrival Location </label>
-                    <input class="form-control input-lg" type="text" id="name" name="arrival_location" value="@tripRequest.map(_.arrival_location)" placeholder="e.g New York">
+                    <input class="form-control input-lg" type="text" id="name" name="arrival_location" value="@tripRequest.map(_.arrival_location)" placeholder="e.g New York - NY">
                 </div>
             </div>
 
@@ -88,7 +88,7 @@
 
                 <div class="col-sm-8 form-group hotel-preferences @if(!tripRequest.exists(_.hotel)){temp-hide}">
                     <label for="name"> Checkout Date </label>
-                    <input class="form-control input-lg" type="text" name="checkout_date" value="" placeholder="">
+                    <input class="form-control input-lg" type="text" name="checkout_date" value="" placeholder="e.g 03/24/2015">
 
                     <label class="checkbox">
                         <input class="" type="checkbox" name="hotel-meal" value="">
@@ -102,5 +102,4 @@
         </div>
     </div>
 </div>
-
 <hr/>
