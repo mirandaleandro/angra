@@ -191,7 +191,7 @@ object TravelPlanner extends Controller with Secured
   def submitItinerary = Action {
     implicit request =>
       itineraryForm.bindFromRequest.fold(
-        formWithErrors => BadRequest(views.html.landingpage()),
+        formWithErrors => BadRequest,
         requested => {
 
           val clientreqoption = models.Client_Request.findById(requested.request_id)
