@@ -36,9 +36,9 @@ class CreateDefaultUsers extends Migration {
           val req2 = Client_Request(user2,"2-28-2014","Las Vegas","11:00AM","Better to return before 11:00 than after")
           val req3 = Client_Request(user3,"2-28-2014","Salt Lake City","11:00AM","Better to return before 12:00 than after")
 
-          Trip_Request(req1, "2-28-2014", "San Diego",  "11:00AM",  "Denver",  "11:00AM", "United", "rental",   "The Hilton",  "123ABC",  "2-28-2014")
-          Trip_Request(req2, "2-28-2014", "Las Vegas",  "11:00AM",  "Fresno",  "11:00AM", "United", "taxi",  "The Hilton",  "123ABC",  "2-28-2014")
-          Trip_Request(req3, "2-28-2014", "Salt Lake", "11:00AM",  "Orlando",  "11:00AM", "United", "shuttle",  "The Hilton",  "123ABC",  "2-28-2014")
+          Trip_Request(req1, "2-28-2014", "San Diego",  "11:00AM",  "Denver",  "11:00AM", "United", "rental",   true,  true,  "2-28-2014")
+          Trip_Request(req2, "2-28-2014", "Las Vegas",  "11:00AM",  "Fresno",  "11:00AM", "United", "taxi",  true,  true,  "2-28-2014")
+          Trip_Request(req3, "2-28-2014", "Salt Lake", "11:00AM",  "Orlando",  "11:00AM", "United", "shuttle",  true,  false,  "2-28-2014")
 
          val it1 =  Itinerary(req1,"10:00AM on the dot!")
          val it2 =  Itinerary(req2,"11:00AM on the dot!")

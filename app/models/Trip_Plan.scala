@@ -14,9 +14,9 @@ object Trip_Plan
 
   def findById(id: String) = byId[Trip_Plan](id)
 
-  def findByItinerary(itineraryPlan_id:ItineraryPlan): Option[Trip_Plan] = transactional
+  def findByItineraryPlan(itineraryPlan_id:ItineraryPlan): List[Trip_Plan] = transactional
   {
-    (select[Trip_Plan] where(_.itineraryPlan_id :== itineraryPlan_id)).headOption
+    (select[Trip_Plan] where(_.itineraryPlan_id :== itineraryPlan_id))
   }
 
 

@@ -4,7 +4,9 @@ import java.util.Date
 
 
 class Itinerary(var request_id:Client_Request, comments:String) extends Entity
-
+{
+  def itineraryPlans = ItineraryPlan.findByItinerary(this)
+}
 object Itinerary
 {
   def apply(request_id:Client_Request,comments:String) =
