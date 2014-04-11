@@ -151,7 +151,7 @@ object TravelPlanner extends Controller with Secured
   }
 
   case class FlightForm(depart_location:String, arrival_location:String, date:String, time:String,airline:String, number:String, seat:String,  confirm_num:String)
-  case class TripPlanForm(additional_transportation:String,  hotel_name:String,  hotel_membership:String, hotel_address:String, hotel_phone:String, flights:List[FlightForm])
+  case class TripPlanForm(additional_transportation:String,  hotel_name:String,  hotel_confirm:String, hotel_address:String, hotel_phone:String, flights:List[FlightForm])
   case class ItineraryPlanForm(ret_date:String, ret_location:String,ret_time:String,ret_flight:String,ret_seat:String,ret_airline:String, tripPlans:List[TripPlanForm])
   case class ItineraryForm(comments:String, request_id:String, itineraryPlans:List[ItineraryPlanForm])
 
@@ -169,7 +169,7 @@ object TravelPlanner extends Controller with Secured
       "tripPlans" -> list(mapping(
         "additional_transportation" -> text,
         "hotel_name" -> text,
-        "hotel_membership" -> text,
+        "hotel_confirm" -> text,
         "hotel_address" -> text,
         "hotel_phone" -> text,
         "flights" -> list(mapping(
@@ -198,7 +198,7 @@ object TravelPlanner extends Controller with Secured
 //            val itinPlan = models.ItineraryPlan(itinerary_id = itin, ret_date = itineraryPlan.ret_date, ret_location = itineraryPlan.ret_location, ret_time = itineraryPlan.ret_time, ret_flight = itineraryPlan.ret_flight, ret_seat = itineraryPlan.ret_seat, ret_airline = itineraryPlan.ret_airline)
 //
 //            itineraryPlan.tripPlans.foreach{tripPlan =>
-//             val trip = models.Trip_Plan(itineraryPlan_id = itinPlan, additional_transportation = tripPlan.additional_transportation, hotel_name = tripPlan.hotel_name, hotel_confirm = tripPlan.hotel_membership, hotel_address = tripPlan.hotel_address, hotel_phone= tripPlan.hotel_phone)
+//             val trip = models.Trip_Plan(itineraryPlan_id = itinPlan, additional_transportation = tripPlan.additional_transportation, hotel_name = tripPlan.hotel_name, hotel_confirm = tripPlan.hotel_confirm, hotel_address = tripPlan.hotel_address, hotel_phone= tripPlan.hotel_phone)
 //
 //              tripPlan.flights.foreach{flight =>
 //                models.Flight(trip_plan_id = trip, number = flight.number, seat = flight.seat, airline = flight.airline, date=flight.date, time=flight.time, depart_location=flight.depart_location, destination= flight.arrival_location, confirm_no = flight.confirm_num)
