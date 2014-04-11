@@ -1,4 +1,4 @@
-@()
+@(clientRequest:Option[Client_Request] = None)(implicit user:Option[User])
 
 <a href="#tripReturn" class="accordion-toggle open " data-toggle="collapse">Return</a>
 
@@ -6,19 +6,19 @@
 
 	<div class="row">
 	    <div class="col-sm-12 form-group">
-	        <label for="name"> Return Location </label>
-	        <input class="form-control input-lg" type="text" id="name" name="ret_location" value="" placeholder="">
+	        <label for="ret_location"> Return Location </label>
+	        <input class="form-control input-lg" type="text" id="ret_location" name="ret_location" value="@clientRequest.map(_.ret_location)" placeholder="e.g Salt Lake City - UT">
 	    </div>
 	</div>
 
 	<div class="row">
 	    <div class="col-sm-6 form-group">
-	        <label for="name"> Return Date </label>
-	        <input class="form-control input-lg" type="text" id="name" name="ret_date" value="" placeholder="">
+	        <label for="ret_date"> Return Date </label>
+	        <input class="form-control input-lg" type="text" id="ret_date" name="ret_date" value="@clientRequest.map(_.ret_location)" placeholder="09/11/2015">
 	    </div>
 	    <div class="col-sm-6 form-group">
-	        <label for="name"> Return Time </label>
-	        <input class="form-control input-lg" type="text" id="name" name="ret_time" value="" placeholder="">
+	        <label for="ret_time"> Return Time </label>
+	        <input class="form-control input-lg" type="text" id="ret_time" name="ret_time" value="@clientRequest.map(_.ret_time)" placeholder="10:30pm">
 	    </div>
 	</div>
 

@@ -10,7 +10,7 @@ class CreateSchema extends Migration {
     
     def timestamp = 201402282003l
 
-    def up = {
+    def up  {
         removeAllEntitiesTables
             .ifExists
         createTableForAllEntities
@@ -22,7 +22,7 @@ class CreateDefaultUsers extends Migration {
 
     def timestamp = 201402282010l
 
-    def up = {
+    def up  {
         customScript
         {
            val user1 = User("leandro","mirandaleandro@gmail.com","piracyisgood", "(801) 123-4567", Option(true))

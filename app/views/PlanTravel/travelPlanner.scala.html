@@ -33,12 +33,12 @@
 
                         <hr/>
 
-                        @tripReturn()
+                        @tripReturn(clientRequest)
 
                         <div class="row">
                             <div class="col-sm-12 form-group">
                                 <label for="message"> Notes </label>
-                                <textarea class="form-control " id="message" name="notes" rows="5"></textarea>
+                                <textarea class="form-control " id="message" name="notes" rows="5">@clientRequest.map(_.comments)</textarea>
                             </div>
                         </div>
 
