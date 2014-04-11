@@ -193,21 +193,24 @@ object TravelPlanner extends Controller with Secured
       itineraryForm.bindFromRequest.fold(
         formWithErrors => BadRequest(views.html.landingpage()),
         requested => {
-//          val clientreq = models.Client_Request.findById(requested.request_id)
-//          val itin =  models.Itinerary(request_id = clientreq, comments = requested.comments)
-//
-//          requested.itineraryPlans.foreach{itineraryPlan =>
-//            val itinPlan = models.ItineraryPlan(itinerary_id = itin, ret_date = itineraryPlan.ret_date, ret_location = itineraryPlan.ret_location, ret_time = itineraryPlan.ret_time, ret_flight = itineraryPlan.ret_flight, ret_seat = itineraryPlan.ret_seat, ret_airline = itineraryPlan.ret_airline)
-//
-//            itineraryPlan.tripPlans.foreach{tripPlan =>
-//             val trip = models.Trip_Plan(itineraryPlan_id = itinPlan, additional_transportation = tripPlan.additional_transportation, hotel_name = tripPlan.hotel_name, hotel_confirm = tripPlan.hotel_confirm, hotel_address = tripPlan.hotel_address, hotel_phone= tripPlan.hotel_phone)
-//
-//              tripPlan.flights.foreach{flight =>
-//                models.Flight(trip_plan_id = trip, number = flight.number, seat = flight.seat, airline = flight.airline,arrival_date=flight.arrival_date, depart_date=flight.depart_date, depart_time=flight.depart_time, depart_location=flight.depart_location, destination= flight.arrival_location, arrival_time=flight.arrival_time, confirm_no = flight.confirm_num)
-//              }
-//            }
-//          }
 
+          val clientreqoption = models.Client_Request.findById(requested.request_id)
+
+          clientreqoption.map{clientReq =>
+          val itin =  models.Itinerary(request_id = clientReq, comments = requested.comments)
+
+          requested.itineraryPlans.foreach{itineraryPlan =>
+            val itinPlan = models.ItineraryPlan(itinerary_id = itin)
+
+            itineraryPlan.tripPlans.foreach{tripPlan =>
+             val trip = models.Trip_Plan(itineraryPlan_id = itinPlan, additional_transportation = tripPlan.additional_transportation, hotel_name = tripPlan.hotel_name, hotel_confirm = tripPlan.hotel_confirm, hotel_address = tripPlan.hotel_address, hotel_phone= tripPlan.hotel_phone)
+
+              tripPlan.flights.foreach{flight =>
+                models.Flight(trip_plan_id = trip, number = flight.number, seat = flight.seat, airline = flight.airline,arrival_date=flight.arrival_date, depart_date=flight.depart_date, depart_time=flight.depart_time, depart_location=flight.depart_location, destination= flight.arrival_location, arrival_time=flight.arrival_time, confirm_no = flight.confirm_num)
+              }
+            }
+          }
+          }
           Redirect(routes.Application.dashboard).flashing(
             "message" -> "Your itinerary has been submitted!"
           )
