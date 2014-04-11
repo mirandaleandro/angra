@@ -189,4 +189,8 @@ $(function()
 
     });
 
+    $(document.body).on("change","input[type=checkbox]", function(){
+       $(this).attr("value",$(this).is(':checked'));
+    });
+
 });

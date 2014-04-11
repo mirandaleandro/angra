@@ -81,7 +81,7 @@
 
                 <div class="col-sm-4 form-group">
                     <label class=" checkbox">
-                        <input class="book-hotel display-trigger" type="checkbox" name="trips[@{tripNumber - 1}].hotel" data-display-trip-form=".hotel-preferences"  @if(tripRequest.exists(_.hotel)){checked}>
+                        <input class="book-hotel display-trigger" type="checkbox" name="trips[@{tripNumber - 1}].hotel" data-display-trip-form=".hotel-preferences"  @if(tripRequest.exists(_.hotel)){checked value="true"}else{value="false"}>
                            Book a hotel?
                     </label>
                 </div>
@@ -91,7 +91,8 @@
                     <input class="form-control input-lg" type="text" name="trips[@{tripNumber - 1}].checkout_date" value="" placeholder="e.g 03/24/2015">
 
                     <label class="checkbox">
-                        <input class="" type="checkbox" name="trips[@{tripNumber - 1}].hotel_meal" value="">
+                        <!-- TODO  change hotel for meal var!-->
+                        <input class="" type="checkbox" name="trips[@{tripNumber - 1}].hotel_meal" @if(tripRequest.exists(_.hotel)){checked value="true"}else{value="false"}>
                             Must serve meal
                     </label>
                 </div>

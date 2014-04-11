@@ -98,7 +98,7 @@ object TravelPlanner extends Controller with Secured
           })
     }
 
-  case class TripRequestForm(depart_location:String,depart_date:String,  depart_time:String, airline:List[String], arrival_location:String, additional_transportation:String,  hotel:Boolean, hotel_meal:Boolean, checkout_date:String)
+  case class TripRequestForm(depart_location:String,depart_date:String,  depart_time:String, airline:List[String], arrival_location:String, additional_transportation:String,  hotel:Option[String], hotel_meal:Option[String], checkout_date:String)
   case class ClientRequestForm(ret_location:String,ret_date:String, ret_time:String, notes:String, trips:List[TripRequestForm])
 
   val tripRequestForm = Form(
@@ -114,8 +114,8 @@ object TravelPlanner extends Controller with Secured
         "airline" -> list(text),
         "arrival_location" -> text,
         "additional_transportation" -> text,
-        "hotel" -> boolean,
-        "hotel_meal" -> boolean,
+        "hotel" -> optional(text),
+        "hotel_meal" -> optional(text),
         "checkout_date" -> text
       )(TripRequestForm.apply)(TripRequestForm.unapply))
     )(ClientRequestForm.apply)(ClientRequestForm.unapply)
