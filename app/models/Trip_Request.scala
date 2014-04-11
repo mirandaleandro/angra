@@ -9,6 +9,8 @@ class Trip_Request(var request_id:Client_Request, var depart_date:String, var de
   def rental = false
   def shuttle = false
 
+  def hotel:Boolean = !this.hotel_membership.isEmpty
+
   def isThereAdditionalTransportation: Boolean = this.rental || this.taxi || this.shuttle
 }
 

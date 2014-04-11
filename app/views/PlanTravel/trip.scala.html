@@ -72,7 +72,6 @@
 
                 <div class="col-sm-8 form-group preferred-rental-company temp-hide">
                     <label for="name"> Preferred Rental Companies</label>
-                    <!-- TODO grab data from the database -->
                     <select class="form-control input-lg" type="text" name="pref_rental" data-content='@routes.Assets.at("json/companies.json")' multiple data-role="tagsinput"></select>
                 </div>
             </div>
@@ -81,12 +80,12 @@
 
                 <div class="col-sm-4 form-group">
                     <label class=" checkbox">
-                        <input class="book-hotel display-trigger" type="checkbox" name="hotel" data-display-trip-form=".hotel-preferences" value="">
+                        <input class="book-hotel display-trigger" type="checkbox" name="hotel" data-display-trip-form=".hotel-preferences"  @if(tripRequest.exists(_.hotel)){checked}>
                            Book a hotel?
                     </label>
                 </div>
 
-                <div class="col-sm-8 form-group hotel-preferences temp-hide">
+                <div class="col-sm-8 form-group hotel-preferences @if(!tripRequest.exists(_.hotel)){temp-hide}">
                     <label for="name"> Checkout Date </label>
                     <input class="form-control input-lg" type="text" name="checkout_date" value="" placeholder="">
 
