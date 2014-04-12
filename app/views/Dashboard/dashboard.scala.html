@@ -50,9 +50,11 @@
                                <caption></caption>
                                <thead>
                                    <tr>
+                                       @if(user.exists(_.isAdmin)){
+                                           <td>Client</td>
+                                       }
                                        <td>Trips</td>
                                        <td>Departure Date</td>
-                                       <td>Status</td>
                                        <td>Action</td>
                                    </tr>
 
@@ -60,16 +62,21 @@
                                <tbody>
 
                                @for( plan <- currentUser.travelPlans) {
+
+
                                    <tr class="">
+                                       @if(user.exists(_.isAdmin)){
+                                           <td>@plan.user_id.name</td>
+                                       }
+
                                        <td>
                                             <span class="city-name">@plan.trips.headOption.map(_.depart_location)</span> to <span class="city-name">@plan.trips.last.arrival_location</span>
                                            @if(!plan.trips.isEmpty){ (@{plan.trips.size} trips ) }
                                        </td>
                                        <td>@plan.trips.headOption.map(_.depart_date.format("MM/dd/yyyy"))</td>
-                                       <td>Pending</td>
                                        <td>
                                            <a href="@routes.Application.travelPlanner(Some(plan.id))" class="btn btn-grove-one">Edit</a>
-                                           @if(user.map(_.isAdmin).getOrElse(false)){
+                                           @if(user.exists(_.isAdmin)){
                                                <a href="@routes.Application.travelResponse" class="btn btn-grove-one">Respond</a>
                                            }
                                        </td>
