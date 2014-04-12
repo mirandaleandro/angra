@@ -31,7 +31,14 @@
                     <label > Favorite Airline Companies </label>
                     <select class="form-control input-lg airline-preferences" type="text"  name="trips[@{tripNumber - 1}].airline" multiple data-content='@routes.Assets.at("json/companies.json")' data-role="tagsinput">
                         <!-- TODO -->
+                         @tripRequest.map{ trip =>
+                             @trip.airlinesNames.map{ airlineName =>
+                                    @airlineName
+                             }
+                        }
+
                     </select>
+
                 </div>
             </div>
 

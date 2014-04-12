@@ -10,9 +10,9 @@ class Trip_Request(var request_id:Client_Request, var depart_date:String, var de
   def shuttle = this.additional_transportation=="shuttle"
   def isThereAdditionalTransportation: Boolean = this.rental || this.taxi || this.shuttle
 
-  def airlinesNames:List[String]= null
+  def airlinesNames:List[String] = this.airlines.map(_.name)
 
-  def airlines:List[String]= null
+  def airlines:List[Airline] = Trip_RequestAirline.findByTripRequest(this).map(_.airline)
 
   def addAirlines(names:List[String])
   {
@@ -21,20 +21,9 @@ class Trip_Request(var request_id:Client_Request, var depart_date:String, var de
 
   def addAirline(name:String)
   {
-//      var checkAirline = Airline.findByName(name)
-//
-//
-//      if (checkAirline.isDefined)
-//      {
-//        val checkTripRequestAirline = Trip_RequestAirline.findByTripRequestAndAirline(this,checkTripRequestAirline.get)
-//
-//        if (!checkTripRequestAirline.isDefined)
-//        {
-//
-//        }
-//
-//      }
+    val airline:Airline = Airline.findByName(name).getOrElse(Airline(name))
 
+    Trip_RequestAirline.findByTripRequestAndAirline(this, airline).getOrElse(Trip_RequestAirline(this,airline))
 
   }
 }

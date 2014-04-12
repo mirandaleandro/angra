@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat
 
 class CreateSchema extends Migration {
     
-    def timestamp = 201402282003l
+    def timestamp = System.currentTimeMillis()
 
     def up  {
         removeAllEntitiesTables
@@ -20,7 +20,7 @@ class CreateSchema extends Migration {
 
 class CreateDefaultUsers extends Migration {
 
-    def timestamp = 201402282010l
+    def timestamp = System.currentTimeMillis() + 100
 
     def up  {
         customScript
