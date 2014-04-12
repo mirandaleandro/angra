@@ -159,6 +159,7 @@ object TravelPlanner extends Controller with Secured
         formWithErrors => BadRequest,
         requested => {
           user.map{ myUser =>
+
             val cr = models.Client_Request(user_id = myUser,ret_date = requested.ret_date, ret_location = requested.ret_location, ret_time = requested.ret_time, comments = requested.notes)
 
             requested.trips.foreach{trip =>
