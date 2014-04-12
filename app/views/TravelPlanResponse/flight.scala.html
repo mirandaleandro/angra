@@ -1,10 +1,10 @@
-@(flight:Option[Flight] = None, flightNumber:Int = 1, open:Boolean = true, hidden:Boolean = true)
+@(flight:Option[Flight] = None, planNumber:Int = 0,tripNumber:Int = 0,flightNumber:Int = 0, open:Boolean = true, hidden:Boolean = true)
 
-<div class="flight @if(hidden){ temp-hide }" data-number="@flightNumber">
+<div class="flight @if(hidden){ temp-hide }" data-number="@{flightNumber+1}">
 
-	<input type="hidden" name="itinerary_plans[0].trip_plans[0].flights[@{flightNumber-1}].flight_id" value="@flight.map(_.id)">
+	<input type="hidden" name="itinerary_plans[@planNumber].trip_plans[@tripNumber].flights[@{flightNumber-1}].flight_id" value="@flight.map(_.id)">
 	
-    <div class="accordion-toggle @if(open){ open }else{ collapsed }" data-toggle="collapse">Flight #<span class="flight-number-id">@flightNumber</span></div>
+    <div class="accordion-toggle @if(open){ open }else{ collapsed }" data-toggle="collapse">Flight #<span class="flight-number-id">@{flightNumber+1}</span></div>
 
     <div class=" accordion-collapse collapse @if(open){ in }">
 
@@ -13,60 +13,60 @@
             <div class="row">
                 <div class="col-md-12 form-group">
                     <label for="name"> Departure Location </label>
-                    <input class="form-control input-lg" type="text" id="depart_location" name="itinerary_plans[0].trip_plans[0].flights[@{flightNumber-1}].depart_location" value="@flight.map(_.depart_location)" placeholder="e.g Orlando - FL">
+                    <input class="form-control input-lg" type="text" id="depart_location" name="itinerary_plans[@planNumber].trip_plans[@tripNumber].flights[@{flightNumber-1}].depart_location" value="@flight.map(_.depart_location)" placeholder="e.g Orlando - FL">
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6 form-group">
                     <label for="name"> Departure Date </label>
-                    <input class="form-control input-lg" type="text" id="depart_date" name="itinerary_plans[0].trip_plans[0].flights[@{flightNumber-1}].depart_date" value="@flight.map(_.depart_date)" placeholder="">
+                    <input class="form-control input-lg" type="text" id="depart_date" name="itinerary_plans[@planNumber].trip_plans[@tripNumber].flights[@{flightNumber-1}].depart_date" value="@flight.map(_.depart_date)" placeholder="">
                 </div>
 
                 <div class="col-md-6 form-group">
                     <label for="name"> Departure Time </label>
-                    <input class="form-control input-lg" type="text" id="depart_time" name="itinerary_plans[0].trip_plans[0].flights[@{flightNumber-1}].depart_time" value="@flight.map(_.depart_time)" placeholder="">
+                    <input class="form-control input-lg" type="text" id="depart_time" name="itinerary_plans[@planNumber].trip_plans[@tripNumber].flights[@{flightNumber-1}].depart_time" value="@flight.map(_.depart_time)" placeholder="">
                 </div>
             </div>
 
             <div class="row">
 		        <div class="col-md-12 form-group">
 		            <label for="name"> Arrival Location </label>
-		            <input class="form-control input-lg" type="text" id="arrival_location" name="itinerary_plans[0].trip_plans[0].flights[@{flightNumber-1}].arrival_location" value="@flight.map(_.arrival_location)" placeholder="">
+		            <input class="form-control input-lg" type="text" id="arrival_location" name="itinerary_plans[@planNumber].trip_plans[@tripNumber].flights[@{flightNumber-1}].arrival_location" value="@flight.map(_.arrival_location)" placeholder="">
 		        </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6 form-group">
                     <label for="name"> Arrival Date </label>
-                    <input class="form-control input-lg" type="text" id="arrival_date" name="itinerary_plans[0].trip_plans[0].flights[@{flightNumber-1}].arrival_date" value="@flight.map(_.arrival_date)" placeholder="">
+                    <input class="form-control input-lg" type="text" id="arrival_date" name="itinerary_plans[@planNumber].trip_plans[@tripNumber].flights[@{flightNumber-1}].arrival_date" value="@flight.map(_.arrival_date)" placeholder="">
                 </div>
 
                 <div class="col-md-6 form-group">
                     <label for="name"> Arrival Time </label>
-                    <input class="form-control input-lg" type="text" id="arrival_time" name="itinerary_plans[0].trip_plans[0].flights[@{flightNumber-1}].arrival_time" value="@flight.map(_.arrival_date)" placeholder="">
+                    <input class="form-control input-lg" type="text" id="arrival_time" name="itinerary_plans[@planNumber].trip_plans[@tripNumber].flights[@{flightNumber-1}].arrival_time" value="@flight.map(_.arrival_date)" placeholder="">
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-4 form-group">
                     <label for="name"> Airline </label>
-                    <input type="text" class="form-control input-lg" type="text"  name="itinerary_plans[0].trip_plans[0].flights[@{flightNumber-1}].airline" value="@flight.map(_.airline)">
+                    <input type="text" class="form-control input-lg" type="text"  name="itinerary_plans[@planNumber].trip_plans[@tripNumber].flights[@{flightNumber-1}].airline" value="@flight.map(_.airline)">
                 </div>
                 <div class="col-sm-4 form-group">
                     <label for="name"> Flight Number </label>
-                    <input type="text" class="form-control input-lg" type="text"  name="itinerary_plans[0].trip_plans[0].flights[@{flightNumber-1}].number" value="@flight.map(_.number)">
+                    <input type="text" class="form-control input-lg" type="text"  name="itinerary_plans[@planNumber].trip_plans[@tripNumber].flights[@{flightNumber-1}].number" value="@flight.map(_.number)">
                 </div>
                 <div class="col-sm-4 form-group">
                     <label for="name"> Seat </label>
-                    <input type="text" class="form-control input-lg" type="text"  name="itinerary_plans[0].trip_plans[0].flights[@{flightNumber-1}].seat" value="@flight.map(_.seat)">
+                    <input type="text" class="form-control input-lg" type="text"  name="itinerary_plans[@planNumber].trip_plans[@tripNumber].flights[@{flightNumber-1}].seat" value="@flight.map(_.seat)">
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-12 form-group">
                     <label for="name"> Confirmation Number </label>
-                    <input class="form-control input-lg" type="text" id="name" name="itinerary_plans[0].trip_plans[0].flights[@{flightNumber-1}].confirm_num" value="@flight.map(_.confirm_no)" placeholder="">
+                    <input class="form-control input-lg" type="text" id="name" name="itinerary_plans[@planNumber].trip_plans[@tripNumber].flights[@{flightNumber-1}].confirm_num" value="@flight.map(_.confirm_no)" placeholder="">
                 </div>
             </div>
 

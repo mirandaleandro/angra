@@ -1,10 +1,10 @@
-@(plan:Option[ItineraryPlan] = None, planNumber:Int = 1, open:Boolean = true, hidden:Boolean = true)
+@(plan:Option[ItineraryPlan] = None, planNumber:Int = 0, open:Boolean = true, hidden:Boolean = true)
 
-<div class="plan @if(hidden){ temp-hide }" data-number="@planNumber">
+<div class="plan @if(hidden){ temp-hide }" data-number="@{planNumber+1}">
 
 	<input type="hidden" name="itinerary_plans[@{planNumber-1}].itinerary_plan_id" value="@plan.map(_.id)">
 
-    <div class="accordion-toggle @if(open){ open }else{ collapsed }  " data-toggle="collapse">Plan #<span class="plan-number-id">@planNumber</span></div>
+    <div class="accordion-toggle @if(open){ open }else{ collapsed }  " data-toggle="collapse">Plan #<span class="plan-number-id">@{planNumber+1}</span></div>
 
     <div class="accordion-collapse collapse @if(open){ in } ">
 
@@ -12,10 +12,10 @@
 
             @plan.map{ p =>
                 @for( (tripInstance, index) <- p.tripPlans.zipWithIndex){
-					 @trip(trip = Some(tripInstance), hidden = false)
+					 @trip(trip = Some(tripInstance), planNumber = planNumber, tripNumber = index, hidden = false)
                 }
             }.getOrElse{
-                @trip(hidden = false)
+                @trip( planNumber = planNumber, hidden = false)
             }
 
         </div>
