@@ -150,43 +150,40 @@ object TravelPlanner extends Controller with Secured
       )
   }
 
-  case class FlightForm(depart_location:String, arrival_location:String,arrival_time:String,arrival_date:String, depart_date:String, depart_time:String,airline:String, number:String, seat:String,  confirm_num:String)
-  case class TripPlanForm(additional_transportation:String,  hotel_name:String,  hotel_confirm:String, hotel_address:String, hotel_phone:String, flights:List[FlightForm])
-  case class ItineraryPlanForm(ret_date:String, ret_location:String,ret_time:String,ret_flight:String,ret_seat:String,ret_airline:String, tripPlans:List[TripPlanForm])
+  case class ItineraryPlanForm(itinerary_plan_id:String, trip_plans:List[TripPlanForm])
   case class ItineraryForm(comments:String, request_id:String, itineraryPlans:List[ItineraryPlanForm])
+  case class TripPlanForm(trip_plan_id:String, additional_transportation:String,  hotel_name:String,  hotel_confirm:String, hotel_address:String, hotel_phone:String, flights:List[FlightForm])
+  case class FlightForm(flight_id:String, arrival_location:String,arrival_time:String,arrival_date:String,depart_location:String, depart_date:String, depart_time:String,airline:String, number:String, seat:String,  confirm_num:String)
 
   val itineraryForm = Form(
     mapping(
     "comments" -> text,
     "request_id" -> text,
-    "itineraryPlans" -> list(mapping(
-      "ret_date" -> text,
-      "ret_location" -> text,
-      "ret_time" -> text,
-      "ret_flight" -> text,
-      "ret_seat" -> text,
-      "ret_airline" -> text,
-      "tripPlans" -> list(mapping(
-        "additional_transportation" -> text,
-        "hotel_name" -> text,
-        "hotel_confirm" -> text,
-        "hotel_address" -> text,
-        "hotel_phone" -> text,
-        "flights" -> list(mapping(
-          "depart_location" -> text,
-          "arrival_location" -> text,
-          "arrival_time" -> text,
-          "arrival_date" -> text,
-          "depart_date" -> text,
-          "depart_time" -> text,
-          "airline" -> text,
-          "number" -> text,
-          "seat" -> text,
-          "confirm_num" -> text
-      )(FlightForm.apply)(FlightForm.unapply))
-    )(TripPlanForm.apply)(TripPlanForm.unapply)
-  ))(ItineraryPlanForm.apply)(ItineraryPlanForm.unapply)))
-      (ItineraryForm.apply)(ItineraryForm.unapply))
+    "itinerary_plans" -> list(mapping(
+        "itinerary_plan_id" -> text,
+        "trip_plans" -> list(mapping(
+            "trip_plan_id" -> text,
+            "additional_transportation" -> text,
+            "hotel_name" -> text,
+            "hotel_confirm" -> text,
+            "hotel_address" -> text,
+            "hotel_phone" -> text,
+            "flights" -> list(mapping(
+                "flight_id" -> text,
+                "arrival_location" -> text,
+                "arrival_time" -> text,
+                "arrival_date" -> text,
+                "depart_location" -> text,
+                "depart_date" -> text,
+                "depart_time" -> text,
+                "airline" -> text,
+                "number" -> text,
+                "seat" -> text,
+                "confirm_num" -> text
+                )(FlightForm.apply)(FlightForm.unapply))
+            )(TripPlanForm.apply)(TripPlanForm.unapply)
+        ))(ItineraryPlanForm.apply)(ItineraryPlanForm.unapply)))
+    (ItineraryForm.apply)(ItineraryForm.unapply))
 
   def submitItinerary = Action {
     implicit request =>
@@ -196,31 +193,31 @@ object TravelPlanner extends Controller with Secured
 
           val clientreqoption = models.Client_Request.findById(requested.request_id)
 
-          clientreqoption.map{clientReq =>
-          val itin =  models.Itinerary(request_id = clientReq, comments = requested.comments)
-
-          requested.itineraryPlans.foreach{itineraryPlan =>
-            val itinPlan = models.ItineraryPlan(itinerary_id = itin)
-
-            itineraryPlan.tripPlans.foreach{tripPlan =>
-             val trip = models.Trip_Plan(itineraryPlan_id = itinPlan, additional_transportation = tripPlan.additional_transportation, hotel_name = tripPlan.hotel_name, hotel_confirm = tripPlan.hotel_confirm, hotel_address = tripPlan.hotel_address, hotel_phone= tripPlan.hotel_phone)
-
-              tripPlan.flights.foreach{flight =>
-                models.Flight(trip_plan_id = trip,
-                  number = flight.number,
-                  seat = flight.seat,
-                  airline = flight.airline,
-                  depart_location=flight.depart_location,
-                  depart_date=flight.depart_date,
-                  depart_time=flight.depart_time,
-                  arrival_location= flight.arrival_location,
-                  arrival_date=flight.arrival_date,
-                  arrival_time=flight.arrival_time,
-                  confirm_no = flight.confirm_num)
-              }
-            }
-          }
-          }
+//          clientreqoption.map{clientReq =>
+//          val itin =  models.Itinerary(request_id = clientReq, comments = requested.comments)
+//
+//          requested.itineraryPlans.foreach{itineraryPlan =>
+//            val itinPlan = models.ItineraryPlan(itinerary_id = itin)
+//
+//            itineraryPlan.tripPlans.foreach{tripPlan =>
+//             val trip = models.Trip_Plan(itineraryPlan_id = itinPlan, additional_transportation = tripPlan.additional_transportation, hotel_name = tripPlan.hotel_name, hotel_confirm = tripPlan.hotel_confirm, hotel_address = tripPlan.hotel_address, hotel_phone= tripPlan.hotel_phone)
+//
+//              tripPlan.flights.foreach{flight =>
+//                models.Flight(trip_plan_id = trip,
+//                  number = flight.number,
+//                  seat = flight.seat,
+//                  airline = flight.airline,
+//                  depart_location=flight.depart_location,
+//                  depart_date=flight.depart_date,
+//                  depart_time=flight.depart_time,
+//                  arrival_location= flight.arrival_location,
+//                  arrival_date=flight.arrival_date,
+//                  arrival_time=flight.arrival_time,
+//                  confirm_no = flight.confirm_num)
+//              }
+//            }
+//          }
+//          }
           Redirect(routes.Application.dashboard).flashing(
             "message" -> "Your itinerary has been submitted!"
           )
