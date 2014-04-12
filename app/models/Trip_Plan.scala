@@ -23,8 +23,11 @@ class Trip_Plan(var itineraryPlan_id:ItineraryPlan,
      {
        List(Flight(this))
      }
+      else
+     {
+       dbFlights
+     }
 
-     dbFlights
   }
 }
 
