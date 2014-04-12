@@ -44,6 +44,29 @@ object Application extends Controller with Secured {
     }
   }
 
+  def removePlan(id:Option[String]) = withAuth{ implicit user => implicit request =>
+    transactional
+    {
+
+      val clientRequest: Option[Client_Request] = id.flatMap{   cId =>
+        Client_Request.findById( cId )
+      }
+
+      clientRequest.map { cr =>
+
+       //if admin or owner
+        if (user.exists(_.isAdmin) || user.exists( _ == cr.user_id))
+        {
+          cr.deleteCascade
+        }
+      }
+
+      Redirect(routes.Application.dashboard)
+    }
+  }
+
+
+
   def travelResponse(id:Option[String]) = withAuth{ implicit user => implicit request =>
 
     transactional

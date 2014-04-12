@@ -75,10 +75,11 @@
                                        </td>
                                        <td>@plan.trips.headOption.map(_.depart_date.format("MM/dd/yyyy"))</td>
                                        <td>
-                                           <a href="@routes.Application.travelPlanner(Some(plan.id))" class="btn btn-grove-one">Edit</a>
                                            @if(user.exists(_.isAdmin)){
                                                <a href="@routes.Application.travelResponse(Some(plan.id))" class="btn btn-grove-one">Respond</a>
                                            }
+                                            <a href="@routes.Application.travelPlanner(Some(plan.id))" class="btn btn-grove-one">Edit</a>
+                                            <a href="@routes.Application.removePlan(Some(plan.id))" class="btn btn-grove-one">Remove</a>
                                        </td>
                                    </tr>
 

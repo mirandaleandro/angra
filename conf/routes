@@ -16,7 +16,8 @@ GET         /assets/*file              controllers.Assets.at(path="/public", fil
 
 
 # Budget order forms
-GET         /travelplanner              controllers.Application.travelPlanner(id:Option[String] ?= None)
+GET         /travelplanner             controllers.Application.travelPlanner(id:Option[String] ?= None)
+GET         /removeplan                controllers.Application.removePlan(id:Option[String] ?= None)
 
 # Budget order forms
 GET         /dashboard                 controllers.Application.dashboard

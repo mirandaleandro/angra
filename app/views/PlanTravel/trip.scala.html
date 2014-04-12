@@ -17,12 +17,19 @@
             <div class="col-md-offset-0 row">
                 <div class="col-sm-6 form-group">
                     <label > Departure Date </label>
-                    <input class="form-control input-lg" type="text" id="depart_date" name="trips[@{tripNumber - 1}].depart_date" value="@tripRequest.map(_.depart_date)" placeholder="e.g 03/21/2015">
+                    <div class="date-picker" class="input-append">
+                        <input readonly class="form-control input-lg add-on" data-format="MM/dd/yyyy"  name="trips[@{tripNumber - 1}].depart_date" value="@tripRequest.map(_.depart_date)" type="text"></input>
+                        <i class="input-date-icon glyphicons calendar"></i>
+                    </div>
+
                 </div>
 
                 <div class="col-sm-6 form-group">
                     <label > Departure Time </label>
-                    <input class="form-control input-lg" type="text" id="depart_time" name="trips[@{tripNumber - 1}].depart_time" value="@tripRequest.map(_.depart_time)" placeholder="e.g 03:40pm">
+                    <div class="time-picker" class="input-append">
+                        <input readonly class="form-control input-lg add-on" data-format="HH:mm PP" name="trips[@{tripNumber - 1}].depart_time" value="@tripRequest.map(_.depart_time)"type="text"></input>
+                        <i class="input-date-icon glyphicons clock"></i>
+                    </div>
                 </div>
             </div>
 

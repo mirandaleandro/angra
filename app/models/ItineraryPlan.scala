@@ -33,6 +33,5 @@ object ItineraryPlan
     (select[ItineraryPlan] where(_.itinerary_id :== itinerary_id)) sortBy(_.plan_number)
   }
 
-
   def getAll:List[ItineraryPlan] = all[ItineraryPlan]
 }

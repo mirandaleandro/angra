@@ -29,6 +29,20 @@ $(function()
 {
    // var accordion = $('.accordion-collapse');
 
+    function bindDateTimePickers()
+    {
+        $('.date-picker').datetimepicker({
+            pickTime: false
+        });
+
+        $('.time-picker').datetimepicker({
+            pickDate: false,
+            pick12HourFormat: true,
+            pickSeconds: false
+        });
+    }
+    bindDateTimePickers();
+
     function bindBindInputsAhead (parent)
     {
         var tagInputs =  parent.find('input[data-role=tagsinput], select[multiple][data-role=tagsinput]');
@@ -81,6 +95,7 @@ $(function()
             aTrip.show('slow');
 
             bindBindInputsAhead( aTrip );
+            bindDateTimePickers();
         });
 
     });
@@ -109,6 +124,7 @@ $(function()
             var newElement =   parent.find(".flight[data-number="+number+"]");
 
             newElement.show('slow');
+            bindDateTimePickers();
         });
 
     });
@@ -134,6 +150,7 @@ $(function()
             var newElement =   parent.find(".trip[data-number="+number+"]");
 
             newElement.show('slow');
+            bindDateTimePickers()
         });
 
     });
@@ -157,6 +174,7 @@ $(function()
             var newElement =   parent.find(".plan[data-number="+number+"]");
 
             newElement.show('slow');
+            bindDateTimePickers()
         });
 
     });
