@@ -3,13 +3,12 @@ package controllers
 import
 play.api.mvc.{Action, Controller}
 import models.PostgresConnection._
-import models.{Trip_Request, User}
+import models.{ItineraryPlan, Trip_Request, User, Client_Request}
 import play.api.data.Form
 import play.api.data.Forms._
 import scala.Some
 import java.util.Date
 import controllers.Authentication.Secured
-import models.Client_Request
 
 
 object TravelPlanner extends Controller with Secured
@@ -23,6 +22,14 @@ object TravelPlanner extends Controller with Secured
 
 
 
+  )
+
+  case class ViewForm(var number:Int,var id:String)
+
+  val viewForm = Form[ViewForm](
+    mapping("number" -> number,"id" -> text)
+
+    (ViewForm.apply) (ViewForm.unapply)
   )
 
   val numberedViewForm = Form[Int](
@@ -85,15 +92,21 @@ object TravelPlanner extends Controller with Secured
     def responsePlanView = Action
     {
       implicit request =>
-        numberedViewForm.bindFromRequest.fold(
+        viewForm.bindFromRequest.fold(
 
           formWithErrors =>
             InternalServerError,
 
-          number =>
+          viewForm =>
           {
             transactional{
-              Ok( views.html.TravelPlanResponse.plan (number, open = true))
+              val itineraryPlan =  ItineraryPlan.findById(viewForm.id).getOrElse(ItineraryPlan())
+
+              ItineraryPlan.findById(viewForm.id)
+
+                .map{  itineraryPlan =>
+                Ok( views.html.TravelPlanResponse.plan (plan = itineraryPlan, viewForm.number, open = true))
+              }.getOrElse(BadRequest)
             }
           })
     }
