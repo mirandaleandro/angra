@@ -61,7 +61,10 @@
 
                                @for( plan <- currentUser.travelPlans) {
                                    <tr class="">
-                                       <td><span class="city-name">@plan.trips.headOption.map(_.depart_location)</span> to <span class="city-name">@plan.ret_location</span></td>
+                                       <td>
+                                            <span class="city-name">@plan.trips.headOption.map(_.depart_location)</span> to <span class="city-name">@plan.trips.last.arrival_location</span>
+                                           @if(!plan.trips.isEmpty){ (@{plan.trips.size} trips ) }
+                                       </td>
                                        <td>@plan.trips.headOption.map(_.depart_date.format("MM/dd/yyyy"))</td>
                                        <td>Pending</td>
                                        <td>

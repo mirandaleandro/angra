@@ -33,7 +33,7 @@
                         <!-- TODO -->
                          @tripRequest.map{ trip =>
                              @trip.airlinesNames.map{ airlineName =>
-                                    @airlineName
+                                 <option selected value="@airlineName"> @airlineName</option>
                              }
                         }
 

@@ -25,8 +25,10 @@ class User(var name: String, var email:String, var password:String, var phone:St
     if(this.isAdmin)
     {
        Client_Request.getAll.sortBy( cr => cr.creationDate )
-    }else{
-      Client_Request.findByUser(this).toList
+    }
+    else
+    {
+       Client_Request.findByUser(this).toList
     }
   }
 

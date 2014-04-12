@@ -18,9 +18,9 @@ object Client_Request
 
   def findById(id: String) = transactional{ byId[Client_Request](id) }
 
-  def findByUser(user_id:User): Option[Client_Request] = transactional
+  def findByUser(user_id:User): List[Client_Request] = transactional
   {
-    (select[Client_Request] where(_.user_id :== user_id)).headOption
+    select[Client_Request] where(_.user_id :== user_id)
   }
 
 

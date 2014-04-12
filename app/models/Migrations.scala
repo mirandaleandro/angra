@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat
 
 class CreateSchema extends Migration {
     
-    def timestamp = System.currentTimeMillis()
+    def timestamp = 201404112015l
 
     def up  {
         removeAllEntitiesTables
@@ -20,15 +20,16 @@ class CreateSchema extends Migration {
 
 class CreateDefaultUsers extends Migration {
 
-    def timestamp = System.currentTimeMillis() + 100
+    def timestamp = 201404112016l
 
     def up  {
         customScript
         {
-           val user1 = User("leandro","mirandaleandro@gmail.com","piracyisgood", "(801) 123-4567", Option(true))
-          val user2 =User("tahna","tahna@gmail.com","piracyisgood", "(801) 123-4567", Option(true))
-          val user3 = User("alex","alex@gmail.com","piracyisgood", "(801) 123-4567", Option(true))
-          val user4 = User("maria","maria@gmail.com","piracyisgood", "(801) 123-4567", Option(true))
+          val user1 = User("leandro","mirandaleandro@gmail.com","piracyisgood", "(801) 123-4567", Option(true))
+          val user2 = User("tahna","tahna@gmail.com","piracyisgood", "(801) 123-4567", Option(true))
+                      User("alex","alex@gmail.com","piracyisgood", "(801) 123-4567", Option(true))
+                      User("maria","maria@gmail.com","piracyisgood", "(801) 123-4567", Option(true))
+          val user3 = User("Lula Silva","luiz@gmail.com","piracyisgood", "(801) 123-4567", Option(false))
 
 
 
