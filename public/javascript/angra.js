@@ -141,7 +141,6 @@ $(function()
     $(document.body).on("click",".add-response-plan-action", function(e)
     {
         e.stopImmediatePropagation();
-          debugger;
         var actionTrigger = $(this);
         var url = actionTrigger.data('url');
         var parentSelector = actionTrigger.data('parent');
@@ -150,7 +149,7 @@ $(function()
         var targetContainer = parent.find(containerSelector);
         var number = targetContainer.find('.plan').last().data('number');
 
-        $.post( url, {number: number},
+        $.post( url, {planNumber: number},
             function( data )
         {
             targetContainer.append( data );

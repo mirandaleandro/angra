@@ -119,7 +119,11 @@ object TravelPlanner extends Controller with Secured
           responsePlanViewForm =>
           {
             transactional{
-              Ok( views.html.TravelPlanResponse.plan (planNumber = responsePlanViewForm.planNumber, open = true))
+              Ok( views.html.TravelPlanResponse.plan (
+                planNumber = responsePlanViewForm.planNumber,
+                open = true,
+                hidden = false)
+              )
             }
           })
     }
