@@ -1,4 +1,4 @@
-@(tripNumber:Int = 1, open:Boolean = true, hidden:Boolean = true)
+@(trip:Option[Trip_Plan] = None, tripNumber:Int = 1, open:Boolean = true, hidden:Boolean = true)
 
 <div class="trip @if(hidden){ temp-hide }" data-number="@tripNumber">
 
@@ -8,7 +8,13 @@
 
         <div class="col-md-offset-1 col-md-11 flights">
 
-           @flight(1, hidden = false)
+           @trip.map{ t =>
+
+               @for( (flightInstance,index) <- t.flights.zipWithIndex){
+                   @flight(flight = Some(flightInstance), hidden = false)
+               }
+           }
+           @flight( hidden = false )
 
         </div>
 

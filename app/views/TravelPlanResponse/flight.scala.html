@@ -1,4 +1,4 @@
-@(flightNumber:Int = 1, open:Boolean = true, hidden:Boolean = true)
+@(flight:Option[Flight] = None, flightNumber:Int = 1, open:Boolean = true, hidden:Boolean = true)
 
 <div class="flight @if(hidden){ temp-hide }" data-number="@flightNumber">
 

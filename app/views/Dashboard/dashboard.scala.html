@@ -77,7 +77,7 @@
                                        <td>
                                            <a href="@routes.Application.travelPlanner(Some(plan.id))" class="btn btn-grove-one">Edit</a>
                                            @if(user.exists(_.isAdmin)){
-                                               <a href="@routes.Application.travelResponse" class="btn btn-grove-one">Respond</a>
+                                               <a href="@routes.Application.travelResponse(Some(plan.id))" class="btn btn-grove-one">Respond</a>
                                            }
                                        </td>
                                    </tr>

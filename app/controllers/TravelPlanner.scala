@@ -3,12 +3,13 @@ package controllers
 import
 play.api.mvc.{Action, Controller}
 import models.PostgresConnection._
-import models.{ItineraryPlan, Trip_Request, User, Client_Request}
+import models.{Trip_Request, User}
 import play.api.data.Form
 import play.api.data.Forms._
 import scala.Some
 import java.util.Date
 import controllers.Authentication.Secured
+import models.Client_Request
 
 
 object TravelPlanner extends Controller with Secured
@@ -24,15 +25,7 @@ object TravelPlanner extends Controller with Secured
 
   )
 
-  case class ViewForm(var number:Int,var id:String)
-
-  val viewForm = Form[ViewForm](
-    mapping("number" -> number,"id" -> text)
-
-    (ViewForm.apply) (ViewForm.unapply)
-  )
-
-  val numberedViewForm = Form[Int](
+   val numberedViewForm = Form[Int](
       mapping("number" -> number)
         // binding
         (number => number)
@@ -64,10 +57,10 @@ object TravelPlanner extends Controller with Secured
           formWithErrors =>
             InternalServerError,
 
-          flighNumber =>
+          flightNumber =>
           {
             transactional{
-              Ok( views.html.TravelPlanResponse.flight (flighNumber, open = true))
+              Ok( views.html.TravelPlanResponse.flight (flightNumber = flightNumber, open = true))
             }
           })
     }
@@ -92,21 +85,15 @@ object TravelPlanner extends Controller with Secured
     def responsePlanView = Action
     {
       implicit request =>
-        viewForm.bindFromRequest.fold(
+        numberedViewForm.bindFromRequest.fold(
 
           formWithErrors =>
             InternalServerError,
 
-          viewForm =>
+          number =>
           {
             transactional{
-              val itineraryPlan =  ItineraryPlan.findById(viewForm.id).getOrElse(ItineraryPlan())
-
-              ItineraryPlan.findById(viewForm.id)
-
-                .map{  itineraryPlan =>
-                Ok( views.html.TravelPlanResponse.plan (plan = itineraryPlan, viewForm.number, open = true))
-              }.getOrElse(BadRequest)
+              Ok( views.html.TravelPlanResponse.plan (planNumber = number, open = true))
             }
           })
     }

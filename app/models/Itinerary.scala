@@ -3,9 +3,20 @@ import PostgresConnection._
 import java.util.Date
 
 
-class Itinerary(var request_id:Client_Request, comments:String) extends Entity
+class Itinerary(var request_id:Client_Request,var comments:String) extends Entity
 {
-  def itineraryPlans = ItineraryPlan.findByItinerary(this)
+  //kind of a lazy init
+  def itineraryPlans =
+  {
+    val dbPlans = ItineraryPlan.findByItinerary(this)
+
+    if (dbPlans.isEmpty)
+    {
+      List(ItineraryPlan(this))
+    }else {
+      dbPlans
+    }
+  }
 }
 object Itinerary
 {

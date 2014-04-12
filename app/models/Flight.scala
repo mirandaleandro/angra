@@ -7,7 +7,17 @@ class Flight(var trip_plan_id:Trip_Plan, var number:String, var seat:String, var
 
 object Flight
 {
-  def apply(trip_plan_id:Trip_Plan, number:String, seat:String, airline:String, depart_date:String,arrival_date:String, arrival_time:String, depart_time:String, depart_location:String, destination:String, confirm_no:String) =
+  def apply(trip_plan_id:Trip_Plan,
+            number:String = "",
+            seat:String = "",
+            airline:String = "",
+            depart_date:String = "",
+            arrival_date:String = "",
+            arrival_time:String = "",
+            depart_time:String = "",
+            depart_location:String = "",
+            destination:String = "",
+            confirm_no:String = "") =
     transactional
     {
       new Flight(trip_plan_id, number, seat, airline, depart_date, arrival_date,arrival_time, depart_time, depart_location, destination, confirm_no)
@@ -15,11 +25,10 @@ object Flight
 
   def findById(id: String) = byId[Flight](id)
 
-  def findByTrip_Confirmed(trip_plan_id:Trip_Plan): Option[Flight] = transactional
+  def findByTrip_Confirmed(trip_plan_id:Trip_Plan): List[Flight] = transactional
   {
-    (select[Flight] where(_.trip_plan_id :== trip_plan_id)).headOption
+    select[Flight] where(_.trip_plan_id :== trip_plan_id)
   }
-
 
   def getAll:List[Flight] = all[Flight]
 

@@ -5,7 +5,19 @@ import PostgresConnection._
 
 class ItineraryPlan(var itinerary_id:Itinerary) extends Entity
 {
-  def tripPlans = Trip_Plan.findByItineraryPlan(this)
+  def tripPlans = {
+    val tripPlans = Trip_Plan.findByItineraryPlan(this)
+
+    if (tripPlans.isEmpty)
+    {
+      List( Trip_Plan(itineraryPlan_id = this) )
+    }
+    else
+    {
+      tripPlans
+    }
+
+  }
 }
 object ItineraryPlan
 {

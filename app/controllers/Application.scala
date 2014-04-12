@@ -34,24 +34,27 @@ object Application extends Controller with Secured {
   }
 
   def travelPlanner(id:Option[String]) = withAuth{ implicit user => implicit request =>
-
     transactional
     {
-
       val clientRequest: Option[Client_Request] = id.flatMap{   cId =>
-        val c = Client_Request.findById( cId )
-        c
+        Client_Request.findById( cId )
       }
 
       Ok( views.html.PlanTravel.travelPlanner(clientRequest) )
     }
   }
 
-  def travelResponse = withAuth{ implicit user => implicit request =>
+  def travelResponse(id:Option[String]) = withAuth{ implicit user => implicit request =>
 
     transactional
     {
-      Ok( views.html.TravelPlanResponse.travelResponse() )
+      val clientRequest: Option[Client_Request] = id.flatMap{   cId =>
+        Client_Request.findById( cId )
+      }
+
+      clientRequest.map { cr =>
+        Ok( views.html.TravelPlanResponse.travelResponse(cr) )
+      }.getOrElse(Redirect(routes.Application.dashboard))
     }
   }
 

@@ -1,4 +1,4 @@
-@()(implicit user:Option[User])
+@(clientRequest:Client_Request)(implicit user:Option[User])
 @import views.html.helper._
 @main(pageTitle = "Travel Planner") {
 
@@ -7,22 +7,27 @@
             <div class="row">
 
                 <section class="col-md-8 faq">
-                    <h2> Travel plan for Miranda Software on 16/03/2014</h2>
+                    <h2> Travel plan for @clientRequest.user_id.name on @clientRequest.creationDate.format("MM/dd/yyyy")</h2>
+
                     @form(routes.TravelPlanner.submitItinerary) {
-                        <input type="hidden" name="request_id" value="d5eb1a4b-c1b6-11e3-9385-8d979a11c81f-fa11f61b">
-                        @travelPlan()
+
+                        <input type="hidden" name="request_id" value="@clientRequest.id">
+
+                        @travelPlan(clientRequest)
 
                         <div class="row">
                             <div class="col-sm-12 form-group">
                                 <label for="message"> Comments </label>
-                                <textarea class="form-control " id="message" name="comments" rows="5"></textarea>
+                                <textarea class="form-control " id="message" name="comments" rows="5">@clientRequest.itinerary.comments</textarea>
                             </div>
                         </div>
 
                         <button type="submit" class="btn btn-grove-one btn-xlg btn-bold pull-right"> Submit Response </button>
 
+                    }
+
                 </section>
-                }
+
                 @views.html.RightSidebar.contactInfo()
 
             </div>

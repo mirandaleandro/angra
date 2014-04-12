@@ -1,4 +1,4 @@
-@(planNumber:Int = 1, open:Boolean = true, hidden:Boolean = true)
+@(plan:Option[ItineraryPlan] = None, planNumber:Int = 1, open:Boolean = true, hidden:Boolean = true)
 
 <div class="plan @if(hidden){ temp-hide }" data-number="@planNumber">
 
@@ -8,7 +8,13 @@
 
         <div class="trips ">
 
-           @trip(hidden = false)
+            @plan.map{ p =>
+                @for( (tripInstance, index) <- p.tripPlans.zipWithIndex){
+					 @trip(trip = Some(tripInstance), hidden = false)
+                }
+            }.getOrElse{
+                @trip(hidden = false)
+            }
 
         </div>
 

@@ -1,6 +1,9 @@
+@(clientRequest:Client_Request)(implicit user:Option[User])
 <div class="plans">
 
-    @plan(hidden = false)
+    @for((itineraryPlan,index) <- clientRequest.itinerary.itineraryPlans.zipWithIndex){
+        @plan( plan = Some(itineraryPlan), hidden = false )
+    }
 
 </div>
 
