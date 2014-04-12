@@ -3,13 +3,13 @@ package controllers
 import
 play.api.mvc.{Action, Controller}
 import models.PostgresConnection._
-import models.{Trip_Request, User}
+import models._
 import play.api.data.Form
 import play.api.data.Forms._
 import scala.Some
 import java.util.Date
 import controllers.Authentication.Secured
-import models.Client_Request
+import scala.Some
 
 
 object TravelPlanner extends Controller with Secured
@@ -217,9 +217,48 @@ object TravelPlanner extends Controller with Secured
         formWithErrors => BadRequest,
         requested => {
 
-          val clientreqoption = models.Client_Request.findById(requested.request_id)
+          transactional
+          {
+            val clientRequestOption = models.Client_Request.findById(requested.request_id)
 
-//          clientreqoption.map{clientReq =>
+            clientRequestOption.map{ clientRequest =>
+                clientRequest.comments =  requested.comments
+
+                requested.itineraryPlans.foreach{ itineraryPlanInfo =>
+                   val itineraryPlan: ItineraryPlan = ItineraryPlan.findById( itineraryPlanInfo.itinerary_plan_id).getOrElse(ItineraryPlan(clientRequest.itinerary))
+
+                   itineraryPlanInfo.trip_plans.foreach{ tripPlanInfo =>
+                      val trip = Trip_Plan.findById( tripPlanInfo.trip_plan_id ).getOrElse( Trip_Plan(itineraryPlan_id = itineraryPlan) )
+
+                      trip.additional_transportation = tripPlanInfo.additional_transportation
+                      trip.hotel_address = tripPlanInfo.hotel_address
+                      trip.hotel_confirm = tripPlanInfo.hotel_confirm
+                      trip.hotel_name = tripPlanInfo.hotel_name
+                      trip.hotel_phone = tripPlanInfo.hotel_phone
+
+                      tripPlanInfo.flights.foreach{ flightInfo =>
+                        val flight = Flight.findById(flightInfo.flight_id).getOrElse(Flight(trip))
+
+                        flight.airline = flightInfo.airline
+                        flight.arrival_location = flightInfo.arrival_location
+                        flight.arrival_date = flightInfo.arrival_date
+                        flight.arrival_time = flightInfo.arrival_time
+                        flight.confirm_no = flightInfo.confirm_num
+                        flight.depart_location = flightInfo.depart_location
+                        flight.depart_date = flightInfo.depart_date
+                        flight.depart_time = flightInfo.depart_time
+                        flight.number = flightInfo.number
+                        flight.seat = flightInfo.seat
+
+                      }
+
+                   }
+
+                }
+            }
+          }
+
+          //          clientreqoption.map{clientReq =>
 //          val itin =  models.Itinerary(request_id = clientReq, comments = requested.comments)
 //
 //          requested.itineraryPlans.foreach{itineraryPlan =>

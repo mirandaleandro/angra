@@ -16,7 +16,6 @@ class ItineraryPlan(var itinerary_id:Itinerary) extends Entity
     {
       tripPlans
     }
-
   }
 }
 object ItineraryPlan
