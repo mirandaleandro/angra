@@ -11,26 +11,26 @@
             <div class="row">
                 <div class="col-md-12 form-group">
                     <label for="name"> Departure Location </label>
-                    <input class="form-control input-lg" type="text" id="depart_location" name="depart_location" value="" placeholder="">
+                    <input class="form-control input-lg" type="text" id="depart_location" name="depart_location" value="@flight.map(_.depart_location)" placeholder="e.g Orlando - FL">
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6 form-group">
                     <label for="name"> Departure Date </label>
-                    <input class="form-control input-lg" type="text" id="depart_date" name="depart_date" value="" placeholder="">
+                    <input class="form-control input-lg" type="text" id="depart_date" name="depart_date" value="@flight.map(_.depart_date)" placeholder="">
                 </div>
 
                 <div class="col-md-6 form-group">
                     <label for="name"> Departure Time </label>
-                    <input class="form-control input-lg" type="text" id="depart_time" name="depart_time" value="" placeholder="">
+                    <input class="form-control input-lg" type="text" id="depart_time" name="depart_time" value="@flight.map(_.depart_time)" placeholder="">
                 </div>
             </div>
 
             <div class="row">
 		        <div class="col-md-12 form-group">
 		            <label for="name"> Arrival Location </label>
-		            <input class="form-control input-lg" type="text" id="arrival_location" name="arrival_location" value="" placeholder="">
+		            <input class="form-control input-lg" type="text" id="arrival_location" name="arrival_location" value="@flight.map(_.arrival_location)" placeholder="">
 		        </div>
             </div>
 

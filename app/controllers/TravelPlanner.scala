@@ -206,7 +206,17 @@ object TravelPlanner extends Controller with Secured
              val trip = models.Trip_Plan(itineraryPlan_id = itinPlan, additional_transportation = tripPlan.additional_transportation, hotel_name = tripPlan.hotel_name, hotel_confirm = tripPlan.hotel_confirm, hotel_address = tripPlan.hotel_address, hotel_phone= tripPlan.hotel_phone)
 
               tripPlan.flights.foreach{flight =>
-                models.Flight(trip_plan_id = trip, number = flight.number, seat = flight.seat, airline = flight.airline,arrival_date=flight.arrival_date, depart_date=flight.depart_date, depart_time=flight.depart_time, depart_location=flight.depart_location, destination= flight.arrival_location, arrival_time=flight.arrival_time, confirm_no = flight.confirm_num)
+                models.Flight(trip_plan_id = trip,
+                  number = flight.number,
+                  seat = flight.seat,
+                  airline = flight.airline,
+                  depart_location=flight.depart_location,
+                  depart_date=flight.depart_date,
+                  depart_time=flight.depart_time,
+                  arrival_location= flight.arrival_location,
+                  arrival_date=flight.arrival_date,
+                  arrival_time=flight.arrival_time,
+                  confirm_no = flight.confirm_num)
               }
             }
           }
