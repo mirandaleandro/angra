@@ -95,11 +95,13 @@ $(function()
         var parentSelector = actionTrigger.data('parent');
         var containerSelector = actionTrigger.data('target');
         var parent = actionTrigger.closest(parentSelector);
+        var tripNumber = parent.data("number") - 1;
+        var planNumber = parent.closest(".plan").data("number") - 1;
         var targetContainer = parent.find(containerSelector);
-        var number = targetContainer.find('.flight').last().data('number') + 1;
+        var number = targetContainer.find('.flight').last().data('number');
         var form = actionTrigger.closest('.client-request-form');
 
-        $.post( url, {number: number},
+        $.post( url, {planNumber:planNumber,tripNumber:tripNumber, flightNumber: number},
             function( data )
         {
             targetContainer.append( data );
@@ -120,10 +122,11 @@ $(function()
         var parentSelector = actionTrigger.data('parent');
         var containerSelector = actionTrigger.data('target');
         var parent = actionTrigger.closest(parentSelector);
+        var planNumber = parent.closest(".plan").data("number") - 1;
         var targetContainer = parent.find(containerSelector);
-        var number = targetContainer.find('.trip').last().data('number') + 1;
+        var number = targetContainer.find('.trip').last().data('number');
 
-        $.post( url, {number: number},
+        $.post( url, {planNumber:planNumber, tripNumber: number},
             function( data )
         {
             targetContainer.append( data );
@@ -145,7 +148,7 @@ $(function()
         var containerSelector = actionTrigger.data('target');
         var parent = actionTrigger.closest(parentSelector);
         var targetContainer = parent.find(containerSelector);
-        var number = targetContainer.find('.plan').last().data('number') + 1;
+        var number = targetContainer.find('.plan').last().data('number');
 
         $.post( url, {number: number},
             function( data )

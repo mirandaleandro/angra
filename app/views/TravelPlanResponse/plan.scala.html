@@ -2,7 +2,7 @@
 
 <div class="plan @if(hidden){ temp-hide }" data-number="@{planNumber+1}">
 
-	<input type="hidden" name="itinerary_plans[@{planNumber-1}].itinerary_plan_id" value="@plan.map(_.id)">
+	<input type="hidden" name="itinerary_plans[@planNumber].itinerary_plan_id" value="@plan.map(_.id)">
 
     <div class="accordion-toggle @if(open){ open }else{ collapsed }  " data-toggle="collapse">Plan #<span class="plan-number-id">@{planNumber+1}</span></div>
 

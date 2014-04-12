@@ -1,4 +1,4 @@
-@(trip:Option[Trip_Plan] = None, planNumber:Int = 0, tripNumber:Int = 0, open:Boolean = true, hidden:Boolean = true)
+@(trip:Option[Trip_Plan] = None, planNumber:Int, tripNumber:Int = 0, open:Boolean = true, hidden:Boolean = true)
 
 <div class="trip @if(hidden){ temp-hide }" data-number="@{tripNumber+1}">
 

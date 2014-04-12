@@ -25,75 +25,101 @@ object TravelPlanner extends Controller with Secured
 
   )
 
-   val numberedViewForm = Form[Int](
-      mapping("number" -> number)
-        // binding
-        (number => number)
-        // unbinding
-        (info => Some(info))
+  def tripView = Action
+  {
+    implicit request =>
+      tripViewForm.bindFromRequest.fold(
+
+        formWithErrors =>
+          InternalServerError,
+
+        tripNumber =>
+        {
+          transactional{
+            Ok( views.html.PlanTravel.trip (tripNumber =  tripNumber, open = true))
+          }
+        })
+  }
+
+  case class FlightViewForm(var planNumber:Int, var tripNumber:Int, var flightNumber:Int)
+
+  val flightViewForm = Form[FlightViewForm](
+    mapping("planNumber" -> number,
+      "tripNumber" -> number,
+      "flightNumber" -> number )
+
+      (FlightViewForm.apply)(FlightViewForm.unapply)
+  )
+
+  def flightView = Action
+    {
+      implicit request =>
+        flightViewForm.bindFromRequest.fold(
+
+          formWithErrors =>
+            InternalServerError,
+
+          flightViewForm =>
+          {
+            transactional{
+              Ok( views.html.TravelPlanResponse.flight (
+                planNumber = flightViewForm.planNumber,
+                tripNumber = flightViewForm.tripNumber,
+                flightNumber = flightViewForm.flightNumber,
+                open = true,
+                hidden = false)
+              )
+            }
+          })
+    }
+
+  case class ResponseTripViewForm(var planNumber:Int, var tripNumber:Int)
+
+  val responseTripViewForm = Form[ResponseTripViewForm](
+    mapping("planNumber" -> number,
+            "tripNumber" -> number )
+    (ResponseTripViewForm.apply)(ResponseTripViewForm.unapply)
+  )
+
+  def responseTrip = Action
+  {
+    implicit request =>
+      responseTripViewForm.bindFromRequest.fold(
+
+        formWithErrors => InternalServerError,
+
+        responseViewForm =>
+        {
+          transactional{
+            Ok( views.html.TravelPlanResponse.trip (planNumber = responseViewForm.planNumber,
+              tripNumber = responseViewForm.tripNumber,
+              open = true,
+              hidden = false)
+            )
+          }
+        })
+  }
+
+    case class ResponsePlanViewForm(var planNumber:Int)
+
+    val responsePlanViewForm = Form[ResponsePlanViewForm](
+      mapping("planNumber" -> number)
+      (ResponsePlanViewForm.apply)(ResponsePlanViewForm.unapply)
     )
-
-    def tripView = Action
-    {
-      implicit request =>
-        tripViewForm.bindFromRequest.fold(
-
-          formWithErrors =>
-            InternalServerError,
-
-          tripNumber =>
-          {
-            transactional{
-              Ok( views.html.PlanTravel.trip (tripNumber =  tripNumber, open = true))
-            }
-          })
-    }
-
-    def flightView = Action
-    {
-      implicit request =>
-        numberedViewForm.bindFromRequest.fold(
-
-          formWithErrors =>
-            InternalServerError,
-
-          flightNumber =>
-          {
-            transactional{
-              Ok( views.html.TravelPlanResponse.flight (flightNumber = flightNumber, open = true))
-            }
-          })
-    }
-
-    def responseTrip = Action
-    {
-      implicit request =>
-        numberedViewForm.bindFromRequest.fold(
-
-          formWithErrors =>
-            InternalServerError,
-
-          number =>
-          {
-            transactional{
-              Ok( views.html.TravelPlanResponse.trip (tripNumber = number, open = true))
-            }
-          })
-    }
 
 
     def responsePlanView = Action
     {
       implicit request =>
-        numberedViewForm.bindFromRequest.fold(
+        responsePlanViewForm.bindFromRequest.fold(
 
           formWithErrors =>
             InternalServerError,
 
-          number =>
+          responsePlanViewForm =>
           {
             transactional{
-              Ok( views.html.TravelPlanResponse.plan (planNumber = number, open = true))
+              Ok( views.html.TravelPlanResponse.plan (planNumber = responsePlanViewForm.planNumber, open = true))
             }
           })
     }
