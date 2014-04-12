@@ -9,11 +9,11 @@ class Itinerary(var request_id:Client_Request, comments:String) extends Entity
 }
 object Itinerary
 {
-  def apply(request_id:Client_Request,comments:String) =
-    transactional
-    {
-      new Itinerary(request_id,comments)
-    }
+  def apply( request_id:Client_Request,comments:String = "" ) =
+  transactional
+  {
+    new Itinerary(request_id,comments)
+  }
 
   def findById(id: String) = byId[Itinerary](id)
 
