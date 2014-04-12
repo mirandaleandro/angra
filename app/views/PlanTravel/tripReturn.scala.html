@@ -13,12 +13,19 @@
 
 	<div class="row">
 	    <div class="col-sm-6 form-group">
-	        <label for="ret_date"> Return Date </label>
-	        <input class="form-control input-lg" type="text" id="ret_date" name="ret_date" value="@clientRequest.map(_.ret_date)" placeholder="09/11/2015">
+	        <label> Return Date </label>
+            <div class="date-picker" class="input-append">
+                <input readonly class="form-control input-lg add-on" data-format="MM/dd/yyyy"  name="ret_date" value="@clientRequest.map(_.ret_date)" type="text"></input>
+                <i class="input-date-icon glyphicons calendar"></i>
+            </div>
 	    </div>
+
 	    <div class="col-sm-6 form-group">
-	        <label for="ret_time"> Return Time </label>
-	        <input class="form-control input-lg" type="text" id="ret_time" name="ret_time" value="@clientRequest.map(_.ret_time)" placeholder="10:30pm">
+	        <label> Return Time </label>
+            <div class="time-picker" class="input-append">
+                <input readonly class="form-control input-lg add-on" data-format="HH:mm PP" name="ret_time" value="@clientRequest.map(_.ret_time)" type="text"></input>
+                <i class="input-date-icon glyphicons clock"></i>
+            </div>
 	    </div>
 	</div>
 

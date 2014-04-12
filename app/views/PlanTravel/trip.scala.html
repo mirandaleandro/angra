@@ -56,8 +56,11 @@
                 </div>
 
                 <div class="col-sm-6 form-group">
-                    <label for="arrival_time"> Arrival Time </label>
-                    <input class="form-control input-lg" type="text" id="arrival_time" name="trips[@{tripNumber - 1}].arrival_time" value="@tripRequest.map(_.arrival_time)" placeholder="e.g 09:45pm">
+                    <label> Arrival Time </label>
+                    <div class="time-picker" class="input-append">
+                        <input readonly class="form-control input-lg add-on" data-format="HH:mm PP"name="trips[@{tripNumber - 1}].arrival_time" value="@tripRequest.map(_.arrival_time)"type="text"></input>
+                        <i class="input-date-icon glyphicons clock"></i>
+                    </div>
                 </div>
             </div>
 
@@ -107,7 +110,10 @@
 
                 <div class="col-sm-8 form-group hotel-preferences @if(!tripRequest.exists(_.hotel)){temp-hide}">
                     <label > Checkout Date </label>
-                    <input class="form-control input-lg" type="text" name="trips[@{tripNumber - 1}].checkout_date" value="" placeholder="e.g 03/24/2015">
+                    <div class="date-picker" class="input-append">
+                        <input readonly class="form-control input-lg add-on" data-format="MM/dd/yyyy"  name="trips[@{tripNumber - 1}].hotel_date" value="" type="text"></input>
+                        <i class="input-date-icon glyphicons calendar"></i>
+                    </div>
 
                     <label class="checkbox">
                         <!-- TODO  change hotel for meal var!-->
