@@ -4,6 +4,7 @@ import java.util.Date
 
 
 class Flight(var trip_plan_id:Trip_Plan,
+             var flight_sort_number:Int,
              var number:String,
              var seat:String,
              var airline:String,
@@ -18,6 +19,7 @@ class Flight(var trip_plan_id:Trip_Plan,
 object Flight
 {
   def apply(trip_plan_id:Trip_Plan,
+            flight_sort_number:Int = 0,
             number:String = "",
             seat:String = "",
             airline:String = "",
@@ -31,6 +33,7 @@ object Flight
     transactional
     {
       new Flight(trip_plan_id = trip_plan_id,
+        flight_sort_number = flight_sort_number,
         number=number,
         seat=seat,
         airline=airline,
@@ -47,7 +50,7 @@ object Flight
 
   def findByTrip_Confirmed(trip_plan_id:Trip_Plan): List[Flight] = transactional
   {
-    select[Flight] where(_.trip_plan_id :== trip_plan_id)
+    select[Flight] where(_.trip_plan_id :== trip_plan_id) sortBy(_.flight_sort_number)
   }
 
   def getAll:List[Flight] = all[Flight]

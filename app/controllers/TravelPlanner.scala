@@ -180,10 +180,10 @@ object TravelPlanner extends Controller with Secured
       )
   }
 
-  case class ItineraryPlanForm(itinerary_plan_id:String, trip_plans:List[TripPlanForm])
+  case class ItineraryPlanForm(itinerary_plan_id:String, itinerary_plan_number:Int, trip_plans:List[TripPlanForm])
   case class ItineraryForm(comments:String, request_id:String, itineraryPlans:List[ItineraryPlanForm])
-  case class TripPlanForm(trip_plan_id:String, additional_transportation:String,  hotel_name:String,  hotel_confirm:String, hotel_address:String, hotel_phone:String, flights:List[FlightForm])
-  case class FlightForm(flight_id:String, arrival_location:String,arrival_time:String,arrival_date:String,depart_location:String, depart_date:String, depart_time:String,airline:String, number:String, seat:String,  confirm_num:String)
+  case class TripPlanForm(trip_plan_id:String, trip_plan_number:Int, additional_transportation:String,  hotel_name:String,  hotel_confirm:String, hotel_address:String, hotel_phone:String, flights:List[FlightForm])
+  case class FlightForm(flight_id:String, flight_number:Int, arrival_location:String,arrival_time:String,arrival_date:String,depart_location:String, depart_date:String, depart_time:String,airline:String, number:String, seat:String,  confirm_num:String)
 
   val itineraryForm = Form(
     mapping(
@@ -191,8 +191,10 @@ object TravelPlanner extends Controller with Secured
     "request_id" -> text,
     "itinerary_plans" -> list(mapping(
         "itinerary_plan_id" -> text,
+        "itinerary_plan_number" -> number,
         "trip_plans" -> list(mapping(
             "trip_plan_id" -> text,
+            "trip_plan_number" -> number,
             "additional_transportation" -> text,
             "hotel_name" -> text,
             "hotel_confirm" -> text,
@@ -200,6 +202,7 @@ object TravelPlanner extends Controller with Secured
             "hotel_phone" -> text,
             "flights" -> list(mapping(
                 "flight_id" -> text,
+                "flight_number" -> number,
                 "arrival_location" -> text,
                 "arrival_time" -> text,
                 "arrival_date" -> text,
@@ -230,9 +233,11 @@ object TravelPlanner extends Controller with Secured
 
                 requested.itineraryPlans.foreach{ itineraryPlanInfo =>
                    val itineraryPlan: ItineraryPlan = ItineraryPlan.findById( itineraryPlanInfo.itinerary_plan_id).getOrElse(ItineraryPlan(clientRequest.itinerary))
+                   itineraryPlan.plan_number = itineraryPlanInfo.itinerary_plan_number
 
                    itineraryPlanInfo.trip_plans.foreach{ tripPlanInfo =>
                       val trip = Trip_Plan.findById( tripPlanInfo.trip_plan_id ).getOrElse( Trip_Plan(itineraryPlan_id = itineraryPlan) )
+                      trip.trip_number = tripPlanInfo.trip_plan_number
 
                       trip.additional_transportation = tripPlanInfo.additional_transportation
                       trip.hotel_address = tripPlanInfo.hotel_address
@@ -242,6 +247,7 @@ object TravelPlanner extends Controller with Secured
 
                       tripPlanInfo.flights.foreach{ flightInfo =>
                         val flight = Flight.findById(flightInfo.flight_id).getOrElse(Flight(trip))
+                        flight.flight_sort_number = flightInfo.flight_number
 
                         flight.airline = flightInfo.airline
                         flight.arrival_location = flightInfo.arrival_location

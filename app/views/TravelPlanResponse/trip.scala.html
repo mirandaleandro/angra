@@ -3,6 +3,7 @@
 <div class="trip @if(hidden){ temp-hide }" data-number="@{tripNumber+1}">
 
 	<input type="hidden" name="itinerary_plans[@planNumber].trip_plans[@tripNumber].trip_plan_id" value="@trip.map(_.id)">
+	<input type="hidden" name="itinerary_plans[@planNumber].trip_plans[@tripNumber].trip_plan_number" value="@tripNumber">
 
     <div class="accordion-toggle @if(open){ open }else{ collapsed }" data-toggle="collapse">Trip #<span class="trip-number-id">@{tripNumber+1}</span></div>
 

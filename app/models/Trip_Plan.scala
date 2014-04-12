@@ -3,6 +3,7 @@ import PostgresConnection._
 import java.util.Date
 
 class Trip_Plan(var itineraryPlan_id:ItineraryPlan,
+                var trip_number:Int,
                 var additional_transportation:String,
                 var hotel_name:String,
                 var hotel_confirm:String,
@@ -34,6 +35,7 @@ class Trip_Plan(var itineraryPlan_id:ItineraryPlan,
 object Trip_Plan
 {
   def apply(itineraryPlan_id:ItineraryPlan,
+            trip_number:Int = 0,
             additional_transportation:String = "",
             hotel_name:String = "",
             hotel_confirm:String = "",
@@ -41,14 +43,14 @@ object Trip_Plan
             hotel_phone:String = "") =
     transactional
     {
-      new Trip_Plan(itineraryPlan_id, additional_transportation, hotel_name, hotel_confirm,hotel_address, hotel_phone)
+      new Trip_Plan(itineraryPlan_id, trip_number = trip_number, additional_transportation, hotel_name, hotel_confirm,hotel_address, hotel_phone)
     }
 
   def findById(id: String) = byId[Trip_Plan](id)
 
   def findByItineraryPlan(itineraryPlan_id:ItineraryPlan): List[Trip_Plan] = transactional
   {
-    (select[Trip_Plan] where(_.itineraryPlan_id :== itineraryPlan_id))
+    (select[Trip_Plan] where(_.itineraryPlan_id :== itineraryPlan_id)) sortBy(_.trip_number)
   }
 
 
