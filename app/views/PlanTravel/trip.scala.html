@@ -111,12 +111,11 @@
                 <div class="col-sm-8 form-group hotel-preferences @if(!tripRequest.exists(_.hotel)){temp-hide}">
                     <label > Checkout Date </label>
                     <div class="date-picker" class="input-append">
-                        <input readonly class="form-control input-lg add-on" data-format="MM/dd/yyyy"  name="trips[@{tripNumber - 1}].hotel_date" value="" type="text"></input>
+                        <input readonly class="form-control input-lg add-on" data-format="MM/dd/yyyy"  name="trips[@{tripNumber - 1}].checkout_date" value="@tripRequest.map(_.checkout_date)" type="text"></input>
                         <i class="input-date-icon glyphicons calendar"></i>
                     </div>
 
                     <label class="checkbox">
-                        <!-- TODO  change hotel for meal var!-->
                         <input class="" type="checkbox" name="trips[@{tripNumber - 1}].hotel_meal" @if(tripRequest.exists(_.hotel)){checked value="true"}else{value="false"}>
                             Must serve meal
                     </label>
