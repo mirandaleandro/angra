@@ -37,34 +37,34 @@
             <div class="row">
                 <div class="col-md-6 form-group">
                     <label for="name"> Arrival Date </label>
-                    <input class="form-control input-lg" type="text" id="arrival_date" name="arrival_date" value="" placeholder="">
+                    <input class="form-control input-lg" type="text" id="arrival_date" name="arrival_date" value="@flight.map(_.arrival_date)" placeholder="">
                 </div>
 
                 <div class="col-md-6 form-group">
                     <label for="name"> Arrival Time </label>
-                    <input class="form-control input-lg" type="text" id="arrival_time" name="arrival_time" value="" placeholder="">
+                    <input class="form-control input-lg" type="text" id="arrival_time" name="arrival_time" value="@flight.map(_.arrival_date)" placeholder="">
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-4 form-group">
                     <label for="name"> Airline </label>
-                    <input type="text" class="form-control input-lg" type="text"  name="airline">
+                    <input type="text" class="form-control input-lg" type="text"  name="airline" value="@flight.map(_.airline)">
                 </div>
                 <div class="col-sm-4 form-group">
                     <label for="name"> Flight Number </label>
-                    <input type="text" class="form-control input-lg" type="text"  name="number">
+                    <input type="text" class="form-control input-lg" type="text"  name="number" value="@flight.map(_.number)">
                 </div>
                 <div class="col-sm-4 form-group">
                     <label for="name"> Seat </label>
-                    <input type="text" class="form-control input-lg" type="text"  name="seat">
+                    <input type="text" class="form-control input-lg" type="text"  name="seat" value="@flight.map(_.seat)">
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-12 form-group">
                     <label for="name"> Confirmation Number </label>
-                    <input class="form-control input-lg" type="text" id="name" name="confirm_num" value="" placeholder="">
+                    <input class="form-control input-lg" type="text" id="name" name="confirm_num" value="@flight.map(_.confirm_no)" placeholder="">
                 </div>
             </div>
 

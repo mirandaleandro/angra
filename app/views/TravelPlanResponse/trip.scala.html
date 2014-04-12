@@ -13,8 +13,9 @@
                @for( (flightInstance,index) <- t.flights.zipWithIndex){
                    @flight(flight = Some(flightInstance), hidden = false)
                }
-           }
-           @flight( hidden = false )
+           }.getOrElse{
+                @flight( hidden = false )
+            }
 
         </div>
 
@@ -28,56 +29,56 @@
 
         <div class="col-md-offset-0 row">
 
-            <label class="col-md-12" for="name"> Additional Transportation </label>
+            <label class="col-md-12"> Additional Transportation </label>
 
             <div class="col-md-4 form-group">
 
                 <label class="radio">
-                    <input class="additional-transportation rental display-trigger" type="radio" value="rental" name="additional_transportation" data-display-trip-form=".form-group.preferred-rental-company" >
+                    <input @if(trip.exists(_.rental)){checked}  class="additional-transportation rental display-trigger" type="radio" value="rental" name="additional_transportation" data-display-trip-form=".form-group.preferred-rental-company" >
                     Rental
                 </label>
 
                 <label class="radio">
-                    <input class="additional-transportation taxi" type="radio" value="taxi" name="additional_transportation">
+                    <input @if(trip.exists(_.taxi)){checked} class="additional-transportation taxi" type="radio" value="taxi" name="additional_transportation">
                     Taxi
                 </label>
 
                 <label class="radio">
-                    <input class="additional-transportation shuttle" type="radio" value="shuttle"  name="additional_transportation" >
+                    <input @if(trip.exists(_.shuttle)){checked}  class="additional-transportation shuttle" type="radio" value="shuttle"  name="additional_transportation" >
                     Shuttle
                 </label>
 
                 <label class="radio">
-                    <input class="additional-transportation none" type="radio" value="none" name="additional_transportation" checked>
+                    <input @if(trip.exists(_.isThereAdditionalTransportation)){checked}  class="additional-transportation none" type="radio" value="none" name="additional_transportation" checked>
                     No, thanks.
                 </label>
 
             </div>
 
-            <div class="col-md-8 form-group preferred-rental-company temp-hide">
-                <label for="name"> Preferred Rental Companies</label>
-                    <!-- TODO grab data from the database -->
-                <select class="form-control input-lg" type="text" name="name" data-content='@routes.Assets.at("json/companies.json")' multiple data-role="tagsinput"></select>
-            </div>
         </div>
 
         <div class="row col-md-offset-0 ">
 
-            <label class="col-md-12" for="name"> Hotel </label>
+            <label class="col-md-12"> Hotel </label>
 
             <div class="col-md-12 form-group">
-                <label for="name"> Confirmation Number </label>
-                <input class="form-control input-lg" type="text" id="name" name="hotel_confirm_number" value="" placeholder="">
+                <label for="hotel_name"> Name </label>
+                <input class="form-control input-lg" type="text" id="hotel_name" name="hotel_name" value="@trip.map(_.hotel_name) " placeholder="">
             </div>
 
             <div class="col-md-12 form-group">
-                <label for="name"> Address </label>
-                <input class="form-control input-lg" type="text" id="name" name="hotel_address" value="" placeholder="">
+                <label for="hotel_confirm_number"> Confirmation Number </label>
+                <input class="form-control input-lg" type="text" id="hotel_confirm_number" name="hotel_confirm_number" value="@trip.map(_.hotel_confirm) " placeholder="">
             </div>
 
             <div class="col-md-12 form-group">
-                <label for="name"> Phone Number </label>
-                <input class="form-control input-lg" type="text" id="name" name="hotel_phone" value="" placeholder="">
+                <label for="hotel_address"> Address </label>
+                <input class="form-control input-lg" type="text" id="hotel_address" name="hotel_address" value="@trip.map(_.hotel_address)" placeholder="">
+            </div>
+
+            <div class="col-md-12 form-group">
+                <label for="hotel_phone"> Phone Number </label>
+                <input class="form-control input-lg" type="text" id="hotel_phone" name="hotel_phone" value="@trip.map(_.hotel_phone)" placeholder="">
             </div>
 
         </div>

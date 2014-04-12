@@ -9,6 +9,12 @@ class Trip_Plan(var itineraryPlan_id:ItineraryPlan,
                 var hotel_address:String,
                 var hotel_phone:String) extends Entity
 {
+
+  def taxi = this.additional_transportation=="taxi"
+  def rental = this.additional_transportation=="rental"
+  def shuttle = this.additional_transportation=="shuttle"
+  def isThereAdditionalTransportation: Boolean = this.rental || this.taxi || this.shuttle
+
   def flights =
   {
      val dbFlights = Flight.findByTrip_Confirmed(this)
