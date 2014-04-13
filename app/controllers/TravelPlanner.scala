@@ -128,16 +128,19 @@ object TravelPlanner extends Controller with Secured
           })
     }
 
-  case class TripRequestForm(depart_location:String,depart_date:String,  depart_time:String, airline:List[String], arrival_location:String,arrival_time:String, additional_transportation:String,  hotel:Option[String], hotel_meal:Option[String], checkout_date:String)
-  case class ClientRequestForm(ret_location:String,ret_date:String, ret_time:String, notes:String, trips:List[TripRequestForm])
+  case class TripRequestForm(trip_id:String,trip_number:Int, depart_location:String,depart_date:String,  depart_time:String, airline:List[String], arrival_location:String,arrival_time:String, additional_transportation:String,  hotel:Option[String], hotel_meal:Option[String], checkout_date:String)
+  case class ClientRequestForm(request_id:String, ret_location:String,ret_date:String, ret_time:String, notes:String, trips:List[TripRequestForm])
 
   val tripRequestForm = Form(
     mapping(
+      "request_id" -> text,
       "ret_location" -> text,
       "ret_date" -> text,
       "ret_time" -> text,
       "notes" -> text,
       "trips" -> list(mapping(
+        "trip_id" -> text,
+        "trip_number" -> number,
         "depart_location" -> text,
         "depart_date" -> text,
         "depart_time" -> text,
@@ -158,23 +161,31 @@ object TravelPlanner extends Controller with Secured
       tripRequestForm.bindFromRequest.fold(
         formWithErrors => BadRequest,
         requested => {
-          user.map{ myUser =>
+          transactional{
+            user.map{ myUser =>
 
-            val cr = models.Client_Request(user_id = myUser,ret_date = requested.ret_date, ret_location = requested.ret_location, ret_time = requested.ret_time, comments = requested.notes)
+              val clientRequest = Client_Request.findById(requested.request_id).getOrElse(Client_Request(user_id = myUser))
+              clientRequest.ret_date = requested.ret_date
+              clientRequest.ret_location = requested.ret_location
+              clientRequest.ret_time = requested.ret_time
+              clientRequest.comments = requested.notes
 
-            requested.trips.foreach{trip =>
-              models.Trip_Request(request_id = cr,
-                depart_date = trip.depart_date,
-                depart_location = trip.depart_location,
-                depart_time = trip.depart_time,
-                airlines = trip.airline,
-                arrival_location = trip.arrival_location,
-                arrival_time = trip.arrival_time,
-                additional_transportation = trip.additional_transportation,
-                hotel = trip.hotel.exists(_=="true"),
-                hotel_meal = trip.hotel_meal.exists(_=="true"),
-                checkout_date = trip.checkout_date)
+              requested.trips.foreach { tripInfo =>
+                   val trip = Trip_Request.findById(tripInfo.trip_id).getOrElse( Trip_Request(request_id = clientRequest) )
+                    trip.trip_number = tripInfo.trip_number
+                    trip.depart_date = tripInfo.depart_date
+                    trip.depart_location = tripInfo.depart_location
+                    trip.depart_time = tripInfo.depart_time
+                    trip.addAirlines(tripInfo.airline)
+                    trip.arrival_location = tripInfo.arrival_location
+                    trip.arrival_time = tripInfo.arrival_time
+                    trip.additional_transportation = tripInfo.additional_transportation
+                    trip.hotel = tripInfo.hotel.exists(_=="true")
+                    trip.hotel_meal = tripInfo.hotel_meal.exists(_=="true")
+                    trip.checkout_date = tripInfo.checkout_date
+              }
             }
+
           }
           Redirect(routes.Application.dashboard)
         }

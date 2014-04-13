@@ -2,7 +2,8 @@
 
  <div class="trip @if(hidden){ temp-hide }" data-number="@tripNumber">
     <div href="#trip@tripNumber" class="accordion-toggle @if(open){ open }else{ collapsed }" data-toggle="collapse">Trip #<span class="trip-number-id">@tripNumber</span></div>
- 	<input type="hidden" name="trip_id" value="@tripRequest.map(_.id)">
+ 	<input type="hidden" name="trips[@{tripNumber - 1}].trip_id" value="@tripRequest.map(_.id)">
+ 	<input type="hidden" name="trips[@{tripNumber - 1}].trip_number" value="@{tripNumber - 1}">
 
     <div id="trip@tripNumber" class="accordion-collapse collapse @if(open){ in }">
         <div class="trip-content">

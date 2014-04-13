@@ -12,7 +12,11 @@ class Client_Request(var user_id:User, var ret_date:String, var ret_location:Str
 
 object Client_Request
 {
-  def apply(user_id:User,  ret_date:String, ret_location:String, ret_time:String, comments:String) =
+  def apply(user_id:User,
+            ret_date:String = "",
+            ret_location:String = "",
+            ret_time:String = "",
+            comments:String = "") =
   transactional
   {
     new Client_Request(user_id,ret_date,ret_location,ret_time,comments)

@@ -11,7 +11,7 @@
 
                    @form(routes.TravelPlanner.sendRequest) {
 
-                        <input type="hidden" name="trip_id" value="@clientRequest.map(_.id)"/>
+                        <input type="hidden" name="request_id" value="@clientRequest.map(_.id)"/>
 
                         <div class="trips">
                             @if( !clientRequest.isDefined || clientRequest.get.trips.isEmpty ){

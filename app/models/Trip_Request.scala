@@ -3,7 +3,7 @@ import PostgresConnection._
 import java.util.Date
 
 
-class Trip_Request(var request_id:Client_Request, var depart_date:String, var depart_location:String, var depart_time:String, var arrival_location:String, var arrival_time:String,var additional_transportation:String, var hotel:Boolean, var hotel_meal:Boolean, var checkout_date:String) extends Entity
+class Trip_Request(var request_id:Client_Request, var trip_number:Int, var depart_date:String, var depart_location:String, var depart_time:String, var arrival_location:String, var arrival_time:String,var additional_transportation:String, var hotel:Boolean, var hotel_meal:Boolean, var checkout_date:String) extends Entity
 {
   def taxi = this.additional_transportation=="taxi"
   def rental = this.additional_transportation=="rental"
@@ -30,10 +30,21 @@ class Trip_Request(var request_id:Client_Request, var depart_date:String, var de
 
 object Trip_Request
 {
-  def apply(request_id:Client_Request, depart_date:String, depart_location:String,  depart_time:String,  arrival_location:String,  arrival_time:String, airlines:List[String], additional_transportation:String,  hotel:Boolean,  hotel_meal:Boolean,  checkout_date:String) =
+  def apply(request_id:Client_Request,
+            trip_number:Int = 0,
+            depart_date:String = "",
+            depart_location:String = "",
+            depart_time:String = "",
+            arrival_location:String = "",
+            arrival_time:String = "",
+            airlines:List[String] = List.empty[String],
+            additional_transportation:String = "",
+            hotel:Boolean = false,
+            hotel_meal:Boolean = false,
+            checkout_date:String = "") =
   transactional
   {
-    val trip = new Trip_Request(request_id,depart_date, depart_location, depart_time, arrival_location, arrival_time, additional_transportation,  hotel,  hotel_meal, checkout_date)
+    val trip = new Trip_Request(request_id,trip_number, depart_date, depart_location, depart_time, arrival_location, arrival_time, additional_transportation,  hotel,  hotel_meal, checkout_date)
 
     trip.addAirlines(airlines)
 
@@ -45,7 +56,7 @@ object Trip_Request
 
   def findByRequest(request_id:Client_Request): List[Trip_Request] = transactional
   {
-    select[Trip_Request] where(_.request_id :== request_id)
+    select[Trip_Request] where(_.request_id :== request_id) sortBy(_.trip_number)
   }
 
   def findByUser(user:User): Option[Trip_Request] = transactional

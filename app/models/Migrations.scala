@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat
 
 class CreateSchema extends Migration {
     
-    def timestamp = 201404121441l
+    def timestamp = 201404121818l
 
     def up  {
         removeAllEntitiesTables
@@ -20,7 +20,7 @@ class CreateSchema extends Migration {
 
 class CreateDefaultUsers extends Migration {
 
-    def timestamp = 201404121442l
+    def timestamp = 201404121819l
 
     def up  {
         customScript
@@ -37,9 +37,9 @@ class CreateDefaultUsers extends Migration {
           val req2 = Client_Request(user2,"2-28-2014","Las Vegas","11:00AM","Better to return before 11:00 than after")
           val req3 = Client_Request(user3,"2-28-2014","Salt Lake City","11:00AM","Better to return before 12:00 than after")
 
-          Trip_Request(req1, "2-28-2014", "San Diego",  "11:00AM",  "Denver",  "11:00AM", List("United"), "rental",   true,  true,  "2-28-2014")
-          Trip_Request(req2, "2-28-2014", "Las Vegas",  "11:00AM",  "Fresno",  "11:00AM", List("United"), "taxi",  true,  true,  "2-28-2014")
-          Trip_Request(req3, "2-28-2014", "Salt Lake", "11:00AM",  "Orlando",  "11:00AM", List("United"), "shuttle",  true,  false,  "2-28-2014")
+          Trip_Request(req1,1, "2-28-2014", "San Diego",  "11:00AM",  "Denver",  "11:00AM", List("United"), "rental",   true,  true,  "2-28-2014")
+          Trip_Request(req2,1, "2-28-2014", "Las Vegas",  "11:00AM",  "Fresno",  "11:00AM", List("United"), "taxi",  true,  true,  "2-28-2014")
+          Trip_Request(req3,1, "2-28-2014", "Salt Lake", "11:00AM",  "Orlando",  "11:00AM", List("United"), "shuttle",  true,  false,  "2-28-2014")
 
          val it1 =  Itinerary(req1,"10:00AM on the dot!")
          val it2 =  Itinerary(req2,"11:00AM on the dot!")
