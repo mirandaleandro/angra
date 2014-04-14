@@ -51,5 +51,8 @@ POST        /register                  controllers.Authentication.register()
 # Logout Page
 GET         /logout                    controllers.Authentication.logout()
 
+#Favicon
+#GET     /favicon.ico                controllers.Assets.at(path="/public/images", file="favicon.png")
+
 
 
