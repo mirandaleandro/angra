@@ -1643,6 +1643,32 @@ ul.paging li.active a {
   padding-bottom: 13px;
   border-top: 1px solid #e0e3e6;
 }
+
+.faq .question .faq-toggle {
+  font-size: 14px;
+  font-weight: 600;
+  color: #6f6f6f;
+}
+
+.faq .question .faq-toggle:focus,
+.faq .question .faq-toggle:hover {
+  outline: none;
+  text-decoration: none;
+}
+
+.faq .question .faq-toggle:before {
+  margin-right: 17px;
+  font-size: 20px;
+  font-weight: 700;
+  position: relative;
+  content: "+";
+  bottom: -2px;
+}
+
+.faq .question .faq-toggle.open:before {
+  content: "−";
+}
+
 .accordion-toggle {
   font-size: 14px;
   font-weight: 600;

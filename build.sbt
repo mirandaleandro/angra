@@ -18,7 +18,9 @@ libraryDependencies ++= Seq(
     "postgresql" % "postgresql" % "9.1-901-1.jdbc4",
     "net.fwbrasil" %% "activate-play" % activateVersion,
     "net.fwbrasil" %% "activate-jdbc" % activateVersion,
-    "net.fwbrasil" %% "activate-core" % activateVersion
+    "net.fwbrasil" %% "activate-core" % activateVersion,
+    //"com.typesafe.play" %% "play" % playVersion % "provided",
+    "com.typesafe" %% "play-plugins-mailer" % "2.2.0"
 )
 
 

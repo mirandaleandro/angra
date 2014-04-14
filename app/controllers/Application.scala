@@ -22,7 +22,9 @@ object Application extends Controller with Secured {
   def aboutus = Action {implicit request =>
     transactional
     {
-      Ok( views.html.aboutus() )
+      Ok( views.html.aboutus(
+        message = ""
+      ) )
     }
   }
 

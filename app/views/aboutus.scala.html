@@ -1,4 +1,6 @@
-@()
+@(message:String)
+
+@import views.html.helper._
 
 @main(pageTitle = "About Us") {
 
@@ -75,11 +77,11 @@
 
         <div class="row">
             <div class="col-sm-4 team-member">
-                <img src= '@routes.Assets.at("images/aboutus/char2.jpg")' class="img-responsive" alt="Char Black">
+                <img src= '@routes.Assets.at("images/aboutus/charProfile2.png")' class="img-responsive" alt="Char Black">
                 <div class="description">
                     <h4>Char Black, Travel Director</h4>
                     <p>
-                        Char has been planning side travel projects for the past 25 years.  She has extensive knowledge and experience with all travel arrangements, as she has been to 25+ countries and every state in the U.S.
+                        Char has been planning travel projects for the past 25 years.  She has extensive knowledge and experience with all travel arrangements, as she has been to 25+ countries and every state in the U.S.
                     </p>
 
                     <div class="social-box">
@@ -94,7 +96,7 @@
             </div>
 
             <div class="col-sm-4 team-member">
-                <img src='@routes.Assets.at("images/aboutus/jordyblack2.jpg")' class="img-responsive" alt="Jordy Black">
+                <img src='@routes.Assets.at("images/aboutus/jordyProfile.png")' class="img-responsive" alt="Jordy Black">
                 <div class="description">
                     <h4>Jordy Black, Travel Assistant</h4>
                     <p>
@@ -137,27 +139,36 @@
 
             <section id="contact-form" class="col-md-8">
                 <h2>Contact Us</h2>
-                <form action="#" method="get" accept-charset="utf-8" class="clearfix">
+                <h3>@message</h3>
+
+            <!-- insert here !-->
+                @form(routes.Mail.MessageService.sendMessage) {
+
+                <!--form action="" method="get" accept-charset="utf-8" class="clearfix"!-->
+                <!--form action="#" method="get" accept-charset="utf-8" class="clearfix"!-->
                     <div class="row">
                         <div class="col-sm-6 form-group">
                             <label for="name">Name</label>
-                            <input class="form-control input-lg" type="text" id="name" name="name" value="" placeholder="">
+                            <input class="form-control input-lg" type="text" id="name" name="name" value="" placeholder="" required>
                         </div>
 
                         <div class="col-sm-6 form-group">
                             <label for="email">Email Address</label>
-                            <input class="form-control input-lg" type="email" id="email" name="email" value="" placeholder="">
+                            <input class="form-control input-lg" type="email" id="email" name="email" value="" placeholder="" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12 form-group">
                             <label for="message">Message</label>
-                            <textarea class="form-control" id="message" name="message" rows="15"></textarea>
+                            <textarea class="form-control" id="message" name="message" rows="15" required></textarea>
                         </div>
                     </div>
 
                     <button type="submit" class="btn btn-grove-one btn-xlg btn-bold">Send Message</button>
-                </form>
+                <!--/form>
+            </form!-->
+                }
+                <!--insert here !-->
             </section>
 
         </div>
@@ -170,6 +181,7 @@
         <a href="@routes.Authentication.login()" class="btn btn-grove-one btn-xlg btn-bold">Create an Account Now</a>
     </div>
 </div>
+
 
 </body>
 </html>

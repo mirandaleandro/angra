@@ -6,7 +6,8 @@
 GET         /                          controllers.Application.landingPage()
 
 # About Us Page
-GET         /aboutus                   controllers.Application.aboutus()
+GET         /aboutus                  controllers.Application.aboutus()
+POST       /sendMessage              controllers.Mail.MessageService.sendMessage
 
 # FAQ Page
 GET         /faq                        controllers.Application.faq()

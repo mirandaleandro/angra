@@ -185,7 +185,11 @@ object TravelPlanner extends Controller with Secured
                     trip.checkout_date = tripInfo.checkout_date
               }
             }
-
+            try {
+              Mail.EmailService.sendEmail("New Travel Request Submitted from " + user.get.name, "Char Black", "cetservicesinc@gmail.com", user.get.name, user.get.email, "Hi Char! A new travel request has been submitted from " + user.get.name + ". Logon to your account at cetservicesinc.com to view.")
+            } catch {
+              case e: Exception => println("exception caught: " + e);
+            }
           }
           Redirect(routes.Application.dashboard)
         }
@@ -230,8 +234,8 @@ object TravelPlanner extends Controller with Secured
         ))(ItineraryPlanForm.apply)(ItineraryPlanForm.unapply)))
     (ItineraryForm.apply)(ItineraryForm.unapply))
 
-  def submitItinerary = Action {
-    implicit request =>
+  def submitItinerary = withAuth {
+    implicit user => implicit request =>
       itineraryForm.bindFromRequest.fold(
         formWithErrors => BadRequest,
         requested => {
@@ -277,6 +281,11 @@ object TravelPlanner extends Controller with Secured
                    }
 
                 }
+            }
+            try {
+              Mail.EmailService.sendEmail("New Itinerary from CET Services", user.get.name, user.get.email, "Char Black", "cetservicesinc@gmail.com", "An itinerary has been created for your travel request.  Please log on to your account at cetservicesinc.com to view.")
+            } catch {
+              case e: Exception => println("exception caught: " + e);
             }
           }
 
