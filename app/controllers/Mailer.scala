@@ -39,6 +39,8 @@ object Mailer extends Controller {
         InternalServerError,
       contactUsForm =>
       {
+        implicit val user = Application.onlineUser(request)
+
         try {
           sendEmail(subject = "New Message for CET Services",
                    recipient = "Char Black",
@@ -46,10 +48,9 @@ object Mailer extends Controller {
                   name = contactUsForm.name,
                   fromEmail = contactUsForm.email,
                   message = contactUsForm.message)
-        Ok(views.html.aboutus(
-          message = Some("Thanks for contacting CET Services!")
-            )
-          )
+
+          Ok( views.html.aboutus(message = Some("Thanks for contacting CET Services!") ) )
+
         } catch {
           case e: Exception => println("exception caught: " + e)
             Ok(views.html.aboutus (

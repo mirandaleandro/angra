@@ -86,6 +86,11 @@ object Authentication extends Controller
      */
     private def username(request: RequestHeader) = request.session.get("email")
 
+    def onlineUser(request: RequestHeader): Option[User] =
+    {
+      username(request).flatMap( User.findByEmail( _ ) )
+    }
+
     /**
      * Redirect to login if the user in not authorized.
      */

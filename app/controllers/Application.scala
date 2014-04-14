@@ -1,5 +1,6 @@
 package controllers
 
+import _root_.controllers.Authentication.Secured
 import play.api._
 import play.api.mvc._
 import models.User
@@ -15,6 +16,8 @@ object Application extends Controller with Secured {
   def landingPage = Action {implicit request =>
     transactional
     {
+      implicit val user = onlineUser(request)
+
       Ok( views.html.landingpage() )
     }
   }
@@ -22,14 +25,15 @@ object Application extends Controller with Secured {
   def aboutus = Action {implicit request =>
     transactional
     {
-      Ok( views.html.aboutus(
-      ) )
+      implicit val user = onlineUser(request)
+      Ok( views.html.aboutus() )
     }
   }
 
   def faq = Action {implicit request =>
     transactional
     {
+      implicit val user = onlineUser(request)
       Ok( views.html.faq() )
     }
   }
