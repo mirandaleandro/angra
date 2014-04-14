@@ -1,4 +1,4 @@
-@(message:String)
+@(message:Option[String]= None)
 
 @import views.html.helper._
 
@@ -139,10 +139,15 @@
 
             <section id="contact-form" class="col-md-8">
                 <h2>Contact Us</h2>
-                <h3>@message</h3>
+                @message.map{ m =>
+                <div class="alert bg-info">
+                    <a class="close" data-dismiss="alert">x</a>
+                    @m
+                </div>
+                }
 
             <!-- insert here !-->
-                @form(routes.Mail.MessageService.sendMessage) {
+                @form(routes.Mailer.sendMessage) {
 
                 <!--form action="" method="get" accept-charset="utf-8" class="clearfix"!-->
                 <!--form action="#" method="get" accept-charset="utf-8" class="clearfix"!-->

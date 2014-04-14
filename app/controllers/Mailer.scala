@@ -16,7 +16,8 @@ import scala.Some
 /**
  * Created by Tahna Black
  */
-package object Mail extends Controller {
+
+object Mailer extends Controller {
 
   //object messageService {
 
@@ -32,7 +33,6 @@ package object Mail extends Controller {
   /**
    * Handle "Contact Us" message in About Us page
    */
- object MessageService {
   def sendMessage = Action { implicit request =>
     contactUsForm.bindFromRequest.fold(
       FormWithErrors =>
@@ -40,33 +40,35 @@ package object Mail extends Controller {
       contactUsForm =>
       {
         try {
-          EmailService.sendEmail("New Message for CET Services", "Char Black <cetservicesinc@gmail.com>", "cetservicesinc@gmail.com", contactUsForm.name, contactUsForm.email, contactUsForm.message)
+          sendEmail(subject = "New Message for CET Services",
+                   recipient = "Char Black",
+                   recipientEmail = "cetservicesinc@gmail.com",
+                  name = contactUsForm.name,
+                  fromEmail = contactUsForm.email,
+                  message = contactUsForm.message)
         Ok(views.html.aboutus(
-          message = "Thanks for contacting CET Services!"
+          message = Some("Thanks for contacting CET Services!")
             )
           )
         } catch {
           case e: Exception => println("exception caught: " + e)
             Ok(views.html.aboutus (
-            message = "Sorry, your email could not be sent."
+            message = Some("Sorry, your email could not be sent.")
           ))}
       }
     )
-  }
   }
 
   /**
    * Handle all mail.
    */
 
-  object EmailService {
   def sendEmail(subject: String, recipient: String, recipientEmail: String, name: String, fromEmail: String, message: String) = {
     val mailService = use[MailerPlugin].email
     mailService.setSubject(subject)
     mailService.setRecipient(recipient + " <" + recipientEmail + ">", recipientEmail)
     mailService.setFrom(name + " <" + fromEmail + ">")
     mailService.send(message)
-  }
   }
 
 }

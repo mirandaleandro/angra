@@ -23,7 +23,6 @@ object Application extends Controller with Secured {
     transactional
     {
       Ok( views.html.aboutus(
-        message = ""
       ) )
     }
   }
