@@ -30,6 +30,11 @@ class CreateDefaultUsers extends Migration {
                       User("alex","alex@gmail.com","piracyisgood", "(801) 123-4567", Option(true))
                       User("maria","maria@gmail.com","piracyisgood", "(801) 123-4567", Option(true))
           val user3 = User("Lula Silva","luiz@gmail.com","piracyisgood", "(801) 123-4567", Option(false))
+          val user4 = User("Greg Anderson", "greg_anderson@byu.edu", "mostoutstanding", "(801) 123-4567", Option(true))
+          val user5 = User("Char Black", "travelerchar@gmail.com", "anthonysine", "(801) 123-4567", Option(true))
+                      User("Jordy Black", "jords7272@gmail.com", "anthonysine", "(801) 123-4567", Option(true))
+                      User("Tony Sine", "anthony.sine@gmail.com", "anthonysine", "(801) 123-4567", Option(true))
+
 
 
 

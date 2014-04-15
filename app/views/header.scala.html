@@ -17,6 +17,7 @@
 							<li><a href="@routes.Application.aboutus()">About Us</a></li>
                             <li><a href="@routes.Application.faq()">FAQ</a></li>
 						</ul>
+                     <li class='inactive'> <a href="@routes.Application.dashboard()">My Travel Plans</a> </li>
                         @if(user.isDefined){
 							<li class='active'>Logged as @user.get.name (<a class="logout-link" href="@routes.Authentication.logout()"> Logout </a>)</li>
                         }else{

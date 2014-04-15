@@ -183,7 +183,7 @@ object TravelPlanner extends Controller with Secured
               }
             }
             try {
-              Mailer.sendEmail("New Travel Request Submitted from " + user.get.name, "Char Black", "cetservicesinc@gmail.com", user.get.name, user.get.email, "Hi Char! A new travel request has been submitted from " + user.get.name + ". Logon to your account at cetservicesinc.com to view.")
+              Mailer.sendEmail("New Travel Request Submitted from " + user.get.name, "Char Black", "cetservicesinc@gmail.com", user.get.name, user.get.email, "Hi Char! A new travel request has been submitted from " + user.get.name + ". Logon to your account at http://www.cetservicesinc.com/ to view.")
             } catch {
               case e: Exception => println("exception caught: " + e);
             }
