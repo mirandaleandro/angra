@@ -2026,3 +2026,13 @@ input[type=search]
     content: "\E213";
     margin-top: -20px;
 }
+
+.readonly-state input,
+.readonly-state .form-control[readonly]
+{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: default;
+    -webkit-box-shadow: none;
+}

@@ -2,7 +2,7 @@
 @import views.html.helper._
 @main(pageTitle = "Travel Planner") {
 
-    <div class="widewrapper">
+    <div class="widewrapper @if(user.isDefined && !user.get.isAdmin ){readonly-state}" >
         <div class="container content">
             <div class="row">
 

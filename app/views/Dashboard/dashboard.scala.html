@@ -77,9 +77,12 @@
                                        <td>
                                            @if(user.exists(_.isAdmin)){
                                                <a href="@routes.Application.travelResponse(Some(plan.id))" class="btn btn-grove-one">Respond</a>
+                                           }else{
+                                               <a href="@routes.Application.seeResponse(Some(plan.id))" class="btn btn-grove-one">See Response</a>
                                            }
                                             <a href="@routes.Application.travelPlanner(Some(plan.id))" class="btn btn-grove-one">Edit</a>
                                             <a href="@routes.Application.removePlan(Some(plan.id))" class="btn btn-grove-one">Remove</a>
+
                                        </td>
                                    </tr>
 

@@ -20,9 +20,6 @@ object TravelPlanner extends Controller with Secured
       (number => number)
       // unbinding
       (info => Some(info))
-
-
-
   )
 
   def tripView = Action
@@ -240,58 +237,66 @@ object TravelPlanner extends Controller with Secured
         formWithErrors => BadRequest,
         requested => {
 
+
           transactional
           {
-            val clientRequestOption = models.Client_Request.findById(requested.request_id)
+            if( user.exists(_.isAdmin))
+            {
 
-            clientRequestOption.map{ clientRequest =>
-                clientRequest.comments =  requested.comments
 
-                requested.itineraryPlans.foreach{ itineraryPlanInfo =>
-                   val itineraryPlan: ItineraryPlan = ItineraryPlan.findById( itineraryPlanInfo.itinerary_plan_id).getOrElse(ItineraryPlan(clientRequest.itinerary))
-                   itineraryPlan.plan_number = itineraryPlanInfo.itinerary_plan_number
+              val clientRequestOption = models.Client_Request.findById(requested.request_id)
 
-                   itineraryPlanInfo.trip_plans.foreach{ tripPlanInfo =>
-                      val trip = Trip_Plan.findById( tripPlanInfo.trip_plan_id ).getOrElse( Trip_Plan(itineraryPlan_id = itineraryPlan) )
-                      trip.trip_number = tripPlanInfo.trip_plan_number
+              clientRequestOption.map{ clientRequest =>
+                  clientRequest.comments =  requested.comments
 
-                      trip.additional_transportation = tripPlanInfo.additional_transportation
-                      trip.hotel_address = tripPlanInfo.hotel_address
-                      trip.hotel_confirm = tripPlanInfo.hotel_confirm
-                      trip.hotel_name = tripPlanInfo.hotel_name
-                      trip.hotel_phone = tripPlanInfo.hotel_phone
+                  requested.itineraryPlans.foreach{ itineraryPlanInfo =>
+                     val itineraryPlan: ItineraryPlan = ItineraryPlan.findById( itineraryPlanInfo.itinerary_plan_id).getOrElse(ItineraryPlan(clientRequest.itinerary))
+                     itineraryPlan.plan_number = itineraryPlanInfo.itinerary_plan_number
 
-                      tripPlanInfo.flights.foreach{ flightInfo =>
-                        val flight = Flight.findById(flightInfo.flight_id).getOrElse(Flight(trip))
-                        flight.flight_sort_number = flightInfo.flight_number
+                     itineraryPlanInfo.trip_plans.foreach{ tripPlanInfo =>
+                        val trip = Trip_Plan.findById( tripPlanInfo.trip_plan_id ).getOrElse( Trip_Plan(itineraryPlan_id = itineraryPlan) )
+                        trip.trip_number = tripPlanInfo.trip_plan_number
 
-                        flight.airline = flightInfo.airline
-                        flight.arrival_location = flightInfo.arrival_location
-                        flight.arrival_date = flightInfo.arrival_date
-                        flight.arrival_time = flightInfo.arrival_time
-                        flight.confirm_no = flightInfo.confirm_num
-                        flight.depart_location = flightInfo.depart_location
-                        flight.depart_date = flightInfo.depart_date
-                        flight.depart_time = flightInfo.depart_time
-                        flight.number = flightInfo.number
-                        flight.seat = flightInfo.seat
+                        trip.additional_transportation = tripPlanInfo.additional_transportation
+                        trip.hotel_address = tripPlanInfo.hotel_address
+                        trip.hotel_confirm = tripPlanInfo.hotel_confirm
+                        trip.hotel_name = tripPlanInfo.hotel_name
+                        trip.hotel_phone = tripPlanInfo.hotel_phone
 
-                      }
+                        tripPlanInfo.flights.foreach{ flightInfo =>
+                          val flight = Flight.findById(flightInfo.flight_id).getOrElse(Flight(trip))
+                          flight.flight_sort_number = flightInfo.flight_number
 
-                   }
+                          flight.airline = flightInfo.airline
+                          flight.arrival_location = flightInfo.arrival_location
+                          flight.arrival_date = flightInfo.arrival_date
+                          flight.arrival_time = flightInfo.arrival_time
+                          flight.confirm_no = flightInfo.confirm_num
+                          flight.depart_location = flightInfo.depart_location
+                          flight.depart_date = flightInfo.depart_date
+                          flight.depart_time = flightInfo.depart_time
+                          flight.number = flightInfo.number
+                          flight.seat = flightInfo.seat
 
-                }
+                        }
+
+                     }
+
+                  }
+              }
+              try {
+                Mailer.sendEmail("New Itinerary from CET Services", user.get.name, user.get.email, "Char Black", "cetservicesinc@gmail.com", "An itinerary has been created for your travel request.  Please log on to your account at cetservicesinc.com to view.")
+              } catch {
+                case e: Exception => println("exception caught: " + e);
+              }
+
+                Redirect(routes.Application.dashboard)
             }
-            try {
-              Mailer.sendEmail("New Itinerary from CET Services", user.get.name, user.get.email, "Char Black", "cetservicesinc@gmail.com", "An itinerary has been created for your travel request.  Please log on to your account at cetservicesinc.com to view.")
-            } catch {
-              case e: Exception => println("exception caught: " + e);
+            else
+            {
+              BadRequest
             }
           }
-
-          Redirect(routes.Application.dashboard).flashing(
-            "message" -> "Your itinerary has been submitted!"
-          )
         }
       )
   }

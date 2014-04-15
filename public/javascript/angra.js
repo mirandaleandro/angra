@@ -29,19 +29,38 @@ $(function()
 {
    // var accordion = $('.accordion-collapse');
 
+    function disableInputs()
+    {
+        if($(".readonly-state").size() > 0)
+        {
+            $("input").attr('readonly','readonly');
+            $(".readonly-state .btn.btn-grove-one").remove();
+        }
+    }
+
     function bindDateTimePickers()
     {
-        $('.date-picker').datetimepicker({
-            pickTime: false
-        });
+        if($(".readonly-state").size() < 1)
+        {
+            $('.date-picker').datetimepicker({
+                pickTime: false
+            });
 
-        $('.time-picker').datetimepicker({
-            pickDate: false,
-            pick12HourFormat: true,
-            pickSeconds: false
-        });
+            $('.time-picker').datetimepicker({
+                pickDate: false,
+                pick12HourFormat: true,
+                pickSeconds: false
+            });
+        }
     }
-    bindDateTimePickers();
+
+    function rebindFields(){
+
+        disableInputs();
+        bindDateTimePickers();
+    }
+
+    rebindFields();
 
     function bindBindInputsAhead (parent)
     {
@@ -56,6 +75,12 @@ $(function()
     }
 
     bindBindInputsAhead($(document.body));
+
+
+
+    $(document.body).on("click",".readonly-state input, .date-picker", function(e){
+        e.stopImmediatePropagation();
+    });
 
     $(document.body).on("click",".accordion-toggle", function(){
         $(this).siblings(".accordion-collapse").toggle("toggle");
@@ -95,7 +120,7 @@ $(function()
             aTrip.show('slow');
 
             bindBindInputsAhead( aTrip );
-            bindDateTimePickers();
+            rebindFields();
         });
 
     });
@@ -124,7 +149,7 @@ $(function()
             var newElement =   parent.find(".flight[data-number="+number+"]");
 
             newElement.show('slow');
-            bindDateTimePickers();
+            rebindFields();
         });
 
     });
@@ -150,7 +175,7 @@ $(function()
             var newElement =   parent.find(".trip[data-number="+number+"]");
 
             newElement.show('slow');
-            bindDateTimePickers()
+            rebindFields()
         });
 
     });
@@ -174,7 +199,7 @@ $(function()
             var newElement =   parent.find(".plan[data-number="+number+"]");
 
             newElement.show('slow');
-            bindDateTimePickers()
+            rebindFields()
         });
 
     });
@@ -212,5 +237,7 @@ $(function()
     $(document.body).on("change","input[type=checkbox]", function(){
        $(this).attr("value",$(this).is(':checked'));
     });
+
+
 
 });

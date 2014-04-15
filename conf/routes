@@ -25,6 +25,7 @@ GET         /dashboard                 controllers.Application.dashboard
 
 # Admin Response Form to a client request
 GET         /travelplanresponse        controllers.Application.travelResponse(id:Option[String] ?= None)
+GET         /seeresponse               controllers.Application.seeResponse(id:Option[String] ?= None)
 
 #Request Trip view (Slice)
 POST        /tripView                  controllers.TravelPlanner.tripView
